@@ -1,0 +1,34 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+*/
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #0074BA !default;
+$calm:                            #27333F !default;
+$balanced:                        #42bb75 !default;
+$energized:                       #F19D20 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #0d191b !default;
+$dark:                            #1C242C !default;
+$orbit-color:                     #2bede6;
+$orbit-color-green:               #42bb75;
+$orbit-color-dark:                #103d3d;
+$orbit-color-bar:                 #0b0f11;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700');
+$font-family-base: 'Titillium Web', sans-serif !default;
+
+$fa-font-path:        "../lib/font-awesome/fonts" !default;
+@import "www/lib/font-awesome/scss/font-awesome";
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+@import "main";
+
+@import "www/js/Pages/homepage/home.scss";
+@import "account.scss";

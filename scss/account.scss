@@ -1,0 +1,51 @@
+.page-account{
+
+  .account-background{
+    background: url('../js/Pages/App/Account/img/background.jpg') no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+
+    height: 170px;
+
+    .username{
+      padding-top: 60px;
+      font-size: 1.25em;
+      font-weight: 400;
+      .alliance{
+        color: $assertive;
+      }
+    }
+
+    .grade{
+      color: white;
+    }
+  }
+
+  .avatar{
+    text-align: center;
+    position: absolute;
+    top: -50px;
+    z-index: 1;
+    left: 50%;
+    margin-left: -45px;
+
+    img{
+      border-radius: 50%;
+      border: 1px solid $orbit-color;
+      height: 90px;
+      width: 90px;
+    }
+
+  }
+
+  .description{
+    background: rgba($orbit-color-dark, 0.4);
+    border-top: 1px solid rgba($orbit-color, 0.2);
+    position: relative;
+    padding: 48px 15px 15px 15px;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+    font-size: 0.9em;
+  }
+}

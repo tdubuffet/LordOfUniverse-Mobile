@@ -1,0 +1,75 @@
+<ion-view view-title="SpaceGame" class="homepage">
+    <ion-content class="padding">
+
+        <div class="logo">
+            <img ng-src="img/logo.png" />
+        </div>
+
+
+        <h1>Avec les réseaux sociaux</h1>
+
+        <div class="text-center">
+            <div class="button button-facebook" ng-click="facebookLogin()">
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div class="button button-google">
+                <i class="fa fa-google-plus"></i>
+            </div>
+        </div>
+
+
+
+        <h1>Avec un compte</h1>
+        <form novalidate ng-submit="doLogin(signin)" name="signin">
+            <div class="list list-orbit">
+                <label class="item item-input item-orbit">
+                    <input type="text" placeholder="Nom d'utilisateur" name="username" ng-model="login.username" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" ng-required=true />
+                </label>
+                <!-- Error INPUT -->
+                <p ng-show="signin.username.$error.minlength && (!signin.username.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le nom d'utilisateur est trop court.
+                </p>
+                <p ng-show="signin.username.$error.maxlength && (!signin.username.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le nom d'utilisateur est trop long.
+                </p>
+
+                <p ng-show="signin.username.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+
+
+                <label class="item item-input item-orbit">
+                    <input type="password" placeholder="Mot de passe" name="password" ng-model="login.password" ng-minlength="5" ng-required=true />
+                </label>
+
+                <!-- Error INPUT -->
+                <p ng-show="signin.password.$error.minlength && (!signin.password.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le mot de passe est trop court.
+                </p>
+
+                <p ng-show="signin.password.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+
+                <button class="button button-orbit button-block"  type="submit" ng-click="submitted=true">
+                    Se connecter
+                </button>
+
+                <button class="button button-clear button-small button-block button-orbit-clear" ui-sref="password">
+                    Mot de passe perdu ?
+                </button>
+            </div>
+        </form>
+
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-orbit">
+        <button class="button button-clear button-block button-orbit-clear" ui-sref="register">
+            Créer un compte
+        </button>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,89 @@
+<ion-view view-title="SpaceGame" class="homepage">
+    <ion-header-bar align-title="center" class="bar-orbit">
+        <button class="button button-clear button-orbit-clear" ui-sref="homepage">
+            <i class="fa fa-chevron-left"></i> Retour
+        </button>
+        <div class="title">
+            Créer un compte
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="padding">
+
+        <h1>Avec les réseaux sociaux</h1>
+
+        <div class="text-center">
+            <div class="button button-facebook" ng-click="facebookLogin()">
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div class="button button-google">
+                <i class="fa fa-google-plus"></i>
+            </div>
+        </div>
+
+
+
+        <h1>Création manuel</h1>
+
+        <form novalidate ng-submit="doRegister(register)" name="register">
+            <div class="list list-orbit">
+                <label class="item item-input item-orbit">
+                    <input type="text" name="username" placeholder="Nom d'utilisateur" ng-model="registration.username" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" ng-required=true />
+                </label>
+
+                <!-- Error INPUT -->
+                <p ng-show="register.username.$error.minlength && (!register.username.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le nom d'utilisateur est trop court.
+                </p>
+                <p ng-show="register.username.$error.maxlength && (!register.username.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le nom d'utilisateur est trop long.
+                </p>
+
+                <p ng-show="register.username.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+
+
+                <label class="item item-input item-orbit">
+                    <input type="password" name="password" placeholder="Mot de passe" ng-model="registration.password" ng-minlength="5" ng-required=true />
+                </label>
+
+                <!-- Error INPUT -->
+                <p ng-show="register.password.$error.minlength && (!register.password.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le mot de passe est trop court.
+                </p>
+
+                <p ng-show="register.password.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+
+
+                <label class="item item-input item-orbit">
+                    <input type="email" name="email" placeholder="Adresse email"  ng-model="registration.email" ng-required=true />
+                </label>
+                <!-- Error INPUT -->
+                <p ng-show="register.email.$invalid && !register.email.$pristine" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Votre adresse email n'est pas valide.
+                </p>
+
+                <p ng-show="register.email.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+
+
+                <button class="button button-orbit button-block"  type="submit" ng-click="submitted=true">
+                    Créer mon compte
+                </button>
+            </div>
+        </form>
+
+
+    </ion-content>
+</ion-view>

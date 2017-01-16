@@ -1,0 +1,32 @@
+<ion-view class="page-account" cache-view="true">
+    <ion-nav-title>
+        Mon compte
+    </ion-nav-title>
+
+    <ion-content class="has-header  has-subheader">
+        <div class="account-background">
+
+            <div class="user-profil">
+
+                <div class="username text-center">
+                    {{ user.username }} <span class="alliance" ng-if="user.ally">[{{ user.ally.tag }}]</span>
+                </div>
+
+                <p class="grade text-center">
+                    Empereur
+                </p>
+
+            </div>
+
+        </div>
+        <div class="description">
+            <div class="avatar">
+                <img ng-src="{{ user.avatar }}" />
+            </div>
+
+            <p>
+                {{ user.description }}
+            </p>
+        </div>
+    </ion-content>
+</ion-view>
