@@ -56,7 +56,7 @@
 }
 
 .button.button-clear.button-orbit-clear{
-  color: $or bit-color !important;
+  color: $orbit-color !important;
   border: none;
 }
 
@@ -76,6 +76,11 @@ ion-footer-bar{
 .bar-orbit{
   background: rgba($orbit-color-bar, 0.92);
   border-color: $orbit-color-dark;
+}
+
+.bar-tchat{
+  min-height: 44px;
+  height: auto;
 }
 
 

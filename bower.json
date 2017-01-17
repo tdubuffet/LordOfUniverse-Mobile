@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "angular-oauth2": "tdubuffet/angular-oauth2#^4.1.1",
-    "angular-cache": "^4.6.0"
+    "angular-cache": "^4.6.0",
+    "angular-elastic": "^2.5.1"
   }
 }

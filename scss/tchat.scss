@@ -1,0 +1,82 @@
+.page-tchat{
+  .bar-tchat{
+    textarea{
+      width: 86%;
+      padding: 7px 5px;
+      background: rgba($orbit-color-dark, 0.2);
+      border: 1px solid rgba($orbit-color, 0.05);
+      border-radius: 5px;
+      color: $orbit-color;
+    }
+
+    .send-input{
+      font-size: 20px;
+      float: right;
+      width: 12%;
+      text-align: right;
+      line-height: 32px;
+    }
+
+    .footer-btn-wrap{
+      position: relative;
+      button{
+        position: absolute;
+        bottom: 0px;
+        color: $orbit-color;
+      }
+    }
+  }
+
+  .message{
+    margin-top: 10px;
+    &:first-child{
+      margin-top: 0;
+    }
+    .content{
+      .avatar{
+        width: 10%;
+        float: left;
+        img{
+          width: 100%;
+          border-radius: 50%;
+          border: 1px solid $orbit-color;
+        }
+      }
+      .text{
+        font-size: 0.9em;
+        max-width: 78%;
+        margin-left: 2%;
+        padding: 7px 5px;
+        background: rgba($orbit-color-dark, 0.2);
+        border: 1px solid rgba($orbit-color, 0.05);
+        border-radius: 5px;
+        float: left;
+        .date{
+          font-size: 0.7em;
+          letter-spacing: 1px;
+          .username{
+            color: $balanced;
+          }
+        }
+      }
+    }
+
+    &.me{
+      .avatar{
+        float: right;
+        img {
+          border: 1px solid rgba(#4fe38b, 0.6);
+        }
+      }
+
+      .text{
+        float: right;
+        margin-left: 0%;
+        margin-right: 2%;
+        background: rgba(#132d24, 0.4);
+        border: 1px solid rgba(#4fe38b, 0.2);
+        color: $balanced;
+      }
+    }
+  }
+}

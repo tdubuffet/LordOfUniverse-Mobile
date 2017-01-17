@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic'])
 
     .run(function ($ionicPlatform, OAuth) {
         $ionicPlatform.ready(function () {
@@ -93,6 +93,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     }
                 }
             })
+            .state('app.tchat', {
+                url: '/tchat',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Tchat/index.html",
+                        controller: 'AppTchat'
+                    }
+                }
+            })
 
         ;
 
@@ -144,4 +153,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 return response || $q.when(response);
             }
         };
+    }).
+    constant('$ionicLoadingConfig', {
+        template: '<ion-spinner icon="bubbles" class="spinner-positive"></ion-spinner>'
     });

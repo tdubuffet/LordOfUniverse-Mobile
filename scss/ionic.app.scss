@@ -6,9 +6,9 @@ For example, you might change some of the default colors:
 */
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #0074BA !default;
+$positive:                        #2bede6 !default;
 $calm:                            #27333F !default;
-$balanced:                        #42bb75 !default;
+$balanced:                        #4fe38b !default;
 $energized:                       #F19D20 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #0d191b !default;
@@ -32,3 +32,4 @@ $fa-font-path:        "../lib/font-awesome/fonts" !default;
 
 @import "www/js/Pages/homepage/home.scss";
 @import "account.scss";
+@import "tchat.scss";
