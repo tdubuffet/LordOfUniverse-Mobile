@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppTchat', function($scope, $ionicPlatform, $ionicScrollDelegate, $ionicLoading, Tchat, $q, Account) {
+.controller('AppTchat', function($scope, $ionicPlatform, $ionicScrollDelegate, $ionicLoading, $location, Tchat, $q, Account) {
 
 
 
@@ -30,7 +30,9 @@ angular.module('starter.controllers')
         });
 
         setTimeout(function() {
-            loadMessage(false);
+            if ($location.path() == '/app/tchat') {
+                loadMessage(false);
+            }
         }, 8000);
 
         return q.promise;
