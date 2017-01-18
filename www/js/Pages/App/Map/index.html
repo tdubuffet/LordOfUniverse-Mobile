@@ -1,10 +1,74 @@
-<ion-view class="page-tchat" cache-view="true">
+<ion-view class="page-map" cache-view="false">
+
     <ion-nav-title>
-        Map
+        Capteur :: [{{ position.x }}:{{ position.y }}]
     </ion-nav-title>
+    <ion-nav-buttons side="right">
 
-    <ion-content class="has-header padding">
+    </ion-nav-buttons>
 
+    <ion-content overflow-scroll="false" class="has-header">
+
+        <div class="control">
+            <div class="btn btn-left" ng-click="change('left')"><i class="fa fa-chevron-left"></i></div>
+            <div class="btn btn-right"  ng-click="change('right')"><i class="fa fa-chevron-right"></i></div>
+            <div class="btn btn-bottom" ng-click="change('bottom')"><i class="fa fa-chevron-down"></i></div>
+            <div class="btn btn-top"  ng-click="change('top')"><i class="fa fa-chevron-up"></i></div>
+        </div>
+
+
+        <div class="grid-wrapper">
+
+            <div class="grid">
+
+                <div class="map">
+                    <div ng-repeat="(key, value) in data" class="case case-{{ data.type }}">
+                            <div class="planet" ng-if="value.type  == 'planet'">
+                                <img src="img/planet/planet_2.png" />
+                            </div>
+
+                        <div class="sonar" ng-if="value.type  == 'planet'"></div>
+                    </div>
+                </div>
+
+                <div class="vertical">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="horizontal">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+
+                </div>
+            </div>
+        </div>
 
 
     </ion-content>

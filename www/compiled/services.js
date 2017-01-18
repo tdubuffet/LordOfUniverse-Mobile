@@ -188,13 +188,13 @@ angular.module('starter.services')
 
     var Map = {};
 
-    Map.get = function() {
+    Map.get = function(data) {
 
         var q = $q.defer();
 
         $http.get(
             Config.path_api + '/map/', {
-                params: { x: 1, y: 1, z: 1 }
+                params: { x: data.x, y: data.y }
             }
         ).then(function(response) {
 

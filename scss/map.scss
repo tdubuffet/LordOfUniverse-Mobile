@@ -1,0 +1,282 @@
+.page-map{
+
+  background: url(../js/Pages/App/Map/img/wallpaper.jpg) no-repeat center fixed;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+
+  $gridLine: 1px;
+
+  .control{
+    .btn-left,
+    .btn-right,
+    .btn-top,
+    .btn-bottom{
+      position: absolute;
+      z-index: 60;
+      height: 50px;
+      width: 35px;
+      background: rgba(0, 0 , 0, 0.5);
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    .btn-top,
+    .btn-bottom{
+      height: 35px;
+      width: 50px;
+      line-height: 35px;
+    }
+
+    .btn-right{
+      right: 10px;
+      top: 50%;
+      margin-top: -25px;
+    }
+
+    .btn-left{
+      left: 10px;
+      top: 50%;
+      margin-top: -25px;
+    }
+
+    .btn-top{
+      left: 50%;
+      top: 10px;
+      margin-left: -25px;
+    }
+
+    .btn-bottom{
+      left: 50%;
+      bottom: 10px;
+      margin-left: -25px;
+    }
+  }
+
+  .map{
+    position: absolute;
+    width: 40%;
+    height: 50%;
+    top: 40%;
+    left: 30%;
+    .case{
+
+      position:relative;
+      z-index: 50;
+      width: 25%;
+      height: 20%;
+      float: left;
+
+      .planet{
+        text-align: center;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+
+        img{
+          height: 40%;
+          position: relative;
+          top: 30%;
+          z-index: 52;
+        }
+      }
+      .sonar{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        background: transparent;
+        border-radius: 50%;
+        z-index: 51;
+        border: 1px solid $orbit-color;
+        -webkit-animation: moveSonar 3s infinite;
+      }
+    }
+  }
+
+  .scroll{
+    transform: none !important;
+  }
+
+
+  .grid-wrapper {
+    position:absolute;
+    width:130%;
+    height:130%;
+    left:-15%;
+    bottom: -6%;
+    perspective:300px;
+  }
+
+  .grid {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    margin-top:-50px;
+    transform: rotateX(45deg);
+    -webkit-transform-style: preserve-3d;
+  }
+
+  .line {
+    position:absolute;
+    background:rgba($orbit-color, 0.15);
+    -webkit-backface-visibility: hidden;
+  }
+
+  .vertical .line {
+    top:0;
+    left:0;
+    bottom:0;
+    width:$gridLine;
+    background: linear-gradient(top, rgba($orbit-color,0), rgba($orbit-color, 0.35));
+    &:nth-child(1) {
+      left:10%;
+    }
+    &:nth-child(2) {
+      left:20%;
+    }
+    &:nth-child(3) {
+      left:30%;
+    }
+    &:nth-child(4) {
+      left:40%;
+    }
+    &:nth-child(5) {
+      left:50%;
+    }
+    &:nth-child(6) {
+      left:60%;
+    }
+    &:nth-child(7) {
+      left:70%;
+    }
+    &:nth-child(8) {
+      left:80%;
+    }
+    &:nth-child(9) {
+      left:90%;
+    }
+    &:nth-child(10) {
+      left:100%;
+      margin-left:-1px;
+    }
+  }
+
+  .horizontal .line {
+    top:0;
+    left:0;
+    right:0;
+    height:$gridLine;
+    z-index:2;
+
+    &:nth-child(1) {
+      top:10%;
+      opacity:0.2;
+    }
+    &:nth-child(2) {
+      top:20%;
+      opacity:0.3;
+    }
+    &:nth-child(3) {
+      top:30%;
+      opacity:0.4;
+    }
+    &:nth-child(4) {
+      top:40%;
+      opacity:0.5;
+    }
+    &:nth-child(5) {
+      top:50%;
+      opacity:0.6;
+    }
+    &:nth-child(6) {
+      top:60%;
+      opacity:0.7;
+    }
+    &:nth-child(7) {
+      top:70%;
+      opacity:0.8;
+    }
+    &:nth-child(8) {
+      top:80%;
+      opacity:0.9;
+    }
+    &:nth-child(9) {
+      top:90%;
+      opacity:0.95;
+    }
+    &:nth-child(10) {
+      top:100%;
+      margin-top:-1px;
+      opacity:1;
+    }
+    &:nth-child(11) {
+      opacity:0.05;
+    }
+  }
+
+  .dot {
+    position:absolute;
+    background:$orbit-color;
+    width: $gridLine;
+    height: $gridLine;
+    top:100%;
+    border-radius: $gridLine;
+    box-shadow: 0 0 3px #fff;
+    &:nth-child(1) {
+      left:10%;
+      -webkit-animation: moveDot 5s infinite;
+    }
+    &:nth-child(2) {
+      left:20%;
+      -webkit-animation: moveDot 20s infinite;
+    }
+    &:nth-child(3) {
+      left:30%;
+      -webkit-animation: moveDot 15s infinite;
+    }
+    &:nth-child(4) {
+      left:50%;
+      -webkit-animation: moveDot 30s infinite;
+    }
+    &:nth-child(5) {
+      left:60%;
+      -webkit-animation: moveDot 12s infinite;
+    }
+    &:nth-child(6) {
+      left:80%;
+      -webkit-animation: moveDot 6s infinite;
+    }
+    &:nth-child(7) {
+      left:90%;
+      -webkit-animation: moveDot 8s infinite;
+    }
+  }
+
+  @-webkit-keyframes moveSonar {
+    0%  {
+      width: 0px;
+      height: 0px;
+      margin: -0px 0 0 -0px;
+    }
+    99% {
+      width: 54px;
+      height: 54px;
+      margin: -27px 0 0 -27px;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes moveDot {
+    from { top: 100%; opacity:1; }
+    to { top: 0%; opacity:0; }
+
+  }
+
+}

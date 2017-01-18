@@ -12416,3 +12416,213 @@ ion-footer-bar .title {
     background: rgba(19, 45, 36, 0.4);
     border: 1px solid rgba(79, 227, 139, 0.2);
     color: #4fe38b; }
+
+.page-map {
+  background: url(../js/Pages/App/Map/img/wallpaper.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  /* pour anciens Chrome et Safari */
+  background-size: cover;
+  /* version standardisée */ }
+  .page-map .control .btn-left,
+  .page-map .control .btn-right,
+  .page-map .control .btn-top,
+  .page-map .control .btn-bottom {
+    position: absolute;
+    z-index: 60;
+    height: 50px;
+    width: 35px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px; }
+  .page-map .control .btn-top,
+  .page-map .control .btn-bottom {
+    height: 35px;
+    width: 50px;
+    line-height: 35px; }
+  .page-map .control .btn-right {
+    right: 10px;
+    top: 50%;
+    margin-top: -25px; }
+  .page-map .control .btn-left {
+    left: 10px;
+    top: 50%;
+    margin-top: -25px; }
+  .page-map .control .btn-top {
+    left: 50%;
+    top: 10px;
+    margin-left: -25px; }
+  .page-map .control .btn-bottom {
+    left: 50%;
+    bottom: 10px;
+    margin-left: -25px; }
+  .page-map .map {
+    position: absolute;
+    width: 40%;
+    height: 50%;
+    top: 40%;
+    left: 30%; }
+    .page-map .map .case {
+      position: relative;
+      z-index: 50;
+      width: 25%;
+      height: 20%;
+      float: left; }
+      .page-map .map .case .planet {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        position: absolute; }
+        .page-map .map .case .planet img {
+          height: 40%;
+          position: relative;
+          top: 30%;
+          z-index: 52; }
+      .page-map .map .case .sonar {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        background: transparent;
+        border-radius: 50%;
+        z-index: 51;
+        border: 1px solid #2bede6;
+        -webkit-animation: moveSonar 3s infinite; }
+  .page-map .scroll {
+    transform: none !important; }
+  .page-map .grid-wrapper {
+    position: absolute;
+    width: 130%;
+    height: 130%;
+    left: -15%;
+    bottom: -6%;
+    perspective: 300px; }
+  .page-map .grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: -50px;
+    transform: rotateX(45deg);
+    -webkit-transform-style: preserve-3d; }
+  .page-map .line {
+    position: absolute;
+    background: rgba(43, 237, 230, 0.15);
+    -webkit-backface-visibility: hidden; }
+  .page-map .vertical .line {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(top, rgba(43, 237, 230, 0), rgba(43, 237, 230, 0.35)); }
+    .page-map .vertical .line:nth-child(1) {
+      left: 10%; }
+    .page-map .vertical .line:nth-child(2) {
+      left: 20%; }
+    .page-map .vertical .line:nth-child(3) {
+      left: 30%; }
+    .page-map .vertical .line:nth-child(4) {
+      left: 40%; }
+    .page-map .vertical .line:nth-child(5) {
+      left: 50%; }
+    .page-map .vertical .line:nth-child(6) {
+      left: 60%; }
+    .page-map .vertical .line:nth-child(7) {
+      left: 70%; }
+    .page-map .vertical .line:nth-child(8) {
+      left: 80%; }
+    .page-map .vertical .line:nth-child(9) {
+      left: 90%; }
+    .page-map .vertical .line:nth-child(10) {
+      left: 100%;
+      margin-left: -1px; }
+  .page-map .horizontal .line {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    z-index: 2; }
+    .page-map .horizontal .line:nth-child(1) {
+      top: 10%;
+      opacity: 0.2; }
+    .page-map .horizontal .line:nth-child(2) {
+      top: 20%;
+      opacity: 0.3; }
+    .page-map .horizontal .line:nth-child(3) {
+      top: 30%;
+      opacity: 0.4; }
+    .page-map .horizontal .line:nth-child(4) {
+      top: 40%;
+      opacity: 0.5; }
+    .page-map .horizontal .line:nth-child(5) {
+      top: 50%;
+      opacity: 0.6; }
+    .page-map .horizontal .line:nth-child(6) {
+      top: 60%;
+      opacity: 0.7; }
+    .page-map .horizontal .line:nth-child(7) {
+      top: 70%;
+      opacity: 0.8; }
+    .page-map .horizontal .line:nth-child(8) {
+      top: 80%;
+      opacity: 0.9; }
+    .page-map .horizontal .line:nth-child(9) {
+      top: 90%;
+      opacity: 0.95; }
+    .page-map .horizontal .line:nth-child(10) {
+      top: 100%;
+      margin-top: -1px;
+      opacity: 1; }
+    .page-map .horizontal .line:nth-child(11) {
+      opacity: 0.05; }
+  .page-map .dot {
+    position: absolute;
+    background: #2bede6;
+    width: 1px;
+    height: 1px;
+    top: 100%;
+    border-radius: 1px;
+    box-shadow: 0 0 3px #fff; }
+    .page-map .dot:nth-child(1) {
+      left: 10%;
+      -webkit-animation: moveDot 5s infinite; }
+    .page-map .dot:nth-child(2) {
+      left: 20%;
+      -webkit-animation: moveDot 20s infinite; }
+    .page-map .dot:nth-child(3) {
+      left: 30%;
+      -webkit-animation: moveDot 15s infinite; }
+    .page-map .dot:nth-child(4) {
+      left: 50%;
+      -webkit-animation: moveDot 30s infinite; }
+    .page-map .dot:nth-child(5) {
+      left: 60%;
+      -webkit-animation: moveDot 12s infinite; }
+    .page-map .dot:nth-child(6) {
+      left: 80%;
+      -webkit-animation: moveDot 6s infinite; }
+    .page-map .dot:nth-child(7) {
+      left: 90%;
+      -webkit-animation: moveDot 8s infinite; }
+
+@-webkit-keyframes moveSonar {
+  0% {
+    width: 0px;
+    height: 0px;
+    margin: -0px 0 0 -0px; }
+  99% {
+    width: 54px;
+    height: 54px;
+    margin: -27px 0 0 -27px; }
+  100% {
+    opacity: 0; } }
+
+@-webkit-keyframes moveDot {
+  from {
+    top: 100%;
+    opacity: 1; }
+  to {
+    top: 0%;
+    opacity: 0; } }
