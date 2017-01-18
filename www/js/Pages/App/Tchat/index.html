@@ -21,7 +21,7 @@
 
     <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)">
         <ion-footer-bar class="bar-orbit bar-tchat" keyboard-attach>
-            <textarea msd-elastic rows="2" ng-model="input.message" value="" placeholder="Votre message" required minlength="1" maxlength="255" msd-elastic></textarea>
+            <textarea msd-elastic rows="1" ng-model="input.message" value="" placeholder="Votre message" required minlength="1" maxlength="255" msd-elastic></textarea>
             <div class="footer-btn-wrap">
                 <button class="button button-icon icon ion-android-send footer-btn" type="submit"
                         ng-disabled="!input.message || input.message === ''">

@@ -148,6 +148,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         response.data.error === "access_denied"
                     ) {
                         var stateService = $injector.get('$state');
+                        var OAuthToken = $injector.get('OAuthToken');
+                        var CacheFactory = $injector.get('CacheFactory');
+
+
+                        OAuthToken.removeToken();
+                        CacheFactory.destroyAll();
                         stateService.go('homepage');
                     }
 
