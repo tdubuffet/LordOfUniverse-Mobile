@@ -77,12 +77,12 @@ angular.module('starter.controllers')
 
             if (ionicLoading) {
                 $ionicLoading.hide().then(function () {
-                    $scope.$broadcast('scroll.refreshComplete');
                     $ionicScrollDelegate.scrollBottom(true);
+                    $scope.$broadcast('scroll.refreshComplete');
                 });
             } else {
-                $scope.$broadcast('scroll.refreshComplete');
                 $ionicScrollDelegate.scrollBottom(true);
+                $scope.$broadcast('scroll.refreshComplete');
             }
 
             q.resolve('ok');
@@ -111,8 +111,8 @@ angular.module('starter.controllers')
         promiseUser
     ]).then(function() {
         $ionicLoading.hide().then(function () {
-            $scope.$broadcast('scroll.refreshComplete');
             $ionicScrollDelegate.scrollBottom(true);
+            $scope.$broadcast('scroll.refreshComplete');
         });
     });
 
