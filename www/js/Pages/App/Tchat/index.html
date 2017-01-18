@@ -3,7 +3,7 @@
         Communication
     </ion-nav-title>
 
-    <ion-content class="has-header has-subheader padding">
+    <ion-content class="has-header padding" overflow-scroll="true">
         <div ng-repeat="(key, value) in messages" class="message clearfix" ng-class="value.user.id == user.id ? 'me' : 'other'">
 
             <div class="content">
