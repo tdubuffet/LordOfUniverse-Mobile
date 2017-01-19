@@ -34,7 +34,7 @@ angular.module('starter.services')
         };
 
         $http.post(
-            Config.path_api + '/chat/new',
+            Config.path_api + '/chat/',
             queryString.stringify(post),
             {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
