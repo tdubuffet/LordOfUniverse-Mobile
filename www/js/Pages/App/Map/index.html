@@ -1,73 +1,28 @@
-<ion-view class="page-map" cache-view="false">
+<ion-view class="page-map" cache-view="false" hide-nav-bar="true">
 
-    <ion-nav-title>
-        Capteur :: [{{ position.x }}:{{ position.y }}]
-    </ion-nav-title>
-    <ion-nav-buttons side="right">
-
-    </ion-nav-buttons>
-
-    <ion-content overflow-scroll="false" class="has-header">
-
-        <div class="control">
-            <div class="btn btn-left" ng-click="change('left')"><i class="fa fa-chevron-left"></i></div>
-            <div class="btn btn-right"  ng-click="change('right')"><i class="fa fa-chevron-right"></i></div>
-            <div class="btn btn-bottom" ng-click="change('bottom')"><i class="fa fa-chevron-down"></i></div>
-            <div class="btn btn-top"  ng-click="change('top')"><i class="fa fa-chevron-up"></i></div>
-        </div>
+    <ion-content overflow-scroll="false">
 
 
-        <div class="grid-wrapper">
 
-            <div class="grid">
+        <div class="map">
 
-                <div class="map">
-                    <div ng-repeat="(key, value) in data" class="case case-{{ data.type }}">
-                            <div class="planet" ng-if="value.type  == 'planet'">
-                                <img src="img/planet/planet_2.png" />
-                            </div>
+            <div class="control">
+                <div class="btn btn-close" ng-click="close()"><i class="fa fa-chevron-left"></i> Retour</div>
+                <div class="btn btn-left" ng-click="change('left')"><i class="fa fa-chevron-left"></i></div>
+                <div class="btn btn-right"  ng-click="change('right')"><i class="fa fa-chevron-right"></i></div>
+                <div class="btn btn-bottom" ng-click="change('bottom')"><i class="fa fa-chevron-down"></i></div>
+                <div class="btn btn-top"  ng-click="change('top')"><i class="fa fa-chevron-up"></i></div>
+                <div class="btn btn-data" ng-click="close()"><i class="fa fa-globe" aria-hidden="true"></i> X: {{ position.x }} - Y: {{ position.y }}</div>
+            </div>
 
-                        <div class="sonar" ng-if="value.type  == 'planet'"></div>
-                    </div>
-                </div>
+            <div class="system">
+                <div class="sun"></div>
 
-                <div class="vertical">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-                <div class="dots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="horizontal">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-
+                <div ng-repeat="(key, value) in data" class="orbit orbit-{{ value.z}}">
+                    <div class="planet {{ value.code }}"></div>
                 </div>
             </div>
+
         </div>
 
 

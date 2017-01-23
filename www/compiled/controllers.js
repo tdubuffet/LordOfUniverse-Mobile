@@ -16,7 +16,7 @@ angular.module('starter.controllers')
     });
 });
 angular.module('starter.controllers')
-.controller('AppMap', function($scope, $ionicPlatform, Map, $ionicLoading, $ionicSideMenuDelegate, $rootScope) {
+.controller('AppMap', function($scope, $ionicPlatform, Map, $ionicLoading, $ionicSideMenuDelegate, $rootScope, $window) {
 
     $rootScope.position = {
         x: 1,
@@ -57,9 +57,34 @@ angular.module('starter.controllers')
 
     };
 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    $scope.close = function() {
+        if (parseInt($window.history.length) <= 2) {
+            navigator.app.exitApp();
+        } else {
+
+            $scope.data = {};
+
+            if (typeof screen.unlockOrientation === "function") {
+                screen.unlockOrientation();
+                screen.lockOrientation('portrait');
+            }
+
+            $ionicSideMenuDelegate.canDragContent(true);
+            $window.history.back();
+        }
+    };
+
+    function onDeviceReady() {
+        document.addEventListener("backbutton", function (e) {
+            $scope.close();
+        }, false);
+
+
+    };
 
     $ionicPlatform.ready(function() {
-
         if (typeof screen.unlockOrientation === "function") {
             screen.unlockOrientation();
             screen.lockOrientation('landscape');

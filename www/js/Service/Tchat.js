@@ -14,7 +14,6 @@ angular.module('starter.services')
 
             q.resolve(response.data);
         }, function() {
-
             q.reject('error');
         });
 
