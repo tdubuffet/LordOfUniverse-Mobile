@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Account', ['$http', '$q', 'Api', 'Cache', 'UserModel', function($http, $q, Api, Cache, UserModel) {
+.factory('Account', ['$http', '$q', 'Api', 'Cache', 'UserModel', '$state', function($http, $q, Api, Cache, UserModel, $state) {
 
 
     var Account = {};
@@ -55,7 +55,12 @@ angular.module('starter.services')
                 var Model = UserModel.get(data);
                 Cache.putExp('/me', Model, Cache.timeExp.user_me);
                 q.resolve(Model);
+            })
+            .error(function() {
+                $state.go('homepage');
             });
+        }, function (){
+            $state.go('homepage');
         });
 
         return q.promise;
@@ -126,6 +131,33 @@ angular.module('starter.services')
 
 
     return oAuth;
+
+}]);
+
+angular.module('starter.services')
+.factory('Build', ['$http', '$q', 'Api', 'Cache', function($http, $q, Api, Cache) {
+
+
+    var Build = {};
+
+    Build.building = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/building').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    return Build;
+
 
 }]);
 

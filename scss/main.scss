@@ -1,5 +1,5 @@
-.pane, .view{
-  background: $royal;
+.pane, .view, .content-orbit{
+  background: #0d191b;
   font-weight: 200;
   font-size: 16px;
   color: $orbit-color;
@@ -171,5 +171,41 @@ ion-footer-bar{
       border: 1px solid rgba($orbit-color, 0.1);
       color: $orbit-color;
     }
+  }
+}
+
+.platform-android {
+  .tabs-content {
+    @extend .has-tabs-top;
+  }
+}
+
+.platform-ios {
+  .tabs-content {
+    @extend .has-tabs;
+  }
+}
+
+.tabs-royal{
+
+  .tabs{
+    border-bottom: 1px solid $orbit-color-dark;
+  }
+
+  &.tabs-striped .tab-item.tab-item-active{
+    color: $orbit-color;
+    border-color: $orbit-color;
+  }
+
+  &.tabs-striped .tab-item {
+    color: rgba($orbit-color,.4);
+    opacity: 1;
+  }
+
+  .tabs-top.tabs-striped .tab-item.activated, .tabs-top.tabs-striped .tab-item.active, .tabs-top.tabs-striped .tab-item.tab-item-active {
+    margin-top: 1px;
+    border-width: 0 0 2px!important;
+    border-style: solid;
+    border-color: $orbit-color;
   }
 }

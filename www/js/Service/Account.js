@@ -1,5 +1,5 @@
 angular.module('starter.services')
-.factory('Account', ['$http', '$q', 'Api', 'Cache', 'UserModel', function($http, $q, Api, Cache, UserModel) {
+.factory('Account', ['$http', '$q', 'Api', 'Cache', 'UserModel', '$state', function($http, $q, Api, Cache, UserModel, $state) {
 
 
     var Account = {};
@@ -55,7 +55,12 @@ angular.module('starter.services')
                 var Model = UserModel.get(data);
                 Cache.putExp('/me', Model, Cache.timeExp.user_me);
                 q.resolve(Model);
+            })
+            .error(function() {
+                $state.go('homepage');
             });
+        }, function (){
+            $state.go('homepage');
         });
 
         return q.promise;

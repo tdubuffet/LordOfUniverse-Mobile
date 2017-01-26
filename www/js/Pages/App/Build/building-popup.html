@@ -1,0 +1,48 @@
+<ion-modal-view class="modal-build">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">{{ help.build.name }}</h1>
+        <div class="button button-clear  button-assertive" ng-click="modal.hide()">Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit">
+        <div class="description">
+            {{ help.build.description }}
+        </div>
+
+        <div class="information">
+            <div class="picture">
+                <img ng-src="{{ help.build.image }}" />
+            </div>
+
+            <p>
+                {{ help.build.name }} - <span class="assertive">Niveau {{ help.level }}</span>
+            </p>
+        </div>
+
+        <div class="padding data">
+            <div class="title">Requis pour le niveau {{ help.data.ressources.level }}</div>
+
+            <div class="ress">
+                <span class="name">Métaux</span> {{ help.data.ressources.metal }}
+            </div>
+
+            <div class="ress">
+                <span class="name">Cristaux</span> {{ help.data.ressources.crystal }}
+            </div>
+
+            <div class="ress">
+                <span class="name">Lithium</span> {{ help.data.ressources.lithium }}
+            </div>
+
+            <div class="ress">
+                <span class="name">Energie</span> {{ help.data.ressources.energy }}
+            </div>
+
+            <div class="ress">
+                <span class="name">Temps</span> {{ help.data.ressources.timeAff }}
+
+            </div>
+
+
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -93,6 +93,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     }
                 }
             })
+            .state('app.building', {
+                url: '/building',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Build/building.html",
+                        controller: 'AppBuilding'
+                    }
+                }
+            })
             .state('app.account', {
                 url: '/account',
                 views: {
@@ -117,6 +126,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         $urlRouterProvider.otherwise('/homepage');
     })
     .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.timeout = 1000;
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.headers.common = 'Content-Type: application/json';
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -135,7 +145,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     // may also use sessionStorage
                     config.headers.Authorization = 'Bearer ' + OAuth.getAccessToken();
                 }
-                return config || $q.when(config);
+
+                config.timeout = 10000;
+
+                var q = $q.defer();
+
+                q.resolve(config);
+
+                return q.promise;
             },
             responseError: function(response) {
 
@@ -159,11 +176,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
                 }
 
-                return response || $q.when(response);
+                console.log('error');
+                console.log(response);
+
+                return $q.reject(response);
             },
             response: function(response) {
                 if (response.status === 401) {
                     //  Redirect user to login page / signup Page.
+                }
+                if (response.status != 200) {
+
+                    console.log('TEST');
+                    console.log(response);
                 }
                 return response || $q.when(response);
             }
