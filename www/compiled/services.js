@@ -156,6 +156,35 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Build.add = function(id) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/building',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
     return Build;
 
 

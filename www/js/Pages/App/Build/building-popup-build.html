@@ -1,0 +1,49 @@
+<ion-modal-view class="modal-build-required">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">{{ help.build.name }} - Niveau {{ help.level }}</h1>
+        <div class="button button-clear  button-assertive" ng-click="modalBuild.hide()"><i class="fa fa-times"></i> Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit has-header">
+        <div class="required">
+
+
+            <h3>Construire le niveau {{ help.data.build_level }}</h3>
+
+
+            <div class="list">
+
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                    <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
+                    {{ help.data.ressources.metal }}
+                </div>
+
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                    <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
+                    {{ help.data.ressources.crystal }}
+                </div>
+
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                    <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
+                    {{ help.data.ressources.lithium }}
+                </div>
+
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.energy !== undefined">
+                    <img class="icon" src="img/icon-energy.png" />
+                    {{ help.data.ressources.energy }}
+                </div>
+
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.time !== undefined">
+                    <img class="icon" src="img/icon-timer.png" />
+                    {{ help.data.ressources.timeAff }}
+                </div>
+
+                <button class="button button-orbit button-block" ng-click="launchBatiment(help.build.id)">
+                    Construire
+                </button>
+
+
+            </div>
+        </div>
+
+    </ion-content>
+</ion-modal-view>

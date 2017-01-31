@@ -12690,101 +12690,281 @@ ion-footer-bar .title {
             top: 4%;
             left: 70%; }
 
-.page-build ion-content {
-  margin-bottom: 10px; }
+.icon-metal {
+  width: 36px;
+  height: 40px;
+  display: block;
+  padding: 0 10px;
+  background: url("../js/Pages/App/Build/img/icon-metal.png") no-repeat center center fixed; }
 
-.page-build .build {
-  width: 50%;
-  float: left;
-  margin: 0px 0; }
-  .page-build .build .item-image {
-    max-height: 120px;
-    overflow: hidden;
-    background: rgba(16, 61, 61, 0.2);
-    border: 1px solid rgba(43, 237, 230, 0.05); }
-    .page-build .build .item-image img {
-      width: 100%; }
-  .page-build .build .item-orbit {
-    border-color: #ddd;
-    background: rgba(16, 61, 61, 0.2);
-    border: 1px solid rgba(43, 237, 230, 0.05);
-    padding: 10px; }
-    .page-build .build .item-orbit h2 {
-      font-size: 0.7em;
-      text-transform: uppercase;
-      text-align: center;
-      color: #2bede6; }
-    .page-build .build .item-orbit .level {
-      text-align: center;
-      color: #ef473a;
-      font-size: 0.7em;
-      text-transform: uppercase; }
-  .page-build .build .item-button {
-    text-align: center;
-    padding: 0; }
-    .page-build .build .item-button .button {
-      margin: 0;
-      text-transform: uppercase;
-      font-weight: 400;
-      font-size: 1.1em;
-      min-height: 34px;
-      line-height: 34px;
-      color: #2bede6; }
-    .page-build .build .item-button .col:first-child {
-      border-right: 1px solid rgba(43, 237, 230, 0.05); }
-    .page-build .build .item-button .row,
-    .page-build .build .item-button .col {
-      padding: 0; }
+.page-build .zooming .scroll-bar {
+  display: none; }
 
-.page-build .list:last-child.card {
-  margin-bottom: 0px; }
+.page-build .show-ress {
+  width: 130px;
+  height: 22px;
+  position: fixed;
+  z-index: 200;
+  line-height: 22px;
+  font-size: 0.75em;
+  letter-spacing: 0.04em;
+  text-align: right;
+  background: -moz-linear-gradient(left, rgba(16, 61, 61, 0) 0%, #103d3d 46%, #103d3d 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(16, 61, 61, 0) 0%, #103d3d 46%, #103d3d 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(16, 61, 61, 0) 0%, #103d3d 46%, #103d3d 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+  .page-build .show-ress .icon {
+    float: right;
+    width: 16px;
+    margin: 2px 4px; }
+  .page-build .show-ress.ress-metal {
+    right: 0px;
+    top: 2px; }
+  .page-build .show-ress.ress-cristal {
+    right: 0px;
+    top: 28px; }
+  .page-build .show-ress.ress-lirium {
+    right: 0px;
+    top: 54px; }
 
-.page-build .build:nth-child(odd) {
-  padding: 10px 10px 0 5px; }
-
-.page-build .build:nth-child(even) {
-  padding: 10px 10px 5px 0; }
-
-.page-build .card {
-  margin: 0 0px;
-  background: none; }
-
-.modal-build .description {
-  background: url("../js/Pages/App/Account/img/background.jpg") no-repeat center fixed;
-  -webkit-background-size: cover;
-  /* pour anciens Chrome et Safari */
-  background-size: cover;
-  /* version standardisée */
-  min-height: 170px;
-  padding: 10px 10px 55px 10px; }
-
-.modal-build .information {
-  background: rgba(16, 61, 61, 0.4);
-  border-top: 1px solid rgba(43, 237, 230, 0.2);
-  border-bottom: 1px solid rgba(43, 237, 230, 0.2);
-  position: relative;
-  padding: 48px 15px 15px 15px;
+.page-build .btn-fit {
+  width: 60px;
+  height: 60px;
+  background: url("../js/Pages/App/Build/img/button.png") no-repeat center center fixed;
+  position: fixed;
+  z-index: 200;
+  line-height: 60px;
   text-align: center;
   color: white;
-  font-weight: 200;
-  font-size: 0.9em; }
+  text-shadow: 0px 0px 2px black;
+  font-size: 1.2em; }
+  .page-build .btn-fit .text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -18px;
+    font-weight: 300;
+    font-size: 0.65em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase; }
+  .page-build .btn-fit.btn-help {
+    bottom: 0px;
+    right: 0px; }
+  .page-build .btn-fit.btn-list-build {
+    bottom: 0px;
+    right: 60px; }
+  .page-build .btn-fit.btn-boost {
+    bottom: 60px;
+    right: 0px; }
 
-.modal-build .picture {
-  text-align: center;
-  position: absolute;
-  top: -50px;
-  z-index: 1;
-  left: 50%;
-  margin-left: -45px; }
-  .modal-build .picture img {
-    border-radius: 50%;
-    border: 1px solid #2bede6;
-    height: 90px;
-    width: 90px; }
+.page-build .map-building {
+  background: url("../js/Pages/App/Build/img/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%; }
+  .page-build .map-building .building {
+    display: block;
+    position: absolute;
+    width: calc(100%*144/ 1205);
+    height: calc(100%*148/ 850); }
+    .page-build .map-building .building img {
+      width: 100%;
+      display: none; }
+    .page-build .map-building .building .wrapper {
+      position: absolute;
+      height: 100%;
+      width: 100%; }
+    .page-build .map-building .building .wrapper-loader {
+      position: absolute;
+      height: 8px;
+      top: 50%;
+      width: 75px;
+      left: 50%;
+      margin: -4px 0 0 -37.5px;
+      background: rgba(16, 61, 61, 0.75);
+      border: 1px solid rgba(43, 237, 230, 0.2);
+      border-radius: 4px;
+      overflow: hidden; }
+      .page-build .map-building .building .wrapper-loader .loader {
+        position: absolute;
+        height: 100%;
+        background: rgba(43, 237, 230, 0.9);
+        border-radius: 4px;
+        top: 0;
+        left: 0; }
+    .page-build .map-building .building .times {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      font-weight: 300;
+      font-size: 0.53em;
+      letter-spacing: 0.04em;
+      text-align: center;
+      color: white;
+      text-shadow: 0px 0px 2px black; }
+    .page-build .map-building .building .name {
+      position: absolute;
+      width: 100%;
+      top: -25px;
+      background: rgba(16, 61, 61, 0.75);
+      border: 1px solid rgba(43, 237, 230, 0.3);
+      border-radius: 3px;
+      font-weight: 300;
+      font-size: 0.2em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: white;
+      z-index: 100;
+      text-align: center; }
+    .page-build .map-building .building .control {
+      display: block;
+      position: absolute;
+      z-index: 100;
+      width: 120px;
+      top: 140%;
+      left: 50%;
+      margin-left: -60px; }
+      .page-build .map-building .building .control .btn-fit {
+        width: 40px;
+        height: 40px;
+        background: url("../js/Pages/App/Build/img/button-small.png") no-repeat center center fixed;
+        line-height: 40px;
+        text-align: center;
+        color: white;
+        font-size: 0.9em;
+        position: absolute; }
+        .page-build .map-building .building .control .btn-fit.btn-info {
+          bottom: 0px;
+          left: 0px; }
+        .page-build .map-building .building .control .btn-fit.btn-add {
+          bottom: -20px;
+          left: 50%;
+          margin-left: -20px; }
+        .page-build .map-building .building .control .btn-fit.btn-close {
+          bottom: 0px;
+          right: 0; }
+    .page-build .map-building .building.building-1 {
+      left: calc(100%*194/ 1205);
+      top: calc(100%*435/ 850); }
+      .page-build .map-building .building.building-1 img {
+        display: block; }
+      .page-build .map-building .building.building-1 .control {
+        top: 150%; }
+    .page-build .map-building .building.building-3 {
+      left: calc(100%*573/ 1205);
+      top: calc(100%*389/ 850); }
+      .page-build .map-building .building.building-3 img {
+        display: block; }
+    .page-build .map-building .building.building-4 {
+      width: calc(100%*229/ 1205);
+      height: calc(100%*191/ 850);
+      left: calc(100%*441/ 1205);
+      top: calc(100%*508/ 850); }
+      .page-build .map-building .building.building-4 img {
+        display: block; }
+      .page-build .map-building .building.building-4 .name {
+        width: 70%;
+        left: 15%; }
+      .page-build .map-building .building.building-4 .control {
+        top: 105%; }
+    .page-build .map-building .building.building-6 {
+      width: calc(100%*110/ 1205);
+      height: calc(100%*120/ 850);
+      left: calc(100%*392/ 1205);
+      top: calc(100%*428/ 850); }
+      .page-build .map-building .building.building-6 img {
+        display: block; }
+      .page-build .map-building .building.building-6 .name {
+        width: 140%;
+        left: -20%; }
+      .page-build .map-building .building.building-6 .control {
+        top: 170%; }
+    .page-build .map-building .building.building-12 {
+      width: calc(100%*180/ 1205);
+      height: calc(100%*154/ 850);
+      left: calc(100%*0/ 1205);
+      top: calc(100%*366/ 850); }
+      .page-build .map-building .building.building-12 img {
+        display: block; }
+      .page-build .map-building .building.building-12 .control {
+        top: 130%; }
+    .page-build .map-building .building.building-11 {
+      width: calc(100%*164/ 1205);
+      height: calc(100%*133/ 850);
+      left: calc(100%*107/ 1205);
+      top: calc(100%*305/ 850); }
+      .page-build .map-building .building.building-11 img {
+        display: block; }
+      .page-build .map-building .building.building-11 .control {
+        top: 130%; }
+    .page-build .map-building .building.building-13 {
+      width: calc(100%*172/ 1205);
+      height: calc(100%*158/ 850);
+      left: calc(100%*220/ 1205);
+      top: calc(100%*220/ 850); }
+      .page-build .map-building .building.building-13 img {
+        display: block; }
+      .page-build .map-building .building.building-13 .control {
+        top: 130%; }
 
-.modal-build .data .title {
-  color: #ef473a;
-  text-transform: uppercase;
-  font-size: 1em;
-  text-shadow: 2px 2px 3px black;
-  margin: 10px 0; }
+.modal-build-required {
+  opacity: 0.95; }
+  .modal-build-required .required {
+    margin: 15px 25% 15px 25%; }
+    .modal-build-required .required h3 {
+      color: #ef473a;
+      margin: 25px 0;
+      text-align: center; }
+    .modal-build-required .required .item-orbit {
+      padding-left: 42px; }
+      .modal-build-required .required .item-orbit .icon {
+        width: 24px;
+        height: 24px;
+        margin: 3px 25px 0 0px; }
+
+.modal-build {
+  opacity: 0.95; }
+  .modal-build .description {
+    background: url("../js/Pages/App/Account/img/background.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
+    /* version standardisée */
+    text-align: justify;
+    min-height: 60%;
+    padding: 5% 10px 55px 10px; }
+  .modal-build .information {
+    background: rgba(16, 61, 61, 0.4);
+    border-top: 1px solid rgba(43, 237, 230, 0.2);
+    border-bottom: 1px solid rgba(43, 237, 230, 0.2);
+    position: relative;
+    padding: 10% 15px 15px 15px;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+    font-size: 0.9em;
+    min-height: 40%; }
+  .modal-build .picture {
+    text-align: center;
+    position: absolute;
+    top: -55px;
+    z-index: 1;
+    left: 50%;
+    margin-left: -55px; }
+    .modal-build .picture img {
+      border-radius: 50%;
+      border: 1px solid #2bede6;
+      height: 110px;
+      width: 110px; }
+  .modal-build .data .title {
+    color: #ef473a;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-shadow: 2px 2px 3px black;
+    margin: 10px 0; }

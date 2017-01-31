@@ -1,12 +1,12 @@
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope) {
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
 
     Account.me().then(function(user) {
-        $scope.user = user;
+        $rootScope.user = user;
     });
 
     $scope.logout = function() {
@@ -34,6 +34,10 @@ angular.module('starter.controllers')
             }
         }
         return num.toFixed(digits).replace(rx, "$1");
+    };
+
+    $rootScope.numberFormated = function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
 });

@@ -1,57 +1,74 @@
-<ion-view class="page-build" cache-view="false">
-    <ion-nav-title>
-        Mes batiments
-    </ion-nav-title>
+<ion-view class="page-build"  cache-view="false" hide-nav-bar="true">
 
-    <ion-content class="has-header tabs-content"  overflow-scroll="false">
+    <ion-content style="overflow: hidden;" overflow-scroll="true">
 
-            <div ng-repeat="(key, value) in building" class="build" ng-if="tab == value.build.tab">
-                <div class="list card">
 
-                    <div class="item item-orbit">
-                        <h2>{{ value.build.name }}</h2>
-                        <div class="level">Niveau {{ value.level }}</div>
-                    </div>
+        <div class="show-ress ress-metal">
+            {{ numberFormated(user.planet_selected.metal) }} <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
+        </div>
 
-                    <div class="item item-image"  ng-click="showInformation(value)">
-                        <img ng-src="{{ value.build.image }}">
-                    </div>
+        <div class="show-ress ress-cristal">
+            {{ numberFormated(user.planet_selected.crystal) }} <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
+        </div>
 
-                    <div class="item item-orbit item-button">
-                        <div class="row">
-                            <div class="col">
-                                <a class="button button-clear button-block" ng-click="showInformation(value)">
-                                    <i class="fa fa-info fa" aria-hidden="true"></i>
-                                </a>
+        <div class="show-ress ress-lirium">
+            {{ numberFormated(user.planet_selected.lithium) }} <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
+        </div>
+
+
+        <div class="btn-fit btn-help">
+            <i class="fa fa-question"></i>
+            <div class="text">Aide</div>
+        </div>
+
+        <div class="btn-fit btn-list-build">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+            <div class="text">Const.</div>
+        </div>
+
+        <div class="btn-fit btn-boost">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <div class="text">Boost</div>
+        </div>
+
+
+        <ion-scroll class="zooming" zooming="true"  min-zoom="1" max-zoom="1.5" direction="x,y" style="width: 100%; height: 100%;" overflow-scroll="false">
+            <div class="map-building">
+
+                <div ng-repeat="(key, value) in building" class="building building-{{ value.build.id }}" ng-click="popInBatOpen(value.build.id)">
+                    <div class="wrapper">
+                        <div class="name" ng-show="popInBat === value.build.id">{{ value.build.short_name }} <span class="level">({{ value.level }})</span></div>
+
+                        <div class="wrapper-loader" ng-if="value.build_in_progress[0] !== undefined">
+                            <div class="loader" style="width: {{ timer(value.build_in_progress[0]) }}%;"></div>
+                        </div>
+                        <p class="times" ng-if="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+
+                        <div class="control" ng-show="popInBat === value.build.id">
+
+                            <div class="btn-fit btn-info" ng-click="showInformation(value)">
+                                <i class="fa fa-info" aria-hidden="true"></i>
                             </div>
-                            <div class="col">
-                                <a class="button button-clear button-block">
-                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                </a>
+
+                            <div class="btn-fit btn-add" ng-click="showBuild(value)">
+                                <i class="fa fa-wrench" aria-hidden="true"></i>
                             </div>
+
+                            <div class="btn-fit btn-close" ng-click="popInBatClose()">
+                                <i class="fa fa-times"></i>
+                            </div>
+
                         </div>
                     </div>
-
+                    <img ng-src="js/Pages/App/Build/img/building/{{ value.build.id }}.png" />
                 </div>
+
             </div>
+
+        </ion-scroll>
+
 
     </ion-content>
 
-
-    <ion-tabs class="tabs-royal">
-
-        <ion-tab title="Production" on-select="tabChange(1)">
-            <!-- Tab 1 content -->
-        </ion-tab>
-
-        <ion-tab title="Stockeur" on-select="tabChange(2)">
-            <!-- Tab 2 content -->
-        </ion-tab>
-
-        <ion-tab title="Développement" on-select="tabChange(3)">
-            <!-- Tab 3 content -->
-        </ion-tab>
-
-    </ion-tabs>
 
 </ion-view>
