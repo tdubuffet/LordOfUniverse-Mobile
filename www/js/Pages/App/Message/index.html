@@ -1,0 +1,57 @@
+<ion-view class="page-ally" cache-view="false">
+    <ion-nav-title>
+        Messagerie
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-balanced"><i class="fa fa-envelope"></i> Nouveau</button>
+    </ion-nav-buttons>
+
+    <ion-tabs class="tabs-royal tabs-icon-top">
+
+        <ion-tab title="Joueurs" icon-on="ion-ios-email" icon-off="ion-ios-email-outline">
+            <ion-nav-view>
+                <ion-content class="has-header">
+
+                    <div class="list">
+
+                        <div class="item item-avatar item-orbited" ng-repeat="(key, thread) in threads">
+
+                            <img ng-src="{{ thread.messages[thread.messages.length - 1].sender.avatar }}">
+                            <h2>{{ thread.subject }} - {{ thread.messages[thread.messages.length - 1].sender.username }}</h2>
+                            <p>{{ thread.messages[thread.messages.length - 1].created_at | date: 'dd/MM HH:mm' }}</p>
+
+                        </div>
+
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+
+        <ion-tab title="Espionnages" icon-on="ion-ios-eye" icon-off="ion-ios-eye-outline">
+            <ion-nav-view>
+                <ion-content class="has-header">
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Attaques" icon-on="ion-ios-plus" icon-off="ion-ios-plus-outline">
+            <ion-nav-view>
+                <ion-content class="has-header">
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Systême" icon-on="ion-ios-world" icon-off="ion-ios-world-outline">
+            <ion-nav-view>
+                <ion-content class="has-header">
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+</ion-view>

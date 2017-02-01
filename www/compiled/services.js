@@ -324,6 +324,21 @@ angular.module('starter.services')
 
 }]);
 
+angular.module('starter.services')
+.factory('Message', ['$http', '$cookies', '$q', function($http, $cookies, $q) {
+
+    var Message = {};
+
+
+    Message.me = function() {
+        return $http.get(
+            Config.path_api + '/message/'
+        );
+    };
+
+    return Message;
+}]);
+
 
 angular.module('starter.services')
 .factory('Tchat', ['$http', '$q', 'Api', 'Cache', function($http, $q, Api, Cache) {

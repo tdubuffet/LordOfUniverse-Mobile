@@ -144,6 +144,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.message', {
+                url: '/message',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Message/index.html",
+                        controller: 'AppMessage'
+                    }
+                }
+            })
+
         ;
 
         $urlRouterProvider.otherwise('/homepage');
