@@ -4,7 +4,6 @@ angular.module('starter.services')
 
     var Account = {};
 
-
     Account.facebookConnect = function(userID, accessToken) {
 
         Api.accessTokenCredentials().then(function(token) {
@@ -45,23 +44,17 @@ angular.module('starter.services')
 
         var q = $q.defer();
 
-        var user = Cache.getPromise('/me').then(function(user) {
-            q.resolve(user);
-        }, function() {
-            $http.get(
-                Config.path_api + '/user/me'
-            )
-            .success(function (data) {
-                var Model = UserModel.get(data);
-                Cache.putExp('/me', Model, Cache.timeExp.user_me);
-                q.resolve(Model);
-            })
-            .error(function() {
-                $state.go('homepage');
-            });
-        }, function (){
+        $http.get(
+            Config.path_api + '/user/me'
+        )
+        .success(function (data) {
+            var Model = UserModel.get(data);
+            q.resolve(Model);
+        })
+        .error(function() {
             $state.go('homepage');
         });
+
 
         return q.promise;
     };

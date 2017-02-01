@@ -124,6 +124,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.ally', {
+                url: '/ally',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Ally/index.html",
+                        controller: 'AppAlly'
+                    }
+                }
+            })
+
         ;
 
         $urlRouterProvider.otherwise('/homepage');

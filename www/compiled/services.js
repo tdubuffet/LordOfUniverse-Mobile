@@ -4,7 +4,6 @@ angular.module('starter.services')
 
     var Account = {};
 
-
     Account.facebookConnect = function(userID, accessToken) {
 
         Api.accessTokenCredentials().then(function(token) {
@@ -45,29 +44,63 @@ angular.module('starter.services')
 
         var q = $q.defer();
 
-        var user = Cache.getPromise('/me').then(function(user) {
-            q.resolve(user);
-        }, function() {
-            $http.get(
-                Config.path_api + '/user/me'
-            )
-            .success(function (data) {
-                var Model = UserModel.get(data);
-                Cache.putExp('/me', Model, Cache.timeExp.user_me);
-                q.resolve(Model);
-            })
-            .error(function() {
-                $state.go('homepage');
-            });
-        }, function (){
+        $http.get(
+            Config.path_api + '/user/me'
+        )
+        .success(function (data) {
+            var Model = UserModel.get(data);
+            q.resolve(Model);
+        })
+        .error(function() {
             $state.go('homepage');
         });
+
 
         return q.promise;
     };
 
     return Account;
 
+
+}]);
+
+angular.module('starter.services')
+.factory('Ally', ['$http', '$cookies', '$q', function($http, $cookies, $q) {
+
+    var Ally = {};
+
+
+    Ally.me = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/ally/'
+        )
+        .success(function (data) {
+            q.resolve(data);
+        })
+        .error(function() {
+            $state.go('homepage');
+        });
+
+
+        return q.promise;
+
+    };
+
+    Ally.editGeneral =  function(form) {
+
+        return $http.post(
+            Config.path_api + '/ally/general',
+            queryString.stringify(form),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        );
+    };
+
+    return Ally;
 
 }]);
 
@@ -280,12 +313,17 @@ angular.module('starter.services')
 
     var Tchat = {};
 
-    Tchat.getLast = function() {
+    Tchat.getLast = function(allyId) {
+
+        var path = Config.path_api + '/chat/';
+        if (typeof allyId != "undefined") {
+            var path = Config.path_api + '/chat/' + allyId;
+        };
 
         var q = $q.defer();
 
         $http.get(
-            Config.path_api + '/chat/'
+            path
         ).then(function(response) {
 
             q.resolve(response.data);
@@ -296,13 +334,15 @@ angular.module('starter.services')
         return q.promise;
     };
 
-    Tchat.add = function(message) {
-
-        var q = $q.defer();
-
+    Tchat.add = function(message, allyId) {
         var post = {
             message: message,
         };
+        if (typeof allyId != "undefined") {
+            post.ally = allyId;
+        };
+
+        var q = $q.defer();
 
         var options = {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

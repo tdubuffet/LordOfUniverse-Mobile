@@ -4,12 +4,17 @@ angular.module('starter.services')
 
     var Tchat = {};
 
-    Tchat.getLast = function() {
+    Tchat.getLast = function(allyId) {
+
+        var path = Config.path_api + '/chat/';
+        if (typeof allyId != "undefined") {
+            var path = Config.path_api + '/chat/' + allyId;
+        };
 
         var q = $q.defer();
 
         $http.get(
-            Config.path_api + '/chat/'
+            path
         ).then(function(response) {
 
             q.resolve(response.data);
@@ -20,13 +25,15 @@ angular.module('starter.services')
         return q.promise;
     };
 
-    Tchat.add = function(message) {
-
-        var q = $q.defer();
-
+    Tchat.add = function(message, allyId) {
         var post = {
             message: message,
         };
+        if (typeof allyId != "undefined") {
+            post.ally = allyId;
+        };
+
+        var q = $q.defer();
 
         var options = {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

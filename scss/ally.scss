@@ -1,0 +1,114 @@
+.page-ally{
+
+  .page-form-ally{
+    h1{
+      color: white;
+      font-size: 1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 35px 0 10px 0;
+      text-shadow: 0px 0px 3px rgba($orbit-color, 0.8);
+    }
+  }
+
+  .item-orbited{
+
+    &.item-toggle{
+      color: white;
+      font-size: 0.7em;
+    }
+
+    .input-label{
+      color: white;
+      opacity: 1;
+      font-size: 0.7em;
+    }
+
+    &.item-orbited-button{
+      background: transparent;
+      border-bottom: none;
+    }
+    img{
+
+      border: 1px solid rgba($orbit-color, 0.2);
+    }
+    h2{
+      color: $orbit-color;
+    }
+    p{
+      color: rgba($orbit-color, 0.4)
+    }
+    background: rgba($orbit-color-dark, 0.4);
+    border-color: rgba($orbit-color, 0.2);
+    border-left: none;
+    border-right: none;
+    input, textarea{
+      color: $orbit-color;
+    }
+
+    textarea{
+      margin: 10px 0 0 0;
+      padding-right: 24px;
+      background: transparent;
+      width: 100%;
+    }
+  }
+
+
+  .description{
+    position: relative;
+    width: 100%;
+    min-height: 55%;
+    background: rgba($orbit-color-dark, 0.4);
+    border-top: 1px solid rgba($orbit-color, 0.2);
+    padding: 60px 10px 10px 10px;
+    text-align: justify;
+  }
+
+  .background{
+    height: 45%;
+    background: url('../js/Pages/App/Account/img/background.jpg')  no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+
+    .title{
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: 400;
+      text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+      color: white;
+      .tag{
+        color: $assertive;
+        font-size: 0.8em;
+      }
+      .members{
+        font-size: 0.5em;
+      }
+    }
+
+    .icon{
+      position: absolute;
+      z-index: 100;
+
+      height: 90px;
+      width: 90px;
+      bottom: -45px;
+      left: 50%;
+      margin: 0 0 0 -45px;
+
+      img{
+        width: 100%;
+        border-radius: 50%;
+        border: 1px solid $orbit-color;
+      }
+    }
+  }
+
+}

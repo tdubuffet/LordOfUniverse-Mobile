@@ -12268,6 +12268,11 @@ ion-footer-bar .title {
     border: 1px solid rgba(43, 237, 230, 0.1);
     color: #2bede6; }
 
+.line-break {
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: pre-line; }
+
 .tabs-royal .tabs {
   border-bottom: 1px solid #103d3d; }
 
@@ -12968,3 +12973,85 @@ ion-footer-bar .title {
     font-size: 1em;
     text-shadow: 2px 2px 3px black;
     margin: 10px 0; }
+
+.page-ally .page-form-ally h1 {
+  color: white;
+  font-size: 1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 35px 0 10px 0;
+  text-shadow: 0px 0px 3px rgba(43, 237, 230, 0.8); }
+
+.page-ally .item-orbited {
+  background: rgba(16, 61, 61, 0.4);
+  border-color: rgba(43, 237, 230, 0.2);
+  border-left: none;
+  border-right: none; }
+  .page-ally .item-orbited.item-toggle {
+    color: white;
+    font-size: 0.7em; }
+  .page-ally .item-orbited .input-label {
+    color: white;
+    opacity: 1;
+    font-size: 0.7em; }
+  .page-ally .item-orbited.item-orbited-button {
+    background: transparent;
+    border-bottom: none; }
+  .page-ally .item-orbited img {
+    border: 1px solid rgba(43, 237, 230, 0.2); }
+  .page-ally .item-orbited h2 {
+    color: #2bede6; }
+  .page-ally .item-orbited p {
+    color: rgba(43, 237, 230, 0.4); }
+  .page-ally .item-orbited input, .page-ally .item-orbited textarea {
+    color: #2bede6; }
+  .page-ally .item-orbited textarea {
+    margin: 10px 0 0 0;
+    padding-right: 24px;
+    background: transparent;
+    width: 100%; }
+
+.page-ally .description {
+  position: relative;
+  width: 100%;
+  min-height: 55%;
+  background: rgba(16, 61, 61, 0.4);
+  border-top: 1px solid rgba(43, 237, 230, 0.2);
+  padding: 60px 10px 10px 10px;
+  text-align: justify; }
+
+.page-ally .background {
+  height: 45%;
+  background: url("../js/Pages/App/Account/img/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+  width: 100%; }
+  .page-ally .background .title {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 400;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+    color: white; }
+    .page-ally .background .title .tag {
+      color: #ef473a;
+      font-size: 0.8em; }
+    .page-ally .background .title .members {
+      font-size: 0.5em; }
+  .page-ally .background .icon {
+    position: absolute;
+    z-index: 100;
+    height: 90px;
+    width: 90px;
+    bottom: -45px;
+    left: 50%;
+    margin: 0 0 0 -45px; }
+    .page-ally .background .icon img {
+      width: 100%;
+      border-radius: 50%;
+      border: 1px solid #2bede6; }

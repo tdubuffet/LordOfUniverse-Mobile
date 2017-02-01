@@ -186,6 +186,12 @@ ion-footer-bar{
   }
 }
 
+.line-break{
+  overflow: inherit ;
+  text-overflow: inherit ;
+  white-space: pre-line;
+}
+
 .tabs-royal{
 
   .tabs{
