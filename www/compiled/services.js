@@ -59,6 +59,24 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Account.level = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/user/levels'
+        )
+            .success(function (data) {
+                q.resolve(data);
+            })
+            .error(function() {
+                q.reject('nok');
+            });
+
+
+        return q.promise;
+    };
+
     return Account;
 
 

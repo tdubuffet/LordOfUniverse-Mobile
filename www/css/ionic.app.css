@@ -12290,6 +12290,16 @@ ion-footer-bar .title {
   border-style: solid;
   border-color: #2bede6; }
 
+.item-orbited {
+  background: rgba(16, 61, 61, 0.4);
+  border-color: rgba(43, 237, 230, 0.2);
+  border-left: none;
+  border-right: none; }
+  .item-orbited h2 {
+    color: #2bede6; }
+  .item-orbited p {
+    color: rgba(43, 237, 230, 0.4); }
+
 .homepage {
   background: url(../img/wallpaper_1.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
@@ -12346,18 +12356,26 @@ ion-footer-bar .title {
       background: rgba(11, 15, 17, 0.92); }
 
 .page-account .account-background {
-  background: url("../js/Pages/App/Account/img/background.jpg") no-repeat;
-  background-position: center top;
-  background-size: 100% auto;
-  height: 170px; }
+  background: url("../js/Pages/App/Account/img/background.jpg") no-repeat center left fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+  .page-account .account-background .user-profil {
+    background: rgba(16, 61, 61, 0.4);
+    padding: 90px 0; }
   .page-account .account-background .username {
-    padding-top: 60px;
     font-size: 1.25em;
     font-weight: 400; }
     .page-account .account-background .username .alliance {
       color: #ef473a; }
   .page-account .account-background .grade {
     color: white; }
+  .page-account .account-background .rank {
+    text-align: center;
+    width: 100%; }
+    .page-account .account-background .rank img {
+      width: 80px; }
 
 .page-account .avatar {
   text-align: center;
@@ -12381,6 +12399,70 @@ ion-footer-bar .title {
   color: white;
   font-weight: 200;
   font-size: 0.9em; }
+
+.page-account .rank-tab .my-rank {
+  padding: 45px 0; }
+  .page-account .rank-tab .my-rank h2 {
+    color: white;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2px;
+    text-align: center; }
+  .page-account .rank-tab .my-rank .level {
+    color: #2bede6;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center; }
+  .page-account .rank-tab .my-rank img {
+    max-width: 120px; }
+  .page-account .rank-tab .my-rank .rank-level {
+    text-align: center; }
+
+.page-account .rank-tab h1 {
+  color: white;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+  margin: 0px 10px 8px 10px; }
+
+.page-account .rank-tab .progress-bar {
+  position: relative;
+  height: 15px;
+  width: 80%;
+  background: rgba(16, 61, 61, 0.75);
+  border: 1px solid rgba(43, 237, 230, 0.2);
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 50px; }
+  .page-account .rank-tab .progress-bar .start-exp {
+    position: absolute;
+    left: 0px;
+    top: -22px;
+    font-size: 0.6em;
+    text-transform: uppercase; }
+  .page-account .rank-tab .progress-bar .end-exp {
+    position: absolute;
+    right: 0px;
+    top: -22px;
+    font-size: 0.6em;
+    text-transform: uppercase; }
+  .page-account .rank-tab .progress-bar .loader {
+    position: absolute;
+    height: 100%;
+    background: rgba(43, 237, 230, 0.9);
+    border-radius: 4px;
+    top: 0;
+    left: 0; }
+    .page-account .rank-tab .progress-bar .loader .percentage {
+      position: relative;
+      bottom: -18px;
+      left: 100%;
+      margin-left: -14px;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      color: white;
+      text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8); }
 
 .page-tchat .bar-tchat textarea {
   width: 86%;

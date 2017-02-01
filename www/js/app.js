@@ -134,6 +134,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.empire', {
+                url: '/empire',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Empire/index.html",
+                        controller: 'AppEmpire'
+                    }
+                }
+            })
+
         ;
 
         $urlRouterProvider.otherwise('/homepage');

@@ -215,3 +215,16 @@ ion-footer-bar{
     border-color: $orbit-color;
   }
 }
+
+.item-orbited{
+  h2{
+    color: $orbit-color;
+  }
+  p{
+    color: rgba($orbit-color, 0.4)
+  }
+  background: rgba($orbit-color-dark, 0.4);
+  border-color: rgba($orbit-color, 0.2);
+  border-left: none;
+  border-right: none;
+}

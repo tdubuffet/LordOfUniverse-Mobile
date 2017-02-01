@@ -1,14 +1,17 @@
 .page-account{
 
   .account-background{
-    background: url('../js/Pages/App/Account/img/background.jpg') no-repeat;
-    background-position: center top;
-    background-size: 100% auto;
+    background: url('../js/Pages/App/Account/img/background.jpg')  no-repeat center left fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
-    height: 170px;
-
+    .user-profil{
+      background: rgba($orbit-color-dark, 0.4);
+      padding: 90px 0;
+    }
     .username{
-      padding-top: 60px;
       font-size: 1.25em;
       font-weight: 400;
       .alliance{
@@ -18,6 +21,13 @@
 
     .grade{
       color: white;
+    }
+    .rank{
+      text-align: center;
+      width: 100%;
+      img{
+        width: 80px;
+      }
     }
   }
 
@@ -47,5 +57,91 @@
     color: white;
     font-weight: 200;
     font-size: 0.9em;
+  }
+
+  .rank-tab{
+    .my-rank{
+      padding: 45px 0;
+
+
+      h2{
+        color: white;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+        margin-bottom: 2px;
+        text-align: center;
+      }
+
+      .level{
+
+        color: $orbit-color;
+        font-size: 1em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      img{
+        max-width: 120px;
+      }
+
+      .rank-level{
+        text-align: center;
+      }
+    }
+
+    h1{
+      color: white;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+      margin: 0px 10px 8px 10px;
+    }
+
+    .progress-bar{
+      position: relative;
+      height: 15px;
+      width: 80%;
+      background: rgba($orbit-color-dark, 0.75);
+      border: 1px solid rgba($orbit-color, 0.2);
+      border-radius: 5px;
+      margin: 0 auto;
+
+      margin-top: 50px;
+
+      .start-exp{
+        position: absolute;
+        left: 0px;
+        top: -22px;
+        font-size: 0.6em;
+        text-transform: uppercase;
+      }
+      .end-exp{
+        position: absolute;
+        right: 0px;
+        top: -22px;
+        font-size: 0.6em;
+        text-transform: uppercase;
+      }
+
+      .loader{
+        position: absolute;
+        height: 100%;
+        background: rgba($orbit-color, 0.9);
+        border-radius: 4px;
+        top: 0;
+        left: 0;
+        .percentage{
+          position: relative;
+          bottom: -18px;
+          left: 100%;
+          margin-left: -14px;
+          font-size: 0.8em;
+          text-transform: uppercase;
+          color: white;
+          text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
   }
 }
