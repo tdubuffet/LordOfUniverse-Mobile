@@ -154,6 +154,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.message-thread', {
+                url: '/message/thread/:threadId',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Message/thread.html",
+                        controller: 'AppThread'
+                    }
+                }
+            })
+
         ;
 
         $urlRouterProvider.otherwise('/homepage');
