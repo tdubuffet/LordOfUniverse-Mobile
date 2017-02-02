@@ -19,4 +19,15 @@ angular.module('starter.controllers')
         });
     }
 
+    $scope.loadFriends = function () {
+
+
+        $ionicLoading.show();
+        Account.friends().then(function(data) {
+            $scope.friends = data;
+            $ionicLoading.hide();
+        });
+
+    };
+
 });

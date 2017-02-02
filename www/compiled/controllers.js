@@ -19,6 +19,17 @@ angular.module('starter.controllers')
         });
     }
 
+    $scope.loadFriends = function () {
+
+
+        $ionicLoading.show();
+        Account.friends().then(function(data) {
+            $scope.friends = data;
+            $ionicLoading.hide();
+        });
+
+    };
+
 });
 angular.module('starter.controllers')
 .controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state) {
@@ -429,6 +440,7 @@ angular.module('starter.controllers')
 
     Account.me().then(function(user) {
         $rootScope.user = user;
+        console.log(user);
     });
 
     $scope.logout = function() {

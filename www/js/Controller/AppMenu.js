@@ -7,6 +7,7 @@ angular.module('starter.controllers')
 
     Account.me().then(function(user) {
         $rootScope.user = user;
+        console.log(user);
     });
 
     $scope.logout = function() {

@@ -88,17 +88,15 @@
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="Mes amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline">
+        <ion-tab title="Mes amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" on-select="loadFriends()">
             <ion-nav-view>
                 <ion-content>
                     <div class="list">
-
-                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in user.friends">
+                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends">
                             <img ng-src="{{ user.avatar }}">
                             <h2>{{ user.username }}</h2>
                             <p>{{ user.level.name }} - Niveau {{ user.level.level }}</p>
                         </div>
-
                     </div>
                 </ion-content>
             </ion-nav-view>
