@@ -12355,6 +12355,19 @@ ion-footer-bar .title {
       line-height: 18px;
       background: rgba(11, 15, 17, 0.92); }
 
+.page-account .row-item-group .col {
+  font-size: 0.8em;
+  background: rgba(16, 61, 61, 0.28);
+  border: 1px solid rgba(43, 237, 230, 0.2);
+  border-right: none;
+  padding: 5px 15px;
+  text-align: center;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8); }
+  .page-account .row-item-group .col .ion-icon {
+    font-size: 2em; }
+  .page-account .row-item-group .col:first-child {
+    border-left: none; }
+
 .page-account .account-background {
   background: url("../js/Pages/App/Account/img/background.jpg") no-repeat center left fixed;
   -webkit-background-size: cover;

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast'])
 
     .run(function ($ionicPlatform, OAuth) {
         $ionicPlatform.ready(function () {
@@ -144,6 +144,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.profil', {
+                url: '/profil/:id',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Account/profil.html",
+                        controller: 'AppProfil'
+                    }
+                }
+            })
+
             .state('app.message', {
                 url: '/message',
                 views: {
@@ -212,15 +222,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         var CacheFactory = $injector.get('CacheFactory');
 
 
+
+                        var deferred = $q.defer();
+
+
+
                         OAuthToken.removeToken();
                         CacheFactory.destroyAll();
                         stateService.go('homepage');
                     }
 
                 }
-
-                console.log('error');
-                console.log(response);
 
                 return $q.reject(response);
             },
@@ -229,9 +241,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     //  Redirect user to login page / signup Page.
                 }
                 if (response.status != 200) {
-
-                    console.log('TEST');
-                    console.log(response);
+;
                 }
                 return response || $q.when(response);
             }

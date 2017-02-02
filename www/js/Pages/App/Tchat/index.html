@@ -8,7 +8,7 @@
 
             <div class="content">
                 <div class="avatar">
-                    <img ng-src="{{ value.user.avatar }}" />
+                    <img ng-src="{{ value.user.avatar }}"  ui-sref="app.profil({id: value.user.id})" />
                 </div>
                 <div class="text">
                     {{ value.message }}

@@ -30,6 +30,49 @@ angular.module('starter.controllers')
 
     };
 
+})
+
+.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast) {
+
+
+    $ionicLoading.show();
+    Account.profil($stateParams.id).then(function(user) {
+        $scope.profil = user;
+        $ionicLoading.hide();
+    });
+
+    $scope.addFriend = function(id) {
+        Account.addFriend(id).then(function(data) {
+            $scope.profil = data;
+            ionicToast.show('Ajouté à vos amis.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Error: Merci de contacter un administrateur', 'bottom',false, 5000);
+        });
+    };
+
+    $scope.removeFriend = function(id) {
+        Account.removeFriend(id).then(function(data) {
+            $scope.profil = data;
+            ionicToast.show('Retiré de vos amis.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Error: Merci de contacter un administrateur', 'bottom',false, 5000);
+        });
+    };
+
+    $scope.loadTabRank = function() {
+    };
+
+    $scope.loadFriends = function () {
+
+
+        $ionicLoading.show();
+        Account.profilFriends($stateParams.id).then(function(data) {
+            $scope.friends = data;
+            $ionicLoading.hide();
+        });
+
+    };
+
 });
 angular.module('starter.controllers')
 .controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state) {
@@ -432,7 +475,7 @@ angular.module('starter.controllers')
 
 });
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate) {
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -472,6 +515,10 @@ angular.module('starter.controllers')
 
     $rootScope.numberFormated = function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
+    $rootScope.goBack = function () {
+        $ionicNavBarDelegate.back();
     };
 
 });

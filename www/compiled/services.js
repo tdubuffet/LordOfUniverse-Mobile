@@ -59,6 +59,78 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Account.profil = function(id) {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/user/profil/' + id
+        )
+            .success(function (data) {
+                q.resolve(data);
+            })
+            .error(function() {
+                q.reject('nok');
+            });
+
+
+        return q.promise;
+    };
+
+    Account.addFriend = function(id) {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/user/add/friend/' + id
+        )
+            .success(function (data) {
+                q.resolve(data);
+            })
+            .error(function() {
+                q.reject('nok');
+            });
+
+
+        return q.promise;
+    };
+
+    Account.removeFriend = function(id) {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/user/remove/friend/' + id
+        )
+            .success(function (data) {
+                q.resolve(data);
+            })
+            .error(function() {
+                q.reject('nok');
+            });
+
+
+        return q.promise;
+    };
+
+    Account.profilFriends = function(id) {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/user/profil/' + id + '/friends'
+        )
+        .success(function (data) {
+            q.resolve(data);
+        })
+        .error(function() {
+            q.reject('nok');
+        });
+
+
+        return q.promise;
+    };
+
     Account.friends = function() {
 
         var q = $q.defer();

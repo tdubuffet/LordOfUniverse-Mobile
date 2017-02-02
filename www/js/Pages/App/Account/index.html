@@ -34,8 +34,11 @@
                             <img ng-src="{{ user.avatar }}"/>
                         </div>
 
-                        <p>
-                            {{ user.description }}
+                        <p ng-if="user.description == null">
+                            Aucune description.
+                        </p>
+                        <p ng-if="user.description != null">
+                            {{ profil.description }}
                         </p>
                     </div>
                 </ion-content>
@@ -92,10 +95,15 @@
             <ion-nav-view>
                 <ion-content>
                     <div class="list">
-                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends">
+                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends" ui-sref="app.profil({id: user.id})">
                             <img ng-src="{{ user.avatar }}">
                             <h2>{{ user.username }}</h2>
                             <p>{{ user.level.name }} - Niveau {{ user.level.level }}</p>
+                        </div>
+
+
+                        <div class="item item-orbited text-center positive" ng-if="friends.length == 0">
+                            Aucun ami
                         </div>
                     </div>
                 </ion-content>

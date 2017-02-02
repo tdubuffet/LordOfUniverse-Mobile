@@ -1,5 +1,25 @@
 .page-account{
 
+  .row-item-group{
+    .col{
+      font-size: 0.8em;
+      background: rgba($orbit-color-dark, 0.28);
+      border: 1px solid rgba($orbit-color, 0.2);
+      border-right: none;
+      .ion-icon{
+        font-size: 2em;
+      }
+      padding: 5px 15px;
+      text-align: center;
+      text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+
+      &:first-child{
+        border-left: none;
+      }
+    }
+  }
+
+
   .account-background{
     background: url('../js/Pages/App/Account/img/background.jpg')  no-repeat center left fixed;
     -webkit-background-size: cover;

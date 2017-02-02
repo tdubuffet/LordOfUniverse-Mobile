@@ -1,0 +1,125 @@
+<ion-view class="page-account" cache-view="false">
+    <ion-nav-title>
+        {{ profil.username }}
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear button-orbit-clear" ng-click="goBack()">
+            <i class="fa fa-arrow-left"></i> Retour
+        </button>
+    </ion-nav-buttons>
+
+    <ion-tabs class="tabs-royal tabs-icon-top">
+
+        <ion-tab title="Son profil" icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+                    <div class="account-background">
+
+                        <div class="user-profil">
+
+                            <div class="username text-center">
+                                {{ profil.username }} <span class="alliance" ng-if="profil.ally">[{{ profil.ally.tag }}]</span>
+                            </div>
+
+                            <p class="grade text-center" ng-if="profil.level != null">
+                                {{ profil.level.name }}
+                            </p>
+
+                            <div class="rank">
+                                <img ng-src="/img/rank/rank_{{profil.level.code}}.png" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="description">
+                        <div class="avatar">
+                            <img ng-src="{{ profil.avatar }}"/>
+                        </div>
+
+                        <p ng-if="profil.description == null">
+                            Aucune description pour ce profil.
+                        </p>
+                        <p ng-if="profil.description != null">
+                            {{ profil.description }}
+                        </p>
+                    </div>
+
+                    <div class="row row-no-padding row-item-group">
+                        <div class="col">
+                            <div>
+                                <i class="ion-icon ion-email"></i>
+                            </div>
+                            Envoyer un message
+                        </div>
+                        <div class="col" ng-click="addFriend(profil.id)" ng-if="profil.is_friend == false">
+                            <div>
+                                <i class="ion-icon ion-person-add"></i>
+                            </div>
+                            Ajouter à mes amis
+                        </div>
+
+
+                        <div class="col" ng-click="removeFriend(profil.id)" ng-if="profil.is_friend == true">
+                            <div>
+                                <i class="ion-icon ion-person-add"></i>
+                            </div>
+                            Retirer de mes amis
+                        </div>
+
+                    </div>
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+
+        <ion-tab title="Son grade" icon-on="ion-ios-star-half" icon-off="ion-ios-star-outline" on-select="loadTabRank()">
+            <ion-nav-view>
+                <ion-content class="has-header rank-tab" overflow-scroll="false">
+
+                    <div class="my-rank">
+
+                        <h2>{{ profil.level.name }}</h2>
+                        <div class="level">Niveau {{ profil.level.level }}</div>
+                        <div class="rank-level">
+                            <img ng-src="/img/rank/layer_{{profil.level.code}}.png" />
+                        </div>
+                        <div class="text-center">
+                            Son expérience: <b>{{ numberFormated(profil.exp) }}</b> <br />
+                            Exp. prochain niveau: <b>{{ numberFormated(profil.level.next.exp) }}</b>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="start-exp">{{ numberFormated(profil.level.exp) }} <b>EXP.</b></div>
+                            <div class="end-exp">{{ numberFormated(profil.level.next.exp) }} <b>EXP.</b></div>
+                            <div class="loader" style="width: {{ percentage }}%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Ses amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" on-select="loadFriends()">
+            <ion-nav-view>
+                <ion-content>
+                    <div class="list">
+                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends">
+                            <img ng-src="{{ profil.avatar }}">
+                            <h2>{{ profil.username }}</h2>
+                            <p>{{ profil.level.name }} - Niveau {{ profil.level.level }}</p>
+                        </div>
+
+
+                        <div class="item item-orbited text-center positive" ng-if="friends.length == 0">
+                            Aucun ami
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

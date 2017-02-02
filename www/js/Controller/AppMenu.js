@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate) {
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -39,6 +39,10 @@ angular.module('starter.controllers')
 
     $rootScope.numberFormated = function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
+    $rootScope.goBack = function () {
+        $ionicNavBarDelegate.back();
     };
 
 });

@@ -30,4 +30,47 @@ angular.module('starter.controllers')
 
     };
 
+})
+
+.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast) {
+
+
+    $ionicLoading.show();
+    Account.profil($stateParams.id).then(function(user) {
+        $scope.profil = user;
+        $ionicLoading.hide();
+    });
+
+    $scope.addFriend = function(id) {
+        Account.addFriend(id).then(function(data) {
+            $scope.profil = data;
+            ionicToast.show('Ajouté à vos amis.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Error: Merci de contacter un administrateur', 'bottom',false, 5000);
+        });
+    };
+
+    $scope.removeFriend = function(id) {
+        Account.removeFriend(id).then(function(data) {
+            $scope.profil = data;
+            ionicToast.show('Retiré de vos amis.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Error: Merci de contacter un administrateur', 'bottom',false, 5000);
+        });
+    };
+
+    $scope.loadTabRank = function() {
+    };
+
+    $scope.loadFriends = function () {
+
+
+        $ionicLoading.show();
+        Account.profilFriends($stateParams.id).then(function(data) {
+            $scope.friends = data;
+            $ionicLoading.hide();
+        });
+
+    };
+
 });
