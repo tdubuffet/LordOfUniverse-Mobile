@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state) {
+.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup) {
 
     $ionicLoading.show();
     Ally.me().then(function(data) {
@@ -123,6 +123,32 @@ angular.module('starter.controllers')
         }, function() {
 
             $ionicLoading.hide();
+        });
+
+    };
+
+    $scope.exit = function() {
+
+        var popup = $ionicPopup.confirm({
+            title:          'Quitter mon alliance !',
+            template:       'Confirmez-vous quitter votre alliance ?',
+            cancelText:     'Annuler',
+            cancelType:     'button-positive',
+            okText:         'Confirmer',
+            okType:         'button-assertive',
+        });
+
+        popup.then(function(res) {
+            if(res) {
+                console.log(res);
+                Ally.exit().then(function() {
+
+                    $state.go($state.current, {}, {reload: true});
+
+                }, function() {
+
+                });
+            }
         });
 
     };

@@ -93,7 +93,7 @@
 
         <ion-tab title="Mes amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" on-select="loadFriends()">
             <ion-nav-view>
-                <ion-content>
+                <ion-content class="has-header">
                     <div class="list">
                         <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends" ui-sref="app.profil({id: user.id})">
                             <img ng-src="{{ user.avatar }}">

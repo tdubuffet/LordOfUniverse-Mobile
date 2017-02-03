@@ -32,7 +32,7 @@ angular.module('starter.controllers')
 
 })
 
-.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally) {
+.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally, $ionicModal) {
 
 
     $ionicLoading.show();
@@ -65,7 +65,6 @@ angular.module('starter.controllers')
 
     $scope.ally = false;
     $scope.loadAlly = function() {
-        console.log(Ally);
         Ally.visitor($scope.profil.ally.id).then(function(response) {
             $scope.ally = response.data;
         }, function() {
@@ -86,9 +85,54 @@ angular.module('starter.controllers')
 
     };
 
+    $ionicModal.fromTemplateUrl('js/Pages/App/Ally/ally_recruitment.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.recruitment = function() {
+
+        $scope.modal.show();
+        $scope.recruitment = {};
+
+
+        $scope.saveRecruitment = function(form) {
+
+            if (form.$invalid) {
+                return;
+            }
+
+            $ionicLoading.show();
+
+            var id = $scope.ally.id;
+
+            Ally.recruitment($scope.ally.id, $scope.recruitment.message).then(function(response) {
+                $scope.ally = response.data;
+
+                $ionicLoading.hide().then(function() {
+                    $scope.modal.hide();
+                })
+            }, function() {
+                $ionicLoading.hide();
+            });
+
+        };
+        $scope.closeModal = function() {
+            $scope.help = {};
+            $scope.modal.hide();
+        };
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+
+    };
+
 });
 angular.module('starter.controllers')
-.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state) {
+.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup) {
 
     $ionicLoading.show();
     Ally.me().then(function(data) {
@@ -212,6 +256,32 @@ angular.module('starter.controllers')
         }, function() {
 
             $ionicLoading.hide();
+        });
+
+    };
+
+    $scope.exit = function() {
+
+        var popup = $ionicPopup.confirm({
+            title:          'Quitter mon alliance !',
+            template:       'Confirmez-vous quitter votre alliance ?',
+            cancelText:     'Annuler',
+            cancelType:     'button-positive',
+            okText:         'Confirmer',
+            okType:         'button-assertive',
+        });
+
+        popup.then(function(res) {
+            if(res) {
+                console.log(res);
+                Ally.exit().then(function() {
+
+                    $state.go($state.current, {}, {reload: true});
+
+                }, function() {
+
+                });
+            }
         });
 
     };

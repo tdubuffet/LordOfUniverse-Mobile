@@ -41,6 +41,29 @@ angular.module('starter.services')
         );
     };
 
+    Ally.exit =  function(id) {
+        return $http.get(
+            Config.path_api + '/ally/exit'
+        );
+    };
+
+    Ally.recruitment =  function(id, message) {
+
+        var form = {
+            ally: id,
+            message: message
+        };
+
+        return $http.post(
+            Config.path_api + '/ally/recruitment',
+            queryString.stringify(form),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        );
+
+    };
+
     return Ally;
 
 }]);

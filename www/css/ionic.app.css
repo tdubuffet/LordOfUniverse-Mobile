@@ -12295,6 +12295,8 @@ ion-footer-bar .title {
   border-color: rgba(43, 237, 230, 0.2);
   border-left: none;
   border-right: none; }
+  .item-orbited input, .item-orbited textarea {
+    color: #2bede6; }
   .item-orbited h2 {
     color: #2bede6; }
   .item-orbited p {
@@ -12310,6 +12312,32 @@ ion-footer-bar .title {
   .item-orbited .input-label {
     color: white;
     font-size: 0.7em; }
+
+.popup-container .popup {
+  background: #103d3d;
+  box-shadow: 0 0 25px black;
+  color: #2bede6;
+  border: 1px solid rgba(43, 237, 230, 0.2); }
+  .popup-container .popup .popup-head {
+    border-color: rgba(43, 237, 230, 0.2); }
+    .popup-container .popup .popup-head .popup-title {
+      color: #2bede6;
+      text-transform: uppercase; }
+  .popup-container .popup .popup-buttons {
+    border-top: 1px solid rgba(43, 237, 230, 0.2);
+    padding: 0;
+    min-height: 45px; }
+    .popup-container .popup .popup-buttons .button {
+      border-radius: 0px;
+      margin-right: 0px;
+      line-height: 10px;
+      min-height: 10px;
+      padding: 5px; }
+      .popup-container .popup .popup-buttons .button.button-assertive {
+        background: rgba(239, 71, 58, 0.4); }
+      .popup-container .popup .popup-buttons .button.button-positive {
+        background: rgba(43, 237, 230, 0.4);
+        border-right: 1px solid rgba(43, 237, 230, 0.2); }
 
 .homepage {
   background: url(../img/wallpaper_1.jpg) no-repeat center fixed;

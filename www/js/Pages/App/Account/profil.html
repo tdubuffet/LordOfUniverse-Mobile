@@ -45,8 +45,8 @@
                         </p>
                     </div>
 
-                    <div class="row row-no-padding row-item-group"  ui-sref="app.message-send({id: profil.id})">
-                        <div class="col">
+                    <div class="row row-no-padding row-item-group">
+                        <div class="col" ui-sref="app.message-send({id: profil.id})">
                             <div>
                                 <i class="ion-icon ion-email"></i>
                             </div>
@@ -105,7 +105,7 @@
 
         <ion-tab title="Son alliance" icon-on="ion-ios-color-filter" icon-off="ion-ios-color-filter-outline" on-select="loadAlly()" ng-if="profil.ally">
             <ion-nav-view>
-                <ion-content class="page-ally" ng-show="ally">
+                <ion-content class="page-ally has-header" ng-show="ally">
 
                     <div class="background" style="background-image: url('{{ ally.background }}')">
 
@@ -132,11 +132,10 @@
 
                     </div>
 
-                    <div class="description line-break">
-
-                        <button class="button button-block">Se faire recruter</button>
-
-                        {{ ally.description }}
+                    <div class="description">
+                        <button class="button button-block button-orbit" ng-if="ally.recruitment == true && ally.is_recruitment == false" ng-click="recruitment()">Envoyer une demande</button>
+                        <div ng-if="ally.is_recruitment == true" class="assertive text-center">Une demande de recrutement est en attente de validation par l'alliance.<br /><br /></div>
+                        <div class="line-break">{{ ally.description }}</div>
                     </div>
 
                 </ion-content>
@@ -145,7 +144,7 @@
 
         <ion-tab title="Ses amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" on-select="loadFriends()">
             <ion-nav-view>
-                <ion-content ng-show="friends">
+                <ion-content ng-show="friends has-header">
                     <div class="list">
                         <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends">
                             <img ng-src="{{ profil.avatar }}">

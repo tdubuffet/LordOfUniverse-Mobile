@@ -1,0 +1,45 @@
+<ion-modal-view class="modal-build">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">Demande de recrutement</h1>
+        <div class="button button-clear  button-assertive" ng-click="modal.hide()"><i class="fa fa-times"></i> Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit has-header">
+
+
+        <p class="padding">
+            Vous êtes sur le point de faire une demande de recrutement pour l'alliance <b>{{ ally.name }} [{{ally.tag}}]</b>.<br />
+            Pour que votre demande soit pertinante, il est vivement conseillé d'accompagner votre demande avec un message.
+        </p>
+
+        <form novalidate ng-submit="saveRecruitment(recruitmentForm)" name="recruitmentForm">
+            <div class="list">
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Message de recrutement</span>
+                    <textarea name="message" placeholder="Votre message" msd-elastic  ng-model="recruitment.message" ng-minlength="20" ng-maxlength="255" ng-required=true></textarea>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="recruitmentForm.message.$error.minlength && (!recruitmentForm.message.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Votre message de recrutement est trop court.
+                    </p>
+
+                    <p ng-show="recruitmentForm.message.$error.maxlength && (!recruitmentForm.message.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Votre message de recrutement est trop long.
+                    </p>
+
+                    <p ng-show="recruitmentForm.message.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <div class="item item-orbited item-orbited-button">
+                    <button type="submit" class="button button-block button-orbit" ng-click="submitted=true">
+                        Envoyer
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </ion-content>
+</ion-modal-view>
