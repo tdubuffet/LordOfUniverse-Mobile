@@ -13105,6 +13105,18 @@ ion-footer-bar .title {
     border-bottom: none; }
   .page-ally .item-orbited img {
     border: 1px solid rgba(43, 237, 230, 0.2); }
+  .page-ally .item-orbited .rank-right {
+    position: absolute;
+    right: 0px;
+    width: 20%;
+    text-align: center;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+    color: rgba(43, 237, 230, 0.4); }
+    .page-ally .item-orbited .rank-right img {
+      width: 35%;
+      border: none; }
   .page-ally .item-orbited h2 {
     color: #2bede6; }
   .page-ally .item-orbited p {

@@ -3,7 +3,7 @@
         Alliance
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear button-assertive"><i class="fa fa-pencil"></i> Edit</button>
+        <button class="button button-clear button-assertive"><i class="fa fa-sign-out" aria-hidden="true"></i> Quitter</button>
     </ion-nav-buttons>
 
     <ion-tabs class="tabs-royal tabs-icon-top">
@@ -44,10 +44,14 @@
 
                     <div class="list">
 
-                        <div class="item item-avatar item-orbited" ng-repeat="(key, user) in ally.users"  ui-sref="app.profil({id: user.id})">
+                        <div class="item item-avatar item-orbited item-icon-right" ng-repeat="(key, user) in ally.users"  ui-sref="app.profil({id: user.id})">
                             <img ng-src="{{ user.avatar }}">
+                            <div class="rank-right">
+                                <img ng-src="img/rank/rank_{{ user.level.code }}.png" />
+                                <div>{{ user.level.name }} ({{ user.level.level }})</div>
+                            </div>
                             <h2>{{ user.username }}</h2>
-                            <p>Fondateur</p>
+                            <p>{{ user.ally_grade.name }}</p>
                         </div>
 
                     </div>
