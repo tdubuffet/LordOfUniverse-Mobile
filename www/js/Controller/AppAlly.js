@@ -129,4 +129,9 @@ angular.module('starter.controllers')
 
 
 
+})
+.controller('AppAllyVisitor', function($scope, $ionicPlatform, Ally, $ionicLoading, $ionicScrollDelegate,  $rootScope, $q, $location, $state) {
+
+
+
 });

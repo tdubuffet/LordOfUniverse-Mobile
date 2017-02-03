@@ -134,6 +134,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.ally-visitor', {
+                url: '/ally/visitor',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Ally/ally_visitor.html",
+                        controller: 'AppAllyVisitor'
+                    }
+                }
+            })
+
             .state('app.empire', {
                 url: '/empire',
                 views: {

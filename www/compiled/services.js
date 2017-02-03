@@ -189,7 +189,7 @@ angular.module('starter.services')
             q.resolve(data);
         })
         .error(function() {
-            $state.go('homepage');
+            q.reject('nok');
         });
 
 
@@ -205,6 +205,13 @@ angular.module('starter.services')
             {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
+        );
+    };
+
+    Ally.visitor =  function(id) {
+
+        return $http.get(
+            Config.path_api + '/ally/id/' + id
         );
     };
 

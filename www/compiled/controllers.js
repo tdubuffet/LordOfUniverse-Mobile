@@ -32,10 +32,11 @@ angular.module('starter.controllers')
 
 })
 
-.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast) {
+.controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally) {
 
 
     $ionicLoading.show();
+    $scope.profil = false;
     Account.profil($stateParams.id).then(function(user) {
         $scope.profil = user;
         $ionicLoading.hide();
@@ -62,6 +63,18 @@ angular.module('starter.controllers')
     $scope.loadTabRank = function() {
     };
 
+    $scope.ally = false;
+    $scope.loadAlly = function() {
+        console.log(Ally);
+        Ally.visitor($scope.profil.ally.id).then(function(response) {
+            $scope.ally = response.data;
+        }, function() {
+
+        });
+    };
+
+
+    $scope.friends = false;
     $scope.loadFriends = function () {
 
 
@@ -202,6 +215,11 @@ angular.module('starter.controllers')
         });
 
     };
+
+
+
+})
+.controller('AppAllyVisitor', function($scope, $ionicPlatform, Ally, $ionicLoading, $ionicScrollDelegate,  $rootScope, $q, $location, $state) {
 
 
 

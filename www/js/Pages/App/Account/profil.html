@@ -9,11 +9,11 @@
         </button>
     </ion-nav-buttons>
 
-    <ion-tabs class="tabs-royal tabs-icon-top">
+    <ion-tabs class="tabs-royal tabs-icon-top tabs-top">
 
         <ion-tab title="Son profil" icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
             <ion-nav-view>
-                <ion-content class="has-header" overflow-scroll="false">
+                <ion-content class="has-header" overflow-scroll="false" ng-show="profil">
                     <div class="account-background">
 
                         <div class="user-profil">
@@ -75,7 +75,7 @@
 
         <ion-tab title="Son grade" icon-on="ion-ios-star-half" icon-off="ion-ios-star-outline" on-select="loadTabRank()">
             <ion-nav-view>
-                <ion-content class="has-header rank-tab" overflow-scroll="false">
+                <ion-content class="has-header rank-tab" overflow-scroll="false" ng-show="profil">
 
                     <div class="my-rank">
 
@@ -103,9 +103,49 @@
             </ion-nav-view>
         </ion-tab>
 
+        <ion-tab title="Son alliance" icon-on="ion-ios-color-filter" icon-off="ion-ios-color-filter-outline" on-select="loadAlly()" ng-if="profil.ally">
+            <ion-nav-view>
+                <ion-content class="page-ally" ng-show="ally">
+
+                    <div class="background" style="background-image: url('{{ ally.background }}')">
+
+                        <div class="title">
+                            <div>{{ ally.name }}</div>
+                            <div class="tag">{{ ally.tag }}</div>
+                            <div class="members">
+                                {{ ally.members }} membre(s)
+                                <p>
+                                    Recrutement:
+                                    <span class="assertive" ng-if="ally.recruitment == false">
+                                        [OFF]
+                                    </span>
+                                    <span class="positive" ng-if="ally.recruitment == true">
+                                        [ON]
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="icon">
+                            <img ng-src="{{ ally.icon }}">
+                        </div>
+
+                    </div>
+
+                    <div class="description line-break">
+
+                        <button class="button button-block">Se faire recruter</button>
+
+                        {{ ally.description }}
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
         <ion-tab title="Ses amis" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" on-select="loadFriends()">
             <ion-nav-view>
-                <ion-content>
+                <ion-content ng-show="friends">
                     <div class="list">
                         <div class="item item-avatar item-orbited" ng-repeat="(key, user) in friends">
                             <img ng-src="{{ profil.avatar }}">

@@ -1,0 +1,46 @@
+<ion-view class="page-ally" cache-view="false">
+    <ion-nav-title>
+        Alliance
+    </ion-nav-title>
+
+    <ion-tabs class="tabs-royal tabs-icon-top  tabs-top">
+
+        <ion-tab title="L'alliance" icon-on="ion-ios-color-filter" icon-off="ion-ios-color-filter-outline">
+
+            <ion-nav-view>
+                <ion-content class="has-header">
+
+                    <div class="background" style="background-image: url('{{ ally.background }}')">
+
+                        <div class="title">
+                            <div>{{ ally.name }}</div>
+                            <div class="tag">{{ ally.tag }}</div>
+                            <div class="members">
+                                {{ ally.users.length }} membre(s)
+                            </div>
+                        </div>
+
+                        <div class="icon">
+                            <img ng-src="{{ ally.icon }}">
+                        </div>
+
+                    </div>
+
+                    <div class="description line-break">
+                        {{ ally.description }}
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+
+        </ion-tab>
+
+        <ion-tab title="Recrutement" icon-on="ion-ios-people" icon-off="ion-ios-people-outline">
+            <ion-nav-view>
+                <ion-content class="has-header">
+                    POPOPO
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>
