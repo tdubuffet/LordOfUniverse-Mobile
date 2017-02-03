@@ -28,7 +28,7 @@ angular.module('starter.services')
             )
             .success(function(data){
 
-                console.log(data);
+
 
             })
 
@@ -448,6 +448,22 @@ angular.module('starter.services')
     Message.thread = function(id) {
         return $http.get(
             Config.path_api + '/message/thread/' + id
+        );
+    };
+
+    Message.send = function(data) {
+        var post = {
+            user: data.user,
+            subject: data.subject,
+            message: data.message
+        };
+
+        return $http.post(
+            Config.path_api + '/message/composer/new',
+            queryString.stringify(post),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
         );
     };
 

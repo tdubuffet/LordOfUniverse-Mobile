@@ -3,7 +3,6 @@ angular.module('starter.controllers')
 
     $ionicLoading.show();
     Ally.me().then(function(data) {
-        console.log(data);
         $scope.ally = data;
 
         $scope.formAlly = {
@@ -112,7 +111,6 @@ angular.module('starter.controllers')
             return;
         }
 
-        console.log($scope.formAlly);
         $ionicLoading.show();
 
         if ($scope.formAlly.recruitment == false) {

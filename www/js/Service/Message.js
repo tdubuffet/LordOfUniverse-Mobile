@@ -35,6 +35,22 @@ angular.module('starter.services')
         );
     };
 
+    Message.send = function(data) {
+        var post = {
+            user: data.user,
+            subject: data.subject,
+            message: data.message
+        };
+
+        return $http.post(
+            Config.path_api + '/message/composer/new',
+            queryString.stringify(post),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        );
+    };
+
     Message.add = function(threadId, message) {
 
         var post = {

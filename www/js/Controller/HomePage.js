@@ -16,7 +16,6 @@ angular.module('starter.controllers')
         OAuth.getAccessToken($scope.login).then(function(success) {
             $location.path('/app/home');
         }, function(error) {
-            console.log(error);
         });
     };
 
@@ -37,7 +36,7 @@ angular.module('starter.controllers')
 
             }, function(error) {
 
-                console.log(error);
+
 
             });
         });
@@ -55,7 +54,6 @@ angular.module('starter.controllers')
             return;
         }
 
-        console.log($scope.registration);
     };
 
 

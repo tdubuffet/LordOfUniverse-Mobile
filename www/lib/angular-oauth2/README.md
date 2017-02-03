@@ -80,8 +80,8 @@ angular.module('myApp', ['angular-oauth2'])
         return;
       }
 
-      // Refresh token when a `invalid_token` error occurs.
-      if ('invalid_token' === rejection.data.error) {
+      // Refresh token when a `invalid_grant` error occurs.
+      if ('invalid_grant' === rejection.data.error) {
         return OAuth.getRefreshToken();
       }
 
@@ -179,7 +179,7 @@ OAuth.revokeToken()
 
 * `{ status: 400, data: { error: 'invalid_request' }`
 * `{ status: 400, data: { error: 'invalid_grant' }`
-* `{ status: 401, data: { error: 'invalid_token' }`
+* `{ status: 401, data: { error: 'invalid_grant' }`
 * `{ status: 401, headers: { 'www-authenticate': 'Bearer realm="example"' } }`
 
 #### OAuthTokenProvider

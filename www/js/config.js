@@ -1,6 +1,6 @@
 var Config = {
-    'client_id' : '3_5yicob9dppk4owscssoow8k48kko88w8c88so0goccc0c44so0',
-    'client_secret': '670gx0dvrhc08040cwcw00gs4w0k0w4ks8gk80kwk4ogs08kso',
+    'client_id' : '5_10uf4h1nfa9cog0s4gwcwws4okw80kgs00w8o8ss4ksk0wkw88',
+    'client_secret': '1bu50aaxoekkokk80wok4044cwok80sgg04cs4g880s0g4sg4o',
     'path': 'http://lordofuniverse.ddns.net/app_dev.php',
 };
 

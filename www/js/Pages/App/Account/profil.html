@@ -27,7 +27,7 @@
                             </p>
 
                             <div class="rank">
-                                <img ng-src="/img/rank/rank_{{profil.level.code}}.png" />
+                                <img ng-src="img/rank/rank_{{profil.level.code}}.png" />
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                         </p>
                     </div>
 
-                    <div class="row row-no-padding row-item-group">
+                    <div class="row row-no-padding row-item-group"  ui-sref="app.message-send({id: profil.id})">
                         <div class="col">
                             <div>
                                 <i class="ion-icon ion-email"></i>
@@ -82,7 +82,7 @@
                         <h2>{{ profil.level.name }}</h2>
                         <div class="level">Niveau {{ profil.level.level }}</div>
                         <div class="rank-level">
-                            <img ng-src="/img/rank/layer_{{profil.level.code}}.png" />
+                            <img ng-src="img/rank/layer_{{profil.level.code}}.png" />
                         </div>
                         <div class="text-center">
                             Son expérience: <b>{{ numberFormated(profil.exp) }}</b> <br />

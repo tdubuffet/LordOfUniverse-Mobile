@@ -1,0 +1,71 @@
+<ion-view class="page-message" cache-view="false">
+    <ion-nav-title>
+        Envoyer un message
+    </ion-nav-title>
+
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear button-positive" ng-click="goBack()">
+            <i class="ion-arrow-left-c"></i> Retour
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+
+
+        <p class="padding orbited text-justify" style="margin-top: 25px; margin-bottom: 25px; font-size: 0.8em;">
+
+            Attention, le spam est totalement interdit.<br />
+            Il est aussi recommandé de ne pas promouvoir la concurence via la messagerie.<br />
+            Pour des questions de sécurité, les messages envoyés sur cette plateforme peuvent être à tout moment lu par notre équipe de modération.
+
+        </p>
+
+
+        <form novalidate ng-submit="saveMessage(threadForm)" name="threadForm">
+            <div class="list">
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Tag</span>
+                    <input type="text" name="subject" placeholder="Sujet du message" ng-model="thread.subject" ng-minlength="3" ng-maxlength="200" ng-pattern="/^[a-zA-Z0-9]*$/" ng-trim="false" ng-required=true>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="threadForm.subject.$error.minlength && (!threadForm.subject.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le sujet de votre message est trop court.
+                    </p>
+                    <p ng-show="threadForm.subject.$error.maxlength && (!threadForm.subject.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le sujet de votre message est trop long.
+                    </p>
+
+                    <p ng-show="threadForm.subject.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Message</span>
+                    <textarea name="message" placeholder="Votre message" msd-elastic  ng-model="thread.message" ng-minlength="20" ng-required=true></textarea>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="threadForm.message.$error.minlength && (!threadForm.message.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Votre message est trop court.
+                    </p>
+
+                    <p ng-show="threadForm.message.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <div class="item item-orbited item-orbited-button">
+                    <button type="submit" class="button button-block button-orbit" ng-click="submitted=true">
+                        Enregistrer
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+    </ion-content>
+</ion-view>

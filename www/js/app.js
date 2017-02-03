@@ -174,6 +174,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('app.message-send', {
+                url: '/message/send/:id',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Message/send.html",
+                        controller: 'AppSend'
+                    }
+                }
+            })
+
         ;
 
         $urlRouterProvider.otherwise('/homepage');
@@ -184,69 +194,83 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         $httpProvider.defaults.headers.common = 'Content-Type: application/json';
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-        $httpProvider.interceptors.push('BearerAuthInterceptor');
-    }
-    ])
-    .factory('BearerAuthInterceptor', function ($window, $q, $injector, $location) {
+        $httpProvider.interceptors.push(['$q', '$injector', '$location',
 
-        var OAuth = $injector.get('OAuthToken');
+            function ($q, $injector, $location) {
 
-        return {
-            request: function(config) {
-                config.headers = config.headers || {};
-                if (OAuth.getAccessToken()) {
-                    // may also use sessionStorage
-                    config.headers.Authorization = 'Bearer ' + OAuth.getAccessToken();
-                }
+                var OAuthToken = $injector.get('OAuthToken');
 
-                config.timeout = 10000;
+                return {
+                    request: function (config) {
+                        config.headers = config.headers || {};
+                        if (OAuthToken.getAccessToken()) {
+                            // may also use sessionStorage
+                            config.headers.Authorization = 'Bearer ' + OAuthToken.getAccessToken();
+                        }
+                        config.timeout = 20000;
+                        var q = $q.defer();
+                        q.resolve(config);
+                        return q.promise;
+                    },
+                    responseError: function (response) {
 
-                var q = $q.defer();
+                        console.log(response);
 
-                q.resolve(config);
-
-                return q.promise;
-            },
-            responseError: function(response) {
-
-                if (response.status === 401) {
-
-
-
-                    if (
-                        response.data.error === "invalid_grant" ||
-                        response.data.error === "access_denied"
-                    ) {
-                        var stateService = $injector.get('$state');
-                        var OAuthToken = $injector.get('OAuthToken');
-                        var CacheFactory = $injector.get('CacheFactory');
+                        var retryRequest = function($http, config, deferred) {
+                            function successCallback(response) {
+                                deferred.resolve(response);
+                            }
+                            function errorCallback(response) {
+                                deferred.reject(response);
+                            }
+                            $http(config).then(successCallback, errorCallback);
+                        };
 
 
+                        switch (response.status) {
 
-                        var deferred = $q.defer();
+                            case 401:
 
 
+                                var deferred = $q.defer(); //moved deferred to here
+                                var $http = $injector.get('$http');
+                                var OAuth = $injector.get('OAuth');
 
-                        OAuthToken.removeToken();
-                        CacheFactory.destroyAll();
-                        stateService.go('homepage');
+                                if (response.data.error == 'invalid_grant') {
+
+                                    OAuth.getRefreshToken().then(function(res) {
+                                        retryRequest($http, response.config, deferred);
+
+
+                                        return deferred.resolve(response);
+                                    }, function() {
+
+                                        $location.path('/homepage');
+                                    });
+
+                                    return deferred.promise;
+                                }
+                                if (response.data.error == 'access_denied') {
+
+                                    console.log('access_denied');
+                                    $location.path('/homepage');
+                                }
+
+                                break;
+
+
+                            case 408:
+
+                                console.log("Timeout request");
+
+                                break;
+                        }
+
+                        return $q.reject(response);
                     }
-
                 }
-
-                return $q.reject(response);
-            },
-            response: function(response) {
-                if (response.status === 401) {
-                    //  Redirect user to login page / signup Page.
-                }
-                if (response.status != 200) {
-;
-                }
-                return response || $q.when(response);
-            }
-        };
-    }).
-    constant('$ionicLoadingConfig', {
+            }]);
+    }])
+    .constant('$ionicLoadingConfig', {
         template: '<ion-spinner icon="bubbles" class="spinner-positive"></ion-spinner>'
     });

@@ -79,4 +79,30 @@ angular.module('starter.controllers')
         })
     };
 
+})
+
+
+.controller('AppSend', function($scope, $ionicPlatform, $ionicLoading, $ionicScrollDelegate, $rootScope, $q, $location, $stateParams, Message, ionicToast) {
+
+    $scope.thread = {
+        user: $stateParams.id
+    };
+
+    $scope.saveMessage = function(form) {
+
+        if (form.$invalid) {
+            return;
+        }
+        $ionicLoading.show();
+
+        Message.send($scope.thread).then(function() {
+            $ionicLoading.hide();
+            $rootScope.goBack();
+            ionicToast.show('Message envoyé.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Impossible d\'envoyer le message.', 'bottom',false, 5000);
+            $ionicLoading.hide();
+        });
+
+    };
 });

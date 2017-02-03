@@ -79,7 +79,6 @@ angular.module('starter.controllers')
 
     $ionicLoading.show();
     Ally.me().then(function(data) {
-        console.log(data);
         $scope.ally = data;
 
         $scope.formAlly = {
@@ -188,7 +187,6 @@ angular.module('starter.controllers')
             return;
         }
 
-        console.log($scope.formAlly);
         $ionicLoading.show();
 
         if ($scope.formAlly.recruitment == false) {
@@ -333,7 +331,6 @@ angular.module('starter.controllers')
         $scope.popInBat = null;
         $scope.popInBatValue = false;
 
-        console.log($scope.popInBat);
     };
     $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-popup.html', {
         scope: $scope,
@@ -483,7 +480,6 @@ angular.module('starter.controllers')
 
     Account.me().then(function(user) {
         $rootScope.user = user;
-        console.log(user);
     });
 
     $scope.logout = function() {
@@ -603,6 +599,32 @@ angular.module('starter.controllers')
         })
     };
 
+})
+
+
+.controller('AppSend', function($scope, $ionicPlatform, $ionicLoading, $ionicScrollDelegate, $rootScope, $q, $location, $stateParams, Message, ionicToast) {
+
+    $scope.thread = {
+        user: $stateParams.id
+    };
+
+    $scope.saveMessage = function(form) {
+
+        if (form.$invalid) {
+            return;
+        }
+        $ionicLoading.show();
+
+        Message.send($scope.thread).then(function() {
+            $ionicLoading.hide();
+            $rootScope.goBack();
+            ionicToast.show('Message envoyé.', 'bottom',false, 5000);
+        }, function() {
+            ionicToast.show('Impossible d\'envoyer le message.', 'bottom',false, 5000);
+            $ionicLoading.hide();
+        });
+
+    };
 });
 angular.module('starter.controllers')
 .controller('AppTchat', function($scope, $ionicPlatform, $ionicScrollDelegate, $ionicLoading, $location, Tchat, $q, Account) {
@@ -703,7 +725,6 @@ angular.module('starter.controllers')
         OAuth.getAccessToken($scope.login).then(function(success) {
             $location.path('/app/home');
         }, function(error) {
-            console.log(error);
         });
     };
 
@@ -724,7 +745,7 @@ angular.module('starter.controllers')
 
             }, function(error) {
 
-                console.log(error);
+
 
             });
         });
@@ -742,7 +763,6 @@ angular.module('starter.controllers')
             return;
         }
 
-        console.log($scope.registration);
     };
 
 

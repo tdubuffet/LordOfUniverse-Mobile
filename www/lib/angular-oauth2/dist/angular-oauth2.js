@@ -32,7 +32,7 @@
                     OAuthToken.removeToken();
                     $rootScope.$emit("oauth:error", rejection);
                 }
-                if (401 === rejection.status && rejection.data && "invalid_token" === rejection.data.error || rejection.headers("www-authenticate") && 0 === rejection.headers("www-authenticate").indexOf("Bearer")) {
+                if (401 === rejection.status && rejection.data && "invalid_grant" === rejection.data.error || rejection.headers("www-authenticate") && 0 === rejection.headers("www-authenticate").indexOf("Bearer")) {
                     $rootScope.$emit("oauth:error", rejection);
                 }
                 return $q.reject(rejection);

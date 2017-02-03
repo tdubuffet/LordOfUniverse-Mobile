@@ -123,7 +123,6 @@ angular.module('starter.controllers')
         $scope.popInBat = null;
         $scope.popInBatValue = false;
 
-        console.log($scope.popInBat);
     };
     $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-popup.html', {
         scope: $scope,

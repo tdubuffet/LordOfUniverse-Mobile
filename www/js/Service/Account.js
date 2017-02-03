@@ -28,7 +28,7 @@ angular.module('starter.services')
             )
             .success(function(data){
 
-                console.log(data);
+
 
             })
 

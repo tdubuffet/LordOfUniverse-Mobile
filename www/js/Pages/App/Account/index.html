@@ -24,7 +24,7 @@
                             </p>
 
                             <div class="rank">
-                                <img ng-src="/img/rank/rank_{{user.level.code}}.png" />
+                                <img ng-src="img/rank/rank_{{user.level.code}}.png" />
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                         <h2>{{ user.level.name }}</h2>
                         <div class="level">Niveau {{ user.level.level }}</div>
                         <div class="rank-level">
-                            <img ng-src="/img/rank/layer_{{user.level.code}}.png" />
+                            <img ng-src="img/rank/layer_{{user.level.code}}.png" />
                         </div>
                         <div class="text-center">
                             Votre expérience: <b>{{ numberFormated(user.exp) }}</b> <br />
@@ -80,7 +80,7 @@
                     <div class="list">
 
                         <div class="item item-thumbnail-left item-text-wrap item-orbited" ng-repeat="(key, level) in levels">
-                            <img ng-src="/img/rank/layer_{{ level.code }}.png">
+                            <img ng-src="img/rank/layer_{{ level.code }}.png">
                             <h2>{{ level.name }}</h2>
                             <p ng-if="level.next != null">De {{ numberFormated(level.exp) }} point(s) d'expérience à {{ numberFormated(level.next.exp) }} points d'expérience.</p>
                             <p ng-if="level.next == null">A partir de {{ numberFormated(level.exp) }} point(s) d'expérience.</p>

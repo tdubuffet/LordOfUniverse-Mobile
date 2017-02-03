@@ -12299,6 +12299,17 @@ ion-footer-bar .title {
     color: #2bede6; }
   .item-orbited p {
     color: rgba(43, 237, 230, 0.4); }
+  .item-orbited textarea {
+    margin: 10px 0 0 0;
+    padding-right: 24px;
+    background: transparent;
+    width: 100%; }
+  .item-orbited.item-orbited-button {
+    background: transparent;
+    border-bottom: none; }
+  .item-orbited .input-label {
+    color: white;
+    font-size: 0.7em; }
 
 .homepage {
   background: url(../img/wallpaper_1.jpg) no-repeat center fixed;
