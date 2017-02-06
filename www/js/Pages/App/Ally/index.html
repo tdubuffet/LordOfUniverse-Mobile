@@ -2,11 +2,11 @@
     <ion-nav-title>
         Alliance
     </ion-nav-title>
-    <ion-nav-buttons side="right" ng-if="!ally">
+    <ion-nav-buttons side="right" ng-if="ally != null">
         <button class="button button-clear button-assertive" ng-click="exit()"><i class="fa fa-sign-out" aria-hidden="true"></i> Quitter</button>
     </ion-nav-buttons>
 
-    <ion-content class="has-header padding" ng-if="!ally">
+    <ion-content class="has-header padding" ng-if="ally == null">
         <p class="text-center positive">
             Vous n'avez pas d'alliance. <br />
             Vous devez faire une demande de recrutement à une alliance pour la rejoindre.
@@ -99,9 +99,43 @@
         </ion-tab>
 
         <ion-tab title="Paramètres" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-            <ion-nav-view class="page-form-ally">
-                <ion-content class="has-header" overflow-scroll="false">
+            <ion-nav-view class="page-form-ally page-tchat">
+                <ion-content class="has-tabs-top" overflow-scroll="false">
 
+
+                    <div class="recruitments" ng-show="ally.recruitments.length > 0">
+
+                        <h1>Demande de recrutement</h1>
+
+                        <div class="list">
+
+                            <div class="item item-avatar item-orbited item-icon-right" ng-repeat="(key, recruitment) in ally.recruitments">
+                                <img ng-src="{{ recruitment.user.avatar }}"   ui-sref="app.profil({id: recruitment.user.id})">
+                                <div class="rank-right">
+                                    <img ng-src="img/rank/rank_{{ recruitment.user.level.code }}.png" />
+                                    <div>{{ recruitment.user.level.name }} ({{ recruitment.user.level.level }})</div>
+                                </div>
+                                <h2>{{ recruitment.user.username }}</h2>
+                                <p>
+                                    <b>Message de recrutement:</b><br />
+                                    {{ recruitment.message }}
+                                </p>
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <button class="button button-assertive button-small" ng-click="validationRecruitment(recruitment.id, false)">
+                                            Refuser
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="button button-balanced button-small"  ng-click="validationRecruitment(recruitment.id, true)">
+                                            Accepter
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <h1>Informations générales</h1>
 
                     <form novalidate ng-submit="saveAlly(allyForm)" name="allyForm">

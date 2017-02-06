@@ -104,6 +104,20 @@ angular.module('starter.controllers')
 
     };
 
+    $scope.validationRecruitment = function(id, validated) {
+
+        $ionicLoading.show();
+        Ally.recruitmentValidation(id, validated).then(function(response) {
+
+            $scope.ally = response.data;
+
+            $ionicLoading.hide();
+        }, function() {
+
+        })
+
+    };
+
 
     $scope.saveAlly = function(form) {
 

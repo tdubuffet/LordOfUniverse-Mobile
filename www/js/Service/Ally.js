@@ -64,6 +64,22 @@ angular.module('starter.services')
 
     };
 
+    Ally.recruitmentValidation =  function(id, validated) {
+
+        var form = {
+            validated: validated
+        };
+
+        return $http.post(
+            Config.path_api + '/ally/recruitment/' + id,
+            queryString.stringify(form),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        );
+
+    };
+
     return Ally;
 
 }]);
