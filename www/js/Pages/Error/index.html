@@ -1,0 +1,24 @@
+<ion-view view-title="Error" class="homepage">
+    <ion-content class="padding">
+
+        <h1>Une erreur s'est produite.</h1>
+
+        <p>
+            Nous n'avons pas pu répondre à votre demande.<br />
+            Afin de résoudre le problème, merci de vérifier les informations suivantes:<br />
+            <ul>
+                <li>Avez-vous une connexion internet ?</li>
+            </ul>
+
+        </p>
+
+        <p>Si vous pensez ne pas être dans les cas précédents, vous pouvez réessayer de relancer la requête précédente avec le bouton en dessous.</p>
+
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="bar-orbit">
+        <button class="button button-clear button-block button-orbit-clear" ng-click="reloadRequest()">
+            Réessayer
+        </button>
+    </ion-footer-bar>
+</ion-view>

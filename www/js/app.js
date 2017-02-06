@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast'])
 
-    .run(function ($ionicPlatform, OAuth) {
+    .run(function ($ionicPlatform, OAuth, $location) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -194,6 +194,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
+            .state('error', {
+                url: '/error',
+                templateUrl: "js/Pages/Error/index.html",
+                controller: 'Error'
+            })
         ;
 
         $urlRouterProvider.otherwise('/homepage');
@@ -223,8 +228,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         return q.promise;
                     },
                     responseError: function (response) {
-
-                        console.log(response);
 
                         var retryRequest = function($http, config, deferred) {
                             function successCallback(response) {

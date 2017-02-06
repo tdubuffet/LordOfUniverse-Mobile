@@ -796,6 +796,14 @@ angular.module('starter.controllers')
 
 });
 angular.module('starter.controllers')
+.controller('Error', function($scope, $ionicPlatform, $state) {
+    
+    $scope.reloadRequest = function() {
+        $state.go('homepage',null,{reload:true});
+    };
+    
+});
+angular.module('starter.controllers')
 .controller('HomePage', function($scope, $ionicPlatform, Api, Account, OAuth, $location) {
 
 
