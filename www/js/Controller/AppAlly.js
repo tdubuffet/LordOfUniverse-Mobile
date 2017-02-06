@@ -154,11 +154,8 @@ angular.module('starter.controllers')
 
         popup.then(function(res) {
             if(res) {
-                console.log(res);
                 Ally.exit().then(function() {
-
                     $state.go($state.current, {}, {reload: true});
-
                 }, function() {
 
                 });
