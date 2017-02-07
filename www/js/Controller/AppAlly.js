@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup) {
 
     $ionicLoading.show();
+    $scope.ally = null;
     Ally.me().then(function(data) {
         $scope.ally = data;
 

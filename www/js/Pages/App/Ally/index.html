@@ -2,18 +2,19 @@
     <ion-nav-title>
         Alliance
     </ion-nav-title>
-    <ion-nav-buttons side="right" ng-show="ally != null">
-        <button class="button button-clear button-assertive" ng-click="exit()"><i class="fa fa-sign-out" aria-hidden="true"></i> Quitter</button>
+    <ion-nav-buttons side="right" >
+        <button ng-if="ally != false" class="button button-clear button-assertive" ng-click="exit()"><i class="fa fa-sign-out" aria-hidden="true"></i> Quitter</button>
+        <button ng-if="ally == false" class="button button-clear button-balanced" ng-click="exit()"><i class="ion-ios-color-filter" aria-hidden="true"></i> Créer</button>
     </ion-nav-buttons>
 
-    <ion-content class="has-header padding" ng-if="ally == null">
+    <ion-content class="has-header padding" ng-if="ally == false">
         <p class="text-center positive">
             Vous n'avez pas d'alliance. <br />
-            Vous devez faire une demande de recrutement à une alliance pour la rejoindre.
+            Vous devez faire une demande de recrutement à une alliance pour la rejoindre où créer votre alliance.
         </p>
     </ion-content>
 
-    <ion-tabs class="tabs-royal tabs-icon-top  tabs-top" ng-if="ally">
+    <ion-tabs class="tabs-royal tabs-icon-top  tabs-top" ng-if="ally != false">
 
         <ion-tab title="Alliance" icon-on="ion-ios-color-filter" icon-off="ion-ios-color-filter-outline">
 
