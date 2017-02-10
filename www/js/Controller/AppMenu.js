@@ -1,12 +1,55 @@
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading) {
+
+    $scope.changePlanetSelected = function(planetSelected) {
+        $ionicLoading.show();
+        Account.changePlanetSelected(planetSelected.id).then(function(user) {
+            $rootScope.user = user;
+            $scope.buildingsInProgress      = user.getBuilding();
+            $scope.technologiesInProgress   = user.getTechnology();
+            console.log(user);
+            $ionicLoading.hide();
+        }, function() {
+
+            $ionicLoading.hide();
+        });
+    };
+
+    setTimeout(function() {
+        $scope.$applyAsync();
+    }, 1000);
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+    $scope.toggleRightSideMenu = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    };
 
-    Account.me().then(function(user) {
-        $rootScope.user = user;
+    var loadUser = function(ionicLoad) {
+
+        if (ionicLoad) {
+            $ionicLoading.show();
+        }
+
+        Account.me().then(function(user) {
+            $rootScope.user = user;
+            $scope.buildingsInProgress = user.getBuilding();
+            $scope.technologiesInProgress = user.getTechnology();
+            $scope.planetSelected = user.planet_selected;
+
+
+            if (ionicLoad) {
+                $ionicLoading.hide();
+            }
+        });
+    };
+    loadUser(true);
+
+
+    $rootScope.$on('refresh:user', function () {
+        console.log('Refresh User by Event');
+        loadUser(false);
     });
 
     $scope.logout = function() {
@@ -37,11 +80,76 @@ angular.module('starter.controllers')
     };
 
     $rootScope.numberFormated = function numberWithCommas(x) {
+
+        x = Math.floor(x);
+
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
     $rootScope.goBack = function () {
         $ionicNavBarDelegate.back();
+    };
+
+    $rootScope.timer = function(value) {
+        var startTimeStamp = new Date(value.start).getTime();
+        var endTimeStamp = new Date(value.end).getTime();
+        var current = new Date().getTime();
+        var percent = 100 - (((endTimeStamp - current) * 100) / (endTimeStamp - startTimeStamp));
+        return percent.toFixed(2);
+    };
+
+    $rootScope.currentTimeoutReload = function() {
+        $rootScope.currentTimeout = new Date().getTime();
+        setTimeout(function() {
+            $rootScope.currentTimeoutReload();
+        }, 1000)
+
+        return $rootScope.currentTimeout;
+    };
+
+    $rootScope.timerAff = function(value) {
+        if (typeof value == 'undefined') {
+            return false;
+        }
+        var startTimeStamp = new Date(value.start).getTime();
+        var endTimeStamp = new Date(value.end).getTime();
+        var current = $rootScope.currentTimeoutReload();
+
+        var time = (endTimeStamp - current) / 1000;
+
+        var texte = "";
+        var day = Math.floor(time / 86400);
+        var hour = Math.floor((time - day * 86400) / 3600);
+        var min = Math.floor((time - day * 86400 - hour * 3600) / 60);
+        var sec = time - day * 86400 - hour * 3600 - min * 60;
+        if (time < 600) {
+            sec = Math.round(sec, 2);
+        }
+        else
+            sec = Math.round(sec);
+
+        if (sec < 10)
+            sec = "0" + sec;
+        texte = sec + "s";
+
+        if (min > 0) {
+            if (min < 10)
+                min = "0" + min;
+            texte = min + "m " + texte;
+        }
+        if (hour > 0) {
+            if (hour < 10)
+                hour = "0" + hour;
+            texte = hour + "h " + texte;
+        }
+        if (day > 0) {
+            if (day < 10)
+                day = "0" + day;
+            texte = day + "j " + texte;
+        }
+
+
+        return texte;
     };
 
 });

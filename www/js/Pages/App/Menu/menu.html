@@ -4,7 +4,12 @@
         <ion-nav-bar class="bar-orbit">
             <ion-nav-buttons side="left">
                 <button class="button button-clear button-orbit-clear" ng-click="toggleLeftSideMenu()">
-                    <i class="fa fa-bars"></i>
+                    <i class="ion-navicon-round"></i> Menu
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button class="button button-clear button-orbit-clear" ng-click="toggleRightSideMenu()">
+                    Planète <i class="ion-earth"></i>
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
@@ -30,7 +35,27 @@
                     {{ user.level.name }} - Niveau {{ user.level.level }}
                 </p>
 
-            </div class="user-profil">
+            </div>
+
+            <div class="row row-no-padding social-menu">
+
+                <div class="col" menu-toggle="left" ui-sref="app.account">
+                    <i class="ion-ios-person-outline"></i>
+                </div>
+
+                <div class="col" menu-toggle="left" ui-sref="app.ally">
+                    <i class="ion-ios-color-filter-outline"></i>
+                </div>
+
+                <div class="col" menu-toggle="left" ui-sref="app.message">
+                    <i class="ion-ios-email-outline"></i><span class="badge-buble">{{ user. unread_message }}</span>
+                </div>
+
+                <div class="col" menu-toggle="left" ui-sref="app.tchat">
+                    <i class="ion-ios-chatbubble-outline"></i><span class="badge-buble">{{ user. unread_message }}</span>
+                </div>
+
+            </div>
 
 
             <ion-list>
@@ -38,35 +63,26 @@
                     <i class="fa fa-chevron-right"></i> Capteur
                 </ion-item>
 
+                <ion-item class="item-orbit " menu-toggle="left" ui-sref="app.building">
+                    <i class="fa fa-caret-right"></i> Bâtiments
+                </ion-item>
+                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.technology">
+                    <i class="fa fa-caret-right"></i> Technologies
+                </ion-item>
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.building">
-                    <i class="fa fa-chevron-right"></i> Construction
+                    <i class="fa fa-caret-right"></i> Population
+                </ion-item>
+                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.building">
+                    <i class="fa fa-caret-right"></i> Vaisseaux
+                </ion-item>
+                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.apparatus">
+                    <i class="fa fa-caret-right"></i> Appareil
                 </ion-item>
 
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.empire">
                     <i class="fa fa-chevron-right"></i> Empire
                 </ion-item>
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.account">
-                    <i class="fa fa-chevron-right"></i> Mon compte
-                </ion-item>
-
-
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.ally">
-                    <i class="fa fa-chevron-right"></i> Alliance
-                </ion-item>
-
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.tchat">
-                    <i class="fa fa-chevron-right"></i>  Communication
-                </ion-item>
-
-                <ion-item class="item-orbit item-icon-right" menu-toggle="left" ui-sref="app.message">
-                    <i class="fa fa-chevron-right"></i>  Messagerie
-                    <span class="badge badge-positive">{{ user. unread_message }}</span>
-                </ion-item>
-
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.user">
-                    <i class="fa fa-chevron-right"></i> Achats
-                </ion-item>
             </ion-list>
 
 
@@ -90,67 +106,88 @@
         <ion-content>
 
             <div class="user-profil">
-
                 <div class="avatar">
-                    <img ng-src="{{ user.avatar }}" />
+                    <img ng-src="{{ user.planet_selected.image }}" />
                 </div>
 
                 <div class="username text-center">
-                    {{ user.username }} <span class="alliance" ng-if="user.ally">[{{ user.ally.tag }}]</span>
+                    {{ user.planet_selected.name }}
                 </div>
 
                 <p class="grade text-center">
-                    Empereur
+                    [{{ user.planet_selected.pos_x  }}:{{ user.planet_selected.pos_y  }}:{{ user.planet_selected.pos_z  }}]
                 </p>
 
+                <h3 class="no-margin"><label for="changePlanete">Changer de planète</label></h3>
+                <select id="changePlanete"ng-model="planetSelected" ng-change="changePlanetSelected(planetSelected)"
+                        data-ng-options="item as item.name for item in user.planets track by item.id">
+                </select>
             </div>
 
+            <div class="list list-menu list-ress">
+                <div class="row row-no-padding">
+                    <div class="col">
+                        <div class="item item-icon-right item-orbited">
+                            <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
+                            {{ numberFormated(user.planet_selected.metal) }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item item-icon-right item-orbited">
+                            <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
+                            {{ numberFormated(user.planet_selected.crystal) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-no-padding">
+                    <div class="col">
+                        <div class="item item-icon-right item-orbited">
+                            <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
+                            {{ numberFormated(user.planet_selected.lithium) }}
+                        </div>
+                    </div>
+                    <div class="col">
 
-            <ion-list>
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.deposit">
-                    <i class="fa fa-chevron-right"></i> Capteur
-                </ion-item>
+                        <div class="item item-icon-right item-orbited">
+                            <img class="icon" src="img/icon-energy.png" />
+                            {{ numberFormated(user.planet_selected.energy) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.search">
-                    <i class="fa fa-chevron-right"></i> Galaxie
-                </ion-item>
+            <div ng-if="buildingsInProgress.length > 0" class="block-build-in-progress">
+                <h3 class="no-margin">{{ buildingsInProgress.length }} construction(s) en cours</h3>
+                <div class="list">
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.user_classifieds">
-                    <i class="fa fa-chevron-right"></i> Construction
-                </ion-item>
+                    <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildingsInProgress">
+                        <img ng-src="{{ bip.build_planet.build.image }}">
+                        <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
+                        <p>
+                            Se termine dans <b>{{ timerAff(bip) }}</b>
+                        </p>
+                    </div>
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.user_orders">
-                    <i class="fa fa-chevron-right"></i> Empire
-                </ion-item>
+                </div>
+            </div>
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.account">
-                    <i class="fa fa-chevron-right"></i> Mon compte
-                </ion-item>
+            <div ng-if="technologiesInProgress.length > 0" class="block-build-in-progress">
+                <h3 class="no-margin">{{ technologiesInProgress.length }} recherche(s) en cours</h3>
+                <div class="list">
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.tchat">
-                    <i class="fa fa-chevron-right"></i>  Communication
-                </ion-item>
+                    <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in technologiesInProgress">
+                        <img ng-src="{{ bip.build_planet.build.image }}">
+                        <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
+                        <p>
+                            Se termine dans <b>{{ timerAff(bip) }}</b>
+                        </p>
+                    </div>
 
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.user">
-                    <i class="fa fa-chevron-right"></i> Achats
-                </ion-item>
-            </ion-list>
+                </div>
+            </div>
 
 
         </ion-content>
-
-        <ion-footer-bar align-title="left" class="bar-orbit">
-            <div class="buttons">
-                <button class="button button-logout" menu-toggle="left" ng-click="logout()">
-                    <i class="ion-log-out"></i>
-                </button>
-            </div>
-            <div class="buttons pull-right" side="right">
-                <button class="button button-logout" menu-toggle="left" ui-sref="app.help">
-                    <i class="ion-help"></i>
-                </button>
-            </div>
-        </ion-footer-bar>
     </ion-side-menu>
 
 </ion-side-menus>

@@ -4,6 +4,25 @@ angular.module('starter.services')
 
     var Account = {};
 
+
+    Account.changePlanetSelected = function(id) {
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/planet/selected/' + id
+        )
+            .success(function (data) {
+                var userModel = UserModel();
+                var Model = userModel.get(data);
+                q.resolve(Model);
+            })
+            .error(function() {
+                $state.go('homepage');
+            });
+
+        return q.promise;
+    };
+
     Account.facebookConnect = function(userID, accessToken) {
 
         Api.accessTokenCredentials().then(function(token) {
@@ -43,12 +62,12 @@ angular.module('starter.services')
     Account.me = function() {
 
         var q = $q.defer();
-
         $http.get(
             Config.path_api + '/user/me'
         )
         .success(function (data) {
-            var Model = UserModel.get(data);
+            var userModel = UserModel();
+            var Model = userModel.get(data);
             q.resolve(Model);
         })
         .error(function() {
@@ -333,6 +352,67 @@ angular.module('starter.services')
 
         $http.get(
             Config.path_api + '/build/building').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.technology = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/technology').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.apparatus = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/apparatus').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.addTechnology = function(id) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/technology',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
 
             q.resolve(response.data);
         }, function() {

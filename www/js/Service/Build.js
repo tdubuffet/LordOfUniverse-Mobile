@@ -20,6 +20,67 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Build.technology = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/technology').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.apparatus = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/apparatus').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.addTechnology = function(id) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/technology',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
     Build.add = function(id) {
 
         var q = $q.defer();

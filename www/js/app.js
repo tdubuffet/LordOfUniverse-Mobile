@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast'])
 
     .run(function ($ionicPlatform, OAuth, $location) {
         $ionicPlatform.ready(function () {
@@ -45,6 +45,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
         });
     })
+
+    .config(function($ionicCloudProvider) {
+        $ionicCloudProvider.init({
+            "core": {
+                "app_id": "cc204436"
+            }
+        });
+    })
+
 
     .config(function ($stateProvider, $urlRouterProvider, CacheFactoryProvider) {
 
@@ -102,6 +111,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     'content': {
                         templateUrl: "js/Pages/App/Build/building.html",
                         controller: 'AppBuilding'
+                    }
+                }
+            })
+            .state('app.technology', {
+                url: '/technology',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Build/technology.html",
+                        controller: 'AppTechnology'
+                    }
+                }
+            })
+            .state('app.apparatus', {
+                url: '/apparatus',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Build/apparatus.html",
+                        controller: 'AppApparatus'
                     }
                 }
             })
@@ -229,33 +256,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     },
                     responseError: function (response) {
 
-                        var retryRequest = function($http, config, deferred) {
-                            function successCallback(response) {
-                                deferred.resolve(response);
-                            }
-                            function errorCallback(response) {
-                                deferred.reject(response);
-                            }
-                            $http(config).then(successCallback, errorCallback);
-                        };
-
-
                         switch (response.status) {
 
                             case 401:
 
 
-                                var deferred = $q.defer(); //moved deferred to here
                                 var $http = $injector.get('$http');
                                 var OAuth = $injector.get('OAuth');
 
                                 if (response.data.error == 'invalid_grant') {
 
+                                    var deferred = $q.defer(); //moved deferred to here
+
                                     OAuth.getRefreshToken().then(function(res) {
-                                        retryRequest($http, response.config, deferred);
+                                        $http(response.config).then(function(newResponse) {
+                                            return deferred.resolve(newResponse);
+                                        }, function() {
 
-
-                                        return deferred.resolve(response);
+                                            return deferred.reject(response);
+                                        });
                                     }, function() {
 
                                         $location.path('/homepage');

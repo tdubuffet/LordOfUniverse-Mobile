@@ -1,0 +1,194 @@
+<ion-view class="page-list" cache-view="false">
+
+    <ion-nav-title>
+        Appareils
+    </ion-nav-title>
+    
+
+    <ion-tabs class="tabs-royal tabs-top">
+
+        <ion-tab title="Transport">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+
+                    <div ng-show="buildInProgress.length > 0" class="block-build-in-progress">
+                        <h3 class="no-margin">{{ buildInProgress.length }} appareils(s) en cours</h3>
+                        <div class="list">
+
+                            <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildInProgress">
+                                <img ng-src="{{ bip.build_planet.build.image }}">
+                                <h2>{{ bip.build_planet.build.name }} - Quantité {{ bip.level }}</h2>
+                                <p>
+                                    Se termine dans <b>{{ timerAff(bip) }}</b>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div ng-repeat="(key, value) in apparatus" class="build" ng-if="value.build.tab == 1">
+                        <div class="list card" ng-click="showInformation(value)">
+
+                            <div class="item item-orbit">
+                                <h2>{{ value.build.name }}</h2>
+                                <div class="level">Quantité {{ value.level }}</div>
+                            </div>
+
+                            <div class="item item-image">
+                                <img ng-src="{{ value.build.image }}">
+                                <div class="mask"></div>
+                            </div>
+
+                            <div class="item item-orbit item-button">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == true">
+                                    Construire
+                                </div>
+                                <div class="button button-assertive button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == false">
+                                    Bloqué
+                                </div>
+                                <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Espionnage">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+                    <div ng-show="buildInProgress.length > 0" class="block-build-in-progress">
+                        <h3 class="no-margin">{{ buildInProgress.length }} appareils(s) en cours</h3>
+                        <div class="list">
+
+                            <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildInProgress">
+                                <img ng-src="{{ bip.build_planet.build.image }}">
+                                <h2>{{ bip.build_planet.build.name }} - Quantité {{ bip.level }}</h2>
+                                <p>
+                                    Se termine dans <b>{{ timerAff(bip) }}</b>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div ng-repeat="(key, value) in apparatus" class="build" ng-if="value.build.tab == 0">
+                        <div class="list card" ng-click="showInformation(value)">
+
+                            <div class="item item-orbit">
+                                <h2>{{ value.build.name }}</h2>
+                                <div class="level">Quantité {{ value.level }}</div>
+                            </div>
+
+                            <div class="item item-image">
+                                <img ng-src="{{ value.build.image }}">
+                                <div class="mask"></div>
+                            </div>
+
+                            <div class="item item-orbit item-button">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                    Construire
+                                </div>
+                                <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Recyclage">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+
+                    <div ng-show="buildInProgress.length > 0" class="block-build-in-progress">
+                        <h3 class="no-margin">{{ buildInProgress.length }} appareils(s) en cours</h3>
+                        <div class="list">
+
+                            <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildInProgress">
+                                <img ng-src="{{ bip.build_planet.build.image }}">
+                                <h2>{{ bip.build_planet.build.name }} - Quantité {{ bip.level }}</h2>
+                                <p>
+                                    Se termine dans <b>{{ timerAff(bip) }}</b>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div ng-repeat="(key, value) in apparatus" class="build" ng-if="value.build.tab == 2">
+                        <div class="list card" ng-click="showInformation(value)">
+
+                            <div class="item item-orbit">
+                                <h2>{{ value.build.name }}</h2>
+                                <div class="level">Quantité {{ value.level }}</div>
+                            </div>
+
+                            <div class="item item-image">
+                                <img ng-src="{{ value.build.image }}">
+                                <div class="mask"></div>
+                            </div>
+
+                            <div class="item item-orbit item-button">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                    Construire
+                                </div>
+                                <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+
+        <ion-tab title="Militaires">
+            <ion-nav-view>
+                <ion-content class="has-header"  overflow-scroll="false">
+
+                    <div ng-show="buildInProgress.length > 0" class="block-build-in-progress">
+                        <h3 class="no-margin">{{ buildInProgress.length }} appareils(s) en cours</h3>
+                        <div class="list">
+
+                            <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildInProgress">
+                                <img ng-src="{{ bip.build_planet.build.image }}">
+                                <h2>{{ bip.build_planet.build.name }} - Quantité {{ bip.level }}</h2>
+                                <p>
+                                    Se termine dans <b>{{ timerAff(bip) }}</b>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div ng-repeat="(key, value) in apparatus" class="build" ng-if="value.build.tab == 3">
+                        <div class="list card" ng-click="showInformation(value)">
+
+                            <div class="item item-orbit">
+                                <h2>{{ value.build.name }}</h2>
+                                <div class="level">Quantité {{ value.level }}</div>
+                            </div>
+
+                            <div class="item item-image">
+                                <img ng-src="{{ value.build.image }}">
+                                <div class="mask"></div>
+                            </div>
+
+                            <div class="item item-orbit item-button">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                    Construire
+                                </div>
+                                <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-modal-view class="">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">Construction en cours - {{ buildInProgress.length }} construction(s)</h1>
+        <div class="button button-clear  button-assertive" ng-click="modalBip.hide()"><i class="fa fa-times"></i> Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit has-header">
+
+
+        <div class="list">
+
+            <div class="item item-avatar item-orbited" ng-repeat="(key, bip) in buildInProgress">
+                <img ng-src="{{ bip.build_planet.build.image }}">
+                <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
+                <p>
+                    Se termine dans <b>{{ timerAff(bip) }}</b> - Se termine le <b>{{ bip.end| date: 'dd/MM HH:mm:ss' }}</b>
+                </p>
+            </div>
+
+        </div>
+
+
+    </ion-content>
+</ion-modal-view>

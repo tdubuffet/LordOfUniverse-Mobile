@@ -30,6 +30,7 @@ $fa-font-path:        "../lib/font-awesome/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "main";
+@import "animate.scss";
 
 @import "www/js/Pages/homepage/home.scss";
 @import "account.scss";

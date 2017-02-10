@@ -1,0 +1,19 @@
+<ion-modal-view class="modal-build modal-build-other modal-builder">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">Liste des batiments</h1>
+        <div class="button button-clear  button-assertive" ng-click="modal.hide()"><i class="fa fa-times"></i> Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit" ng-class="build.required == true ? 'has-footer': 'assertive'">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+
+            <ion-slide ng-repeat="builder in builders">
+                <div class="builder-image">
+
+                    <img ng-src="{{ builder.build.image }}">
+                    <h3>{{ builder.build.name }} - Niveau {{ builder.level }}</h3>
+
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-modal-view>

@@ -20,6 +20,26 @@ $imgWidth : 1205;
     }
   }
 
+  .control-top{
+    .btn-close{
+      position: absolute;
+      z-index: 60;
+      height: 50px;
+      width: 35px;
+      background: rgba($orbit-color-dark, 0.5);
+      border: 1px solid rgba($orbit-color, 0.1);
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+      height: 35px;
+      width: 65px;
+      line-height: 35px;
+      font-size: 0.8em;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
   .show-ress{
     width: 130px;
     height: 22px;
@@ -79,6 +99,20 @@ $imgWidth : 1205;
       text-transform: uppercase;
     }
 
+    .tick{
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: $assertive;
+      color: white;
+      top: 8px;
+      left: 8px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 14px;
+      font-size: 0.6em;
+    }
+
     &.btn-help{
       bottom: 0px;
       right: 0px;
@@ -87,6 +121,10 @@ $imgWidth : 1205;
     &.btn-list-build{
       bottom: 0px;
       right: 60px;
+    }
+
+    &.btn-batir{
+      right: 120px;
     }
 
     &.btn-boost{
@@ -321,10 +359,138 @@ $imgWidth : 1205;
           top: 130%;
         }
       }
+
+      &.building-emp-1{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*410/ #{$imgWidth});
+        top: calc(100%*270/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+      &.building-emp-2{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*550/ #{$imgWidth});
+        top: calc(100%*185/ #{$imgHeight});
+        img{
+          display: block;
+          width: 80%;
+          margin: 0 10%;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+      &.building-emp-3{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*690/ #{$imgWidth});
+        top: calc(100%*580/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+      &.building-emp-4{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*920/ #{$imgWidth});
+        top: calc(100%*180/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+      &.building-emp-5{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*920/ #{$imgWidth});
+        top: calc(100%*340/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+      &.building-emp-6{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*920/ #{$imgWidth});
+        top: calc(100%*500/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
+
+
+      &.building-emp-7{
+        width: calc(100%*170/ #{$imgWidth});
+        height: calc(100%*160/ #{$imgHeight});
+
+        left: calc(100%*700/ #{$imgWidth});
+        top: calc(100%*300/ #{$imgHeight});
+        img{
+          display: block;
+        }
+        .control{
+          top: 130%;
+        }
+      }
     }
 
   }
 
+}
+
+.modal-builder{
+  .slider {
+    height: 100%;
+  }
+  .slider-slide {
+    padding: 15px;
+
+    .builder-image{
+      position: relative;
+      height: 100%;
+      width: 40%;
+      top: 0px;
+      left: 0px;
+      background: red;
+
+      text-align: center;
+
+      img{
+        border-radius: 50%;
+        border: 1px solid $orbit-color;
+        height: 110px;
+        width: 110px;
+      }
+    }
+  }
 }
 
 .modal-build-required {
@@ -340,6 +506,9 @@ $imgWidth : 1205;
     }
 
     .item-orbit{
+
+      color: $orbit-color;
+
 
       padding-left: 42px;
 
@@ -358,7 +527,7 @@ $imgWidth : 1205;
   opacity: 0.95;
 
   .description{
-    background: url('../js/Pages/App/Account/img/background.jpg')  no-repeat center fixed;
+    background: url('../img/background-modal.jpg')  no-repeat center fixed;
     -webkit-background-size: cover; /* pour anciens Chrome et Safari */
     background-size: cover; /* version standardisée */
 
@@ -404,5 +573,185 @@ $imgWidth : 1205;
       text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
       margin: 10px 0;
     }
+  }
+
+  &.modal-build-other{
+
+    .description{
+      min-height: 38%;
+    }
+    .information{
+      min-height: 62%;
+      padding: 18% 15px 15px 15px;
+    }
+
+    .requis{
+      .item-orbited{
+        position: relative;
+        font-size: 0.89em;
+        padding-left: 60px;
+        .icon-build{
+          width: 42px;
+          height: 42px;
+          border-radius: 5px;
+          border: 1px solid rgba($orbit-color, 0.05);
+        }
+        .status-requis{
+          font-size: 20px;
+          position: absolute;
+          right: 5pxpx;
+        }
+      }
+    }
+
+  }
+}
+
+.page-list{
+
+  .block-build-in-progress{
+    margin-bottom: 25px;
+  }
+
+  h3{
+
+    &.no-margin{
+      margin-top: 10px;
+    }
+
+    color: $orbit-color;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+    text-shadow: 0px 0px 3px black;
+    border-bottom: 1px dashed $orbit-color-dark;
+    margin: 0 25px;
+    margin-top: 35px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    padding-bottom: 4px;
+    letter-spacing: 2px;
+  }
+  ion-content{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .build{
+    width: 50%;
+    float: left;
+    margin: 0px 0;
+
+    .item-image{
+      overflow: hidden;
+      background: rgba($orbit-color-dark, 0.2);
+      border: 1px solid rgba($orbit-color, 0.05);
+      position: relative;
+      img{
+        width: 100%;
+      }
+
+      .mask{
+        background: url('../img/mask.png')  no-repeat center fixed;
+        -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+        background-size: cover; /* version standardisée */
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 0.6;
+        top: 0px;
+        left: 0px;
+      }
+    }
+
+    .item-orbit{
+      border-color: #ddd;
+      background: rgba($orbit-color-dark, 0.2);
+      border: 1px solid rgba($orbit-color, 0.05);
+      padding: 10px;
+      h2{
+        font-size: 0.7em;
+        text-transform: uppercase;
+        text-align: center;
+        color: $positive;
+      }
+      .level{
+        text-align: center;
+        color: $assertive;
+        font-size: 0.7em;
+        text-transform: uppercase;
+      }
+    }
+
+    .item-button{
+      text-align: center;
+      min-height: 34px;
+      line-height: 34px;
+      .times{
+        color: white;
+      }
+      .button{
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 0.8em;
+        min-height: 32px;
+        line-height: 32px;
+      }
+      padding: 0;
+    }
+
+  }
+
+  .list:last-child.card{
+    margin-bottom: 0px;
+  }
+  .build:nth-child(odd) {
+    padding: 5px 5px 5px 10px;
+  }
+  .build:nth-child(even) {
+    padding: 5px 10px 5px 5px;
+  }
+
+  .card{
+    margin: 0 0px;
+    background: none;
+  }
+
+}
+
+.block-next-level{
+  &.remove-padding{
+    margin: -15px;
+  }
+
+  h3{
+
+    color: $orbit-color;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+    text-shadow: 0px 0px 3px black;
+    border-bottom: 1px dashed $orbit-color-dark;
+    margin: 0 25px;
+    margin-top: 35px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    padding-bottom: 4px;
+    letter-spacing: 2px;
+  }
+
+  .item-orbited{
+
+    color: $orbit-color;
+    padding: 8px 10px 8px 42px;
+    text-align: left;
+
+    .icon{
+      width: 24px;
+      height: 24px;
+      margin: 6px 25px 0 0px;
+    }
+
   }
 }

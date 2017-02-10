@@ -307,7 +307,157 @@ angular.module('starter.controllers')
 
 });
 angular.module('starter.controllers')
-.controller('AppBuilding', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location) {
+    .controller('AppApparatus', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope) {
+
+        $scope.loadApparatus = function(loading) {
+
+            if (loading) {
+                $ionicLoading.show();
+            }
+            Build.apparatus().then(function (data) {
+                $scope.apparatus = data.apparatus;
+                $scope.buildInProgress = data.buildInProgress;
+                $rootScope.$broadcast('refresh:user');
+
+                if (loading) {
+                    $ionicLoading.hide();
+                }
+
+                if ($location.path() == '/app/apparatus') {
+
+                    setTimeout(function () {
+                        $scope.loadApparatus(false);
+                    }, 30000);
+                }
+            });
+        };
+
+
+        $scope.loadApparatus(true);
+
+        var reloadScope = function () {
+
+            $scope.$applyAsync();
+            console.info('Apparatus Reload Scope');
+            setTimeout(function() {
+                if ($location.path() == '/app/apparatus') {
+                    reloadScope();
+                }
+            }, 1000);
+        };
+        setTimeout(function() {
+            reloadScope();
+        }, 1000);
+
+        /**
+         * Method : Add batiment
+         */
+        $scope.launchApparatus = function(id) {
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+                template: '<input type="number" ng-model="data.quantity" placeholder="Quantité à construire ?">',
+                title: 'Construire',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: 'Annuler',
+                        type: 'button-assertive'
+                    },
+                    {
+                        text: '<b>Save</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            if (!$scope.data.wifi) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.wifi;
+                            }
+                        }
+                    }
+                ]
+            });
+
+            //Build.addApparatus(id).then(function(data) {
+            //    $scope.modal.hide().then(function() {
+            //        if (data.status == 'nok') {
+//
+            //            $ionicPopup.alert({
+            //                title: 'Recherche impossible',
+            //                template: data.message
+            //            });
+            //        } else {
+//
+            //            $scope.apparatus = data.data.apparatus;
+            //            $scope.buildInProgress = data.data.buildInProgress;
+//
+            //            $rootScope.$broadcast('refresh:user');
+            //        }
+            //    })
+            //}, function() {
+//
+            //});
+        };
+
+        $ionicModal.fromTemplateUrl('js/Pages/App/Build/apparatus-popup.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.showInformation = function(data) {
+            $scope.help = data;
+
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.help = {};
+            $scope.modal.hide();
+        };
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+        // Execute action on hide modal
+        $scope.$on('modal.hidden', function() {
+            // Execute action
+        });
+        // Execute action on remove modal
+        $scope.$on('modal.removed', function() {
+            // Execute action
+        });
+
+
+
+    });
+angular.module('starter.controllers')
+.controller('AppBuilding', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope, $window) {
+
+    $scope.buildInProgress = {};
+    $scope.defaultBuild = [1, 3, 4, 6, 11, 12, 13];
+
+    $scope.isDefaultBuild = function(id) {
+
+        if ($scope.defaultBuild.indexOf(id) !== -1) {
+            return true;
+        }
+        return false;
+    }
+
+    $scope.emplacement = false;
+    $scope.showEmplacement = function() {
+        if ($scope.emplacement == false) {
+            $scope.emplacement = true;
+        } else {
+            $scope.emplacement = false;
+        }
+        setTimeout(function() {
+            $scope.emplacement = false;
+        }, 15000);
+
+    };
 
     $ionicPlatform.ready(function() {
         if (typeof screen.unlockOrientation === "function") {
@@ -317,9 +467,27 @@ angular.module('starter.controllers')
 
     });
 
+    var reloadScope = function () {
+
+        $scope.$applyAsync();
+        console.info('Building Reload Scope');
+        setTimeout(function() {
+            if ($location.path() == '/app/building') {
+                reloadScope();
+            }
+        }, 1000);
+    };
+    setTimeout(function() {
+        reloadScope();
+    }, 1000);
+
+
     $ionicLoading.show();
     Build.building().then(function(data) {
         $scope.building = data.buildings;
+        console.log(data.buildings);
+        $scope.buildInProgress = data.buildInProgress;
+        $scope.builders = data.builders;
         $ionicLoading.hide();
     });
 
@@ -327,12 +495,16 @@ angular.module('starter.controllers')
         setTimeout(function () {
             Build.building().then(function (data) {
                 $scope.building = data.buildings;
+                $scope.buildInProgress = data.buildInProgress;
+                $scope.builders = data.builders;
+
+                $rootScope.$broadcast('refresh:user');
             });
 
             if ($location.path() == '/app/building') {
                 reloadBuilding();
             }
-        }, 10000);
+        }, 30000);
     };
     reloadBuilding();
 
@@ -340,64 +512,6 @@ angular.module('starter.controllers')
         $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     };
 
-    $scope.timer = function(value) {
-        var startTimeStamp = new Date(value.start).getTime();
-        var endTimeStamp = new Date(value.end).getTime();
-        var current = new Date().getTime();
-        var percent = 100 - (((endTimeStamp - current) * 100) / (endTimeStamp - startTimeStamp));
-        return percent.toFixed(2);
-    };
-
-    $scope.currentTimeoutReload = function() {
-        $scope.currentTimeout = new Date().getTime();
-        setTimeout(function() {
-            $scope.currentTimeoutReload();
-        }, 1000)
-
-        return $scope.currentTimeout;
-    };
-
-    $scope.timerAff = function(value) {
-        var startTimeStamp = new Date(value.start).getTime();
-        var endTimeStamp = new Date(value.end).getTime();
-        var current = $scope.currentTimeoutReload();
-
-        var time = (endTimeStamp - current) / 1000;
-
-        var texte = "";
-        var day = Math.floor(time / 86400);
-        var hour = Math.floor((time - day * 86400) / 3600);
-        var min = Math.floor((time - day * 86400 - hour * 3600) / 60);
-        var sec = time - day * 86400 - hour * 3600 - min * 60;
-        if (time < 600) {
-            sec = Math.round(sec, 2);
-        }
-        else
-            sec = Math.round(sec);
-
-        if (sec < 10)
-            sec = "0" + sec;
-        texte = sec + "s";
-
-        if (min > 0) {
-            if (min < 10)
-                min = "0" + min;
-            texte = min + "m " + texte;
-        }
-        if (hour > 0) {
-            if (hour < 10)
-                hour = "0" + hour;
-            texte = hour + "h " + texte;
-        }
-        if (day > 0) {
-            if (day < 10)
-                day = "0" + day;
-            texte = day + "j " + texte;
-        }
-
-
-        return texte;
-    };
 
     /**
      * Method : Add batiment
@@ -411,11 +525,26 @@ angular.module('starter.controllers')
                         title: 'Construction impossible',
                         template: data.message
                     });
+                } else {
+                    $rootScope.$broadcast('refresh:user');
                 }
             })
         }, function() {
 
         });
+    };
+
+    $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-builder.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalBuilder = modal;
+    });
+    $scope.builder = function() {
+        $scope.modalBuilder.show();
+    };
+    $scope.closeModal = function() {
+        $scope.modalBuilder.hide();
     };
 
     /**
@@ -424,14 +553,19 @@ angular.module('starter.controllers')
      */
     $scope.popInBat = null;
     $scope.popInBatOpen = function(id) {
+        if ($scope.popInBat == id) {
+            return ;
+        }
         $scope.popInBat = id;
         $scope.popInBatValue = true;
     };
+
     $scope.popInBatClose = function() {
+
         $scope.popInBat = null;
         $scope.popInBatValue = false;
-
     };
+
     $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-popup.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -450,6 +584,7 @@ angular.module('starter.controllers')
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
         $scope.modalBuild.remove();
+        $scope.modalBuilder.remove();
     });
 
 
@@ -466,6 +601,48 @@ angular.module('starter.controllers')
     $scope.closeModalBuild = function() {
         $scope.help = {};
         $scope.modalBuild.hide();
+    };
+
+    $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-build-in-progress.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalBip = modal;
+    });
+    $scope.showBip = function(data) {
+        $scope.modalBip.show();
+    };
+    $scope.closeModalBip = function() {
+        $scope.modalBip.hide();
+    };
+
+
+    //CLOSE
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    $scope.close = function() {
+        if (parseInt($window.history.length) <= 2) {
+            navigator.app.exitApp();
+        } else {
+
+            $scope.data = {};
+
+            if (typeof screen.unlockOrientation === "function") {
+                screen.unlockOrientation();
+                screen.lockOrientation('portrait');
+            }
+
+            $ionicSideMenuDelegate.canDragContent(true);
+            $window.history.back();
+        }
+    };
+
+    function onDeviceReady() {
+        document.addEventListener("backbutton", function (e) {
+            $scope.close();
+        }, false);
+
+
     };
 
 
@@ -558,8 +735,6 @@ angular.module('starter.controllers')
             screen.lockOrientation('landscape');
         }
 
-        $ionicSideMenuDelegate.canDragContent(false)
-
 
         $ionicLoading.show();
         Map.get($rootScope.position).then(function(data) {
@@ -572,14 +747,57 @@ angular.module('starter.controllers')
 
 });
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading) {
+
+    $scope.changePlanetSelected = function(planetSelected) {
+        $ionicLoading.show();
+        Account.changePlanetSelected(planetSelected.id).then(function(user) {
+            $rootScope.user = user;
+            $scope.buildingsInProgress      = user.getBuilding();
+            $scope.technologiesInProgress   = user.getTechnology();
+            console.log(user);
+            $ionicLoading.hide();
+        }, function() {
+
+            $ionicLoading.hide();
+        });
+    };
+
+    setTimeout(function() {
+        $scope.$applyAsync();
+    }, 1000);
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+    $scope.toggleRightSideMenu = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    };
 
-    Account.me().then(function(user) {
-        $rootScope.user = user;
+    var loadUser = function(ionicLoad) {
+
+        if (ionicLoad) {
+            $ionicLoading.show();
+        }
+
+        Account.me().then(function(user) {
+            $rootScope.user = user;
+            $scope.buildingsInProgress = user.getBuilding();
+            $scope.technologiesInProgress = user.getTechnology();
+            $scope.planetSelected = user.planet_selected;
+
+
+            if (ionicLoad) {
+                $ionicLoading.hide();
+            }
+        });
+    };
+    loadUser(true);
+
+
+    $rootScope.$on('refresh:user', function () {
+        console.log('Refresh User by Event');
+        loadUser(false);
     });
 
     $scope.logout = function() {
@@ -610,11 +828,76 @@ angular.module('starter.controllers')
     };
 
     $rootScope.numberFormated = function numberWithCommas(x) {
+
+        x = Math.floor(x);
+
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
     $rootScope.goBack = function () {
         $ionicNavBarDelegate.back();
+    };
+
+    $rootScope.timer = function(value) {
+        var startTimeStamp = new Date(value.start).getTime();
+        var endTimeStamp = new Date(value.end).getTime();
+        var current = new Date().getTime();
+        var percent = 100 - (((endTimeStamp - current) * 100) / (endTimeStamp - startTimeStamp));
+        return percent.toFixed(2);
+    };
+
+    $rootScope.currentTimeoutReload = function() {
+        $rootScope.currentTimeout = new Date().getTime();
+        setTimeout(function() {
+            $rootScope.currentTimeoutReload();
+        }, 1000)
+
+        return $rootScope.currentTimeout;
+    };
+
+    $rootScope.timerAff = function(value) {
+        if (typeof value == 'undefined') {
+            return false;
+        }
+        var startTimeStamp = new Date(value.start).getTime();
+        var endTimeStamp = new Date(value.end).getTime();
+        var current = $rootScope.currentTimeoutReload();
+
+        var time = (endTimeStamp - current) / 1000;
+
+        var texte = "";
+        var day = Math.floor(time / 86400);
+        var hour = Math.floor((time - day * 86400) / 3600);
+        var min = Math.floor((time - day * 86400 - hour * 3600) / 60);
+        var sec = time - day * 86400 - hour * 3600 - min * 60;
+        if (time < 600) {
+            sec = Math.round(sec, 2);
+        }
+        else
+            sec = Math.round(sec);
+
+        if (sec < 10)
+            sec = "0" + sec;
+        texte = sec + "s";
+
+        if (min > 0) {
+            if (min < 10)
+                min = "0" + min;
+            texte = min + "m " + texte;
+        }
+        if (hour > 0) {
+            if (hour < 10)
+                hour = "0" + hour;
+            texte = hour + "h " + texte;
+        }
+        if (day > 0) {
+            if (day < 10)
+                day = "0" + day;
+            texte = day + "j " + texte;
+        }
+
+
+        return texte;
     };
 
 });
@@ -804,6 +1087,106 @@ angular.module('starter.controllers')
             });
         })
     };
+
+
+});
+angular.module('starter.controllers')
+.controller('AppTechnology', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope) {
+
+    $scope.loadTechnology = function(loading) {
+
+        if (loading) {
+            $ionicLoading.show();
+        }
+        Build.technology().then(function (data) {
+            $scope.technologies = data.technologies;
+            $scope.buildInProgress = data.buildInProgress;
+            $rootScope.$broadcast('refresh:user');
+
+            if (loading) {
+                $ionicLoading.hide();
+            }
+
+            if ($location.path() == '/app/technology') {
+
+                setTimeout(function () {
+                    $scope.loadTechnology(false);
+                }, 30000);
+            }
+        });
+    };
+
+
+    $scope.loadTechnology(true);
+
+    var reloadScope = function () {
+
+        $scope.$applyAsync();
+        console.info('Technology Reload Scope');
+        setTimeout(function() {
+            if ($location.path() == '/app/technology') {
+                reloadScope();
+            }
+        }, 1000);
+    };
+    setTimeout(function() {
+        reloadScope();
+    }, 1000);
+
+    /**
+     * Method : Add batiment
+     */
+    $scope.launchTechnology = function(id) {
+        Build.addTechnology(id).then(function(data) {
+            $scope.modal.hide().then(function() {
+                if (data.status == 'nok') {
+
+                    $ionicPopup.alert({
+                        title: 'Recherche impossible',
+                        template: data.message
+                    });
+                } else {
+
+                    $scope.technologies = data.data.technologies;
+                    $scope.buildInProgress = data.data.buildInProgress;
+
+                    $rootScope.$broadcast('refresh:user');
+                }
+            })
+        }, function() {
+
+        });
+    };
+
+    $ionicModal.fromTemplateUrl('js/Pages/App/Build/technology-popup.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.showInformation = function(data) {
+        $scope.help = data;
+
+        $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+        $scope.help = {};
+        $scope.modal.hide();
+    };
+    // Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+        // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+        // Execute action
+    });
+
 
 
 });

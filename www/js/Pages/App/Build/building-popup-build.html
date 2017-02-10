@@ -12,24 +12,24 @@
 
             <div class="list">
 
-                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined && help.data.ressources.metal != 0">
                     <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
-                    {{ help.data.ressources.metal }}
+                    {{ numberFormated(help.data.ressources.metal) }}
                 </div>
 
-                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.crystal !== undefined && help.data.ressources.crystal != 0">
                     <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
-                    {{ help.data.ressources.crystal }}
+                    {{ numberFormated(help.data.ressources.crystal) }}
                 </div>
 
-                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.metal !== undefined">
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.lithium !== undefined  && help.data.ressources.lithium != 0">
                     <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
-                    {{ help.data.ressources.lithium }}
+                    {{ numberFormated(help.data.ressources.lithium) }}
                 </div>
 
-                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.energy !== undefined">
+                <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.energy !== undefined  && help.data.ressources.energy != 0">
                     <img class="icon" src="img/icon-energy.png" />
-                    {{ help.data.ressources.energy }}
+                    {{ numberFormated(help.data.ressources.energy) }}
                 </div>
 
                 <div class="item item-icon-left item-orbit" ng-if="help.data.ressources.time !== undefined">

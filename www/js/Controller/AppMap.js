@@ -73,8 +73,6 @@ angular.module('starter.controllers')
             screen.lockOrientation('landscape');
         }
 
-        $ionicSideMenuDelegate.canDragContent(false)
-
 
         $ionicLoading.show();
         Map.get($rootScope.position).then(function(data) {
