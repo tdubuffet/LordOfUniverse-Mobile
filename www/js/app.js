@@ -12,17 +12,16 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
 
-            ionic.Platform.fullScreen();
-
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
 
             }
 
-            if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
-                //StatusBar.backgroundColorByHexString("#333");
+            if(window.StatusBar) {
+                StatusBar.show();
+                StatusBar.styleBlackTranslucent();
+                ionic.Platform.fullScreen(true, true);
             }
 
             OAuth.configure({
@@ -50,6 +49,19 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
         $ionicCloudProvider.init({
             "core": {
                 "app_id": "cc204436"
+            },
+            "push": {
+                "sender_id": "55151962454",
+                "pluginConfig": {
+                    "icon": "www/img/icon.png",
+                    "ios": {
+                        "badge": true,
+                        "sound": true
+                    },
+                    "android": {
+                        "icon": "www/img/icon.png"
+                    }
+                }
             }
         });
     })

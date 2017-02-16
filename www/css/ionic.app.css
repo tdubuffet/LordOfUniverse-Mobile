@@ -12138,7 +12138,7 @@ a.button {
   transition-duration: 0s; }
 
 .pane, .view, .content-orbit {
-  background: #0d191b;
+  background: #192f33;
   font-weight: 200;
   font-size: 16px;
   color: #2bede6; }
@@ -15811,6 +15811,10 @@ ion-footer-bar .title {
     width: 24px;
     height: 24px;
     margin: 6px 25px 0 0px; }
+  .block-next-level .item-orbited .status-requis {
+    position: relative;
+    right: 10px;
+    top: 19px; }
 
 .page-ally .page-form-ally h1 {
   color: white;
@@ -15905,3 +15909,9 @@ ion-footer-bar .title {
       width: 100%;
       border-radius: 50%;
       border: 1px solid #2bede6; }
+
+.page-empire .item-planet .ressources {
+  font-size: 0.72em;
+  color: #2bede6; }
+  .page-empire .item-planet .ressources .icon {
+    height: 16px; }

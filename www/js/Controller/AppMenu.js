@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading, $ionicPush) {
+
 
     $scope.changePlanetSelected = function(planetSelected) {
         $ionicLoading.show();
@@ -26,7 +27,7 @@ angular.module('starter.controllers')
         $ionicSideMenuDelegate.toggleRight();
     };
 
-    var loadUser = function(ionicLoad) {
+    var loadUser = function(ionicLoad, ionicPush) {
 
         if (ionicLoad) {
             $ionicLoading.show();
@@ -39,12 +40,28 @@ angular.module('starter.controllers')
             $scope.planetSelected = user.planet_selected;
 
 
+            if (ionicPush) {
+                $ionicPush.register().then(function(t) {
+                    return $ionicPush.saveToken(t);
+                }).then(function(t) {
+                    Account.addDeviceId(t).then(function() {
+                        console.info('ADD Device ID');
+                    });
+                    console.log('Token saved:', t.token);
+                });
+
+                $scope.$on('cloud:push:notification', function(event, data) {
+                    console.log('New notification');
+                });
+            }
+
             if (ionicLoad) {
                 $ionicLoading.hide();
             }
         });
     };
-    loadUser(true);
+
+    loadUser(true, true);
 
 
     $rootScope.$on('refresh:user', function () {

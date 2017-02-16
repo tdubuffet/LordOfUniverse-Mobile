@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "55151962454",
+    "firebase_url": "https://lordofuniverse-4555b.firebaseio.com",
+    "project_id": "lordofuniverse-4555b",
+    "storage_bucket": "lordofuniverse-4555b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55151962454:android:fd1a3fdbd0b36947",
+        "android_client_info": {
+          "package_name": "com.ionicframework.stargame846052"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55151962454-4mgemvtrsppr5phv55ovv0g64iiuda8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr6cebOEHCWCsKsFiOge5kdfPuIZmK2rA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

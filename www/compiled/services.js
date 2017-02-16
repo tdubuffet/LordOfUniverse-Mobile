@@ -186,6 +186,37 @@ angular.module('starter.services')
         return q.promise;
     };
 
+
+    Account.addDeviceId = function(device) {
+
+        var q = $q.defer();
+
+        var post = device;
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/user/device_id/' + device.id,
+            queryString.stringify(post),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+            .success(function(data){
+
+                q.resolve(data);
+
+            })
+
+            .error(function(data){
+                q.reject('nok');
+            });
+
+        return q.promise;
+    };
+
     return Account;
 
 
