@@ -46,6 +46,9 @@ angular.module('starter.controllers')
          */
         $scope.launchApparatus = function(id) {
 
+            $scope.data = {
+                quantity: 0
+            };
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 template: '<input type="number" ng-model="data.quantity" placeholder="Quantité à construire ?">',
@@ -60,36 +63,34 @@ angular.module('starter.controllers')
                         text: '<b>Save</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-                            if (!$scope.data.wifi) {
+                            if (!$scope.data.quantity) {
                                 //don't allow the user to close unless he enters wifi password
                                 e.preventDefault();
                             } else {
-                                return $scope.data.wifi;
+                                Build.addApparatus(id, $scope.data.quantity).then(function(data) {
+                                    $scope.modal.hide().then(function() {
+                                        if (data.status == 'nok') {
+
+                                            $ionicPopup.alert({
+                                                title: 'Construction impossible',
+                                                template: data.message
+                                            });
+                                        } else {
+
+                                            $scope.apparatus = data.data.apparatus;
+                                            $scope.buildInProgress = data.data.buildInProgress;
+
+                                            $rootScope.$broadcast('refresh:user');
+                                        }
+                                    })
+                                }, function() {
+
+                                });
                             }
                         }
                     }
                 ]
             });
-
-            //Build.addApparatus(id).then(function(data) {
-            //    $scope.modal.hide().then(function() {
-            //        if (data.status == 'nok') {
-//
-            //            $ionicPopup.alert({
-            //                title: 'Recherche impossible',
-            //                template: data.message
-            //            });
-            //        } else {
-//
-            //            $scope.apparatus = data.data.apparatus;
-            //            $scope.buildInProgress = data.data.buildInProgress;
-//
-            //            $rootScope.$broadcast('refresh:user');
-            //        }
-            //    })
-            //}, function() {
-//
-            //});
         };
 
         $ionicModal.fromTemplateUrl('js/Pages/App/Build/apparatus-popup.html', {

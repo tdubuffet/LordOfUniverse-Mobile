@@ -2,7 +2,6 @@
 
     <ion-content style="overflow: hidden;" overflow-scroll="true">
 
-
         <div class="show-ress ress-metal">
             {{ numberFormated(user.planet_selected.metal) }} <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
         </div>
@@ -34,14 +33,13 @@
         <div class="btn-fit btn-list-build btn-batir" ng-click="showEmplacement()">
             <i class="fa fa-wrench" aria-hidden="true"></i>
             <div class="text">Bâtir</div>
-            <div class="tick" ng-if="buildInProgress.length > 0">{{builders.length}}</div>
+            <div class="tick" ng-if="builders.length > 0">{{builders.length}}</div>
         </div>
 
         <div class="btn-fit btn-boost">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             <div class="text">Boost</div>
         </div>
-
 
         <ion-scroll class="zooming" zooming="true"  min-zoom="1" max-zoom="1.5" direction="x,y" style="width: 100%; height: 100%;" overflow-scroll="false">
             <div class="map-building">
@@ -75,41 +73,11 @@
                 </div>
 
                 <div ng-show="emplacement">
-                    <div class="building building-emp-1" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-2" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-3" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-4" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-5" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-6" ng-click="builder()">
-                        <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
-                    </div>
-
-                    <div class="building building-emp-7" ng-click="builder()">
+                    <div class="building building-{{ emp }}" ng-click="builder()" ng-repeat="(key, emp) in emps">
                         <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
                     </div>
                 </div>
-
             </div>
-
         </ion-scroll>
-
-
     </ion-content>
-
-
 </ion-view>

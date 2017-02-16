@@ -31,10 +31,6 @@
                     {{ user.username }} <span class="alliance" ng-if="user.ally">[{{ user.ally.tag }}]</span>
                 </div>
 
-                <p class="grade text-center">
-                    {{ user.level.name }} - Niveau {{ user.level.level }}
-                </p>
-
             </div>
 
             <div class="row row-no-padding social-menu">
@@ -48,11 +44,11 @@
                 </div>
 
                 <div class="col" menu-toggle="left" ui-sref="app.message">
-                    <i class="ion-ios-email-outline"></i><span class="badge-buble">{{ user. unread_message }}</span>
+                    <i class="ion-ios-email-outline"></i><span class="badge-buble">{{ user.unread_message }}</span>
                 </div>
 
                 <div class="col" menu-toggle="left" ui-sref="app.tchat">
-                    <i class="ion-ios-chatbubble-outline"></i><span class="badge-buble">{{ user. unread_message }}</span>
+                    <i class="ion-ios-chatbubble-outline"></i><span class="badge-buble">{{ user.unread_message }}</span>
                 </div>
 
             </div>
@@ -65,9 +61,11 @@
 
                 <ion-item class="item-orbit " menu-toggle="left" ui-sref="app.building">
                     <i class="fa fa-caret-right"></i> Bâtiments
+                    <span class="badge-buble" ng-if="user.count_build_in_progress.building">{{ user.count_build_in_progress.building }}</span>
                 </ion-item>
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.technology">
                     <i class="fa fa-caret-right"></i> Technologies
+                    <span class="badge-buble" ng-if="user.count_build_in_progress.technology">{{ user.count_build_in_progress.technology }}</span>
                 </ion-item>
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.building">
                     <i class="fa fa-caret-right"></i> Population
@@ -77,6 +75,7 @@
                 </ion-item>
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.apparatus">
                     <i class="fa fa-caret-right"></i> Appareil
+                    <span class="badge-buble" ng-if="user.count_build_in_progress.apparatus">{{ user.count_build_in_progress.apparatus }}</span>
                 </ion-item>
 
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.empire">

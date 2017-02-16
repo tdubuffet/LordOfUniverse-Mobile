@@ -12228,19 +12228,32 @@ ion-footer-bar .title {
   border-right: 1px solid #103d3d; }
   .menu .list-menu .item-orbited {
     color: rgba(43, 237, 230, 0.8);
-    border-color: rgba(43, 237, 230, 0.1);
+    border-color: rgba(43, 237, 230, 0.4);
     padding: 8px 42px 8px 10px;
     text-align: right; }
     .menu .list-menu .item-orbited .icon {
       width: 24px;
       height: 24px;
       margin: 6px 0px 0 25px; }
+  .menu .badge-buble {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    background: #ef473a;
+    color: white;
+    display: block;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    bottom: 18px;
+    right: 18px; }
   .menu #changePlanete {
     width: 90%;
     margin: 0 5% 6px 5%;
     padding: 6px;
     background: rgba(16, 61, 61, 0.4);
-    border-color: rgba(43, 237, 230, 0.2);
+    border-color: rgba(43, 237, 230, 0.4);
     color: #2bede6;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -12310,7 +12323,7 @@ ion-footer-bar .title {
     .menu ion-list .item-orbit .item-content {
       background: rgba(5, 28, 27, 0.4);
       color: #2bede6;
-      border-top: 1px solid rgba(16, 61, 61, 0.2);
+      border-top: 1px solid rgba(43, 237, 230, 0.2);
       text-transform: uppercase;
       font-size: 0.72em;
       letter-spacing: 1px; }
@@ -12372,6 +12385,11 @@ ion-footer-bar .title {
   box-shadow: 0 0 25px black;
   color: #2bede6;
   border: 1px solid rgba(43, 237, 230, 0.2); }
+  .popup-container .popup input {
+    background: transparent;
+    border: 1px solid rgba(43, 237, 230, 0.2);
+    padding: 4px 5px 4px 5px;
+    color: #2bede6; }
   .popup-container .popup .popup-head {
     border-color: rgba(43, 237, 230, 0.2); }
     .popup-container .popup .popup-head .popup-title {
@@ -15625,11 +15643,19 @@ ion-footer-bar .title {
 .modal-build-required {
   opacity: 0.95; }
   .modal-build-required .required {
-    margin: 15px 25% 15px 25%; }
+    padding: 10px; }
     .modal-build-required .required h3 {
       color: #ef473a;
       margin: 25px 0;
       text-align: center; }
+    .modal-build-required .required .information {
+      text-align: center; }
+      .modal-build-required .required .information img {
+        border-radius: 50%;
+        border: 1px solid #2bede6;
+        width: 60%;
+        max-width: 120px;
+        margin: 0 auto; }
     .modal-build-required .required .item-orbit {
       color: #2bede6;
       padding-left: 42px; }

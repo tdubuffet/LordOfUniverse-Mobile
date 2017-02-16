@@ -425,6 +425,36 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Build.addApparatus = function(id, quantity) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id,
+            quantity: quantity
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/apparatus',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
     Build.addTechnology = function(id) {
 
         var q = $q.defer();

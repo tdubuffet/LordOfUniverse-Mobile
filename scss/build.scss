@@ -497,12 +497,26 @@ $imgWidth : 1205;
 
   opacity: 0.95;
   .required {
-    margin: 15px 25% 15px 25%;
+    padding: 10px;
 
     h3{
       color: $assertive;
       margin: 25px 0;
       text-align: center;
+    }
+
+    .information{
+
+      text-align: center;
+
+      img{
+        border-radius: 50%;
+        border: 1px solid $orbit-color;
+        width: 60%;
+        max-width: 120px;
+        margin: 0 auto;
+      }
+
     }
 
     .item-orbit{

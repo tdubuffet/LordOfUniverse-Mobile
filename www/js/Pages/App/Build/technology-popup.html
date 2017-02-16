@@ -3,7 +3,7 @@
         <h1 class="title">{{ help.build.name }}</h1>
         <div class="button button-clear  button-assertive" ng-click="modal.hide()"><i class="fa fa-times"></i> Fermer</div>
     </ion-header-bar>
-    <ion-content class="content-orbit" ng-class="build.required == true ? 'has-footer': 'assertive'">
+    <ion-content class="content-orbit" ng-class="help.build.required == true ? 'has-footer': 'assertive'">
         <div class="description">
             {{ help.build.description }}
         </div>
@@ -75,7 +75,7 @@
             </div>
         </div>
     </ion-content>
-    <ion-footer-bar align-title="center" class="bar-orbit">
+    <ion-footer-bar align-title="center" class="bar-orbit"  ng-if="help.build.required == true">
         <button class="button button-clear button-block button-orbit-clear" ng-click="launchTechnology(help.build.id)">
             Rechercher
         </button>

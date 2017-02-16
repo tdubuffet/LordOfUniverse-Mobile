@@ -66,7 +66,7 @@ angular.module('starter.controllers')
 
     $rootScope.$on('refresh:user', function () {
         console.log('Refresh User by Event');
-        loadUser(false);
+        loadUser(false, false);
     });
 
     $scope.logout = function() {

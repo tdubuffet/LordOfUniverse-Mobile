@@ -87,8 +87,11 @@
                             </div>
 
                             <div class="item item-orbit item-button">
-                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == true">
                                     Construire
+                                </div>
+                                <div class="button button-assertive button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == false">
+                                    Bloqué
                                 </div>
                                 <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
                             </div>
@@ -131,8 +134,11 @@
                             </div>
 
                             <div class="item item-orbit item-button">
-                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == true">
                                     Construire
+                                </div>
+                                <div class="button button-assertive button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == false">
+                                    Bloqué
                                 </div>
                                 <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
                             </div>
@@ -177,8 +183,11 @@
                             </div>
 
                             <div class="item item-orbit item-button">
-                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined">
+                                <div class="button button-balanced button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == true">
                                     Construire
+                                </div>
+                                <div class="button button-assertive button-small button-block button-clear" ng-show="value.build_in_progress[0] == undefined && value.build.required == false">
+                                    Bloqué
                                 </div>
                                 <p class="times" ng-show="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
                             </div>
