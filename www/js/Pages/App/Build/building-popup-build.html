@@ -64,6 +64,10 @@
                             {{ help.data.ressources.timeAff }}
                         </div>
 
+                        <button class="button button-orbit button-block" ng-click="launchBatiment(help.build.id)">
+                            Construire
+                        </button>
+
 
                     </div>
 
@@ -72,9 +76,4 @@
         </div>
 
     </ion-content>
-    <ion-footer-bar align-title="center" class="bar-orbit"  ng-if="help.build.required == true">
-        <button class="button button-clear button-block button-orbit-clear" ng-click="launchBatiment(help.build.id)">
-            Construire
-        </button>
-    </ion-footer-bar>
 </ion-modal-view>

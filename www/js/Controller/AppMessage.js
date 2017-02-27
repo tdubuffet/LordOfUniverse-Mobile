@@ -2,43 +2,116 @@ angular.module('starter.controllers')
 .controller('AppMessage', function($scope, $ionicPlatform, $ionicLoading, $ionicScrollDelegate, $rootScope, $q, $location, $state, Message) {
 
 
-    $scope.loadMessagePlayers = function() {
-        $ionicLoading.show();
-        Message.me().then(function(response) {
+    $scope.doRefresh = function(type) {
+
+        if (type == 'players') {
+            $scope.loadMessagePlayers(false)
+                .finally(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        if (type == 'spies') {
+            $scope.loadMessageSpy(false)
+                .finally(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        if (type == 'reports') {
+            $scope.loadMessageReport(false)
+                .finally(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        if (type == 'systems') {
+            $scope.loadMessageSystem(false)
+                .finally(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+
+    };
+
+    $scope.loadMessagePlayers = function(loader) {
+
+        if (loader) {
+            $ionicLoading.show();
+        }
+
+        return Message.me().then(function(response) {
             $scope.players = response.data;
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         }, function() {
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         });
     };
 
-    $scope.loadMessageSpy = function() {
-        $ionicLoading.show();
-        Message.spy().then(function(response) {
+    $scope.loadMessageSpy = function(loader) {
+
+        if (loader) {
+            $ionicLoading.show();
+        }
+
+        return Message.spy().then(function(response) {
             $scope.spies = response.data;
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         }, function() {
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         });
     };
 
-    $scope.loadMessageReport = function() {
-        $ionicLoading.show();
-        Message.report().then(function(response) {
+    $scope.loadMessageReport = function(loader) {
+
+        if (loader) {
+            $ionicLoading.show();
+        }
+
+        return Message.report().then(function(response) {
             $scope.reports = response.data;
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         }, function() {
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         });
     };
 
-    $scope.loadMessageSystem = function() {
-        $ionicLoading.show();
-        Message.system().then(function(response) {
+    $scope.loadMessageSystem = function(loader) {
+
+        if (loader) {
+            $ionicLoading.show();
+        }
+
+        return Message.system().then(function(response) {
             $scope.systems = response.data;
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         }, function() {
-            $ionicLoading.hide();
+
+            if (loader) {
+                $ionicLoading.hide();
+            }
         });
     };
 

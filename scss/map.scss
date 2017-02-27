@@ -150,6 +150,26 @@
           //-webkit-animation: rotate 20s infinite linear;
           will-change: transform;
 
+
+          .description{
+
+            height: 22px;
+            line-height: 22px;
+            left: 50%;
+            margin-left: -45px;
+            bottom: -26px;
+            position: absolute;
+            width: 90px;
+            text-align: center;
+            background: rgba($orbit-color-dark, 0.6);
+            border: 1px solid rgba($orbit-color, 0.1);
+            border-radius: 5px;
+            color: white;
+            .ally{
+              color: $energized;
+            }
+          }
+
           &.planet_1{
             background-image: url(../js/Pages/App/Map/img/texture/planet_1.jpg);
           }

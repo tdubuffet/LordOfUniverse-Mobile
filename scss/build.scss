@@ -2,6 +2,18 @@
 $imgHeight: 850;
 $imgWidth : 1205;
 
+.popup-details{
+  div{
+    .icon{
+      height: 12px;
+    }
+  }
+
+  div:last-child{
+    margin-bottom: 8px;
+  }
+}
+
 .icon-metal{
   width: 36px;
   height: 40px;
@@ -368,6 +380,8 @@ $imgWidth : 1205;
         top: calc(100%*270/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -398,6 +412,8 @@ $imgWidth : 1205;
         top: calc(100%*580/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -408,10 +424,12 @@ $imgWidth : 1205;
         width: calc(100%*170/ #{$imgWidth});
         height: calc(100%*160/ #{$imgHeight});
 
-        left: calc(100%*920/ #{$imgWidth});
-        top: calc(100%*180/ #{$imgHeight});
+        left: calc(100%*820/ #{$imgWidth});
+        top: calc(100%*120/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -426,6 +444,8 @@ $imgWidth : 1205;
         top: calc(100%*340/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -440,6 +460,8 @@ $imgWidth : 1205;
         top: calc(100%*500/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -455,6 +477,8 @@ $imgWidth : 1205;
         top: calc(100%*300/ #{$imgHeight});
         img{
           display: block;
+          width: 80%;
+          margin: 0 10%;
         }
         .control{
           top: 130%;
@@ -467,28 +491,71 @@ $imgWidth : 1205;
 }
 
 .modal-builder{
+
+  .button-close{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 50;
+  }
+
   .slider {
     height: 100%;
   }
   .slider-slide {
     padding: 15px;
 
-    .builder-image{
-      position: relative;
-      height: 100%;
-      width: 40%;
-      top: 0px;
-      left: 0px;
-      background: red;
+    h3{
+      color: $energized;
+      text-transform: uppercase;
+      text-align: center;
+      text-shadow: 0px 0px 3px black;
+      border-bottom: 1px dashed $orbit-color-dark;
+      margin: 0 25px;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      font-size: 0.5em;
+      padding-bottom: 4px;
+      letter-spacing: 2px;
+    }
 
+    .builder-primary {
       text-align: center;
 
-      img{
+      img.builder-image {
         border-radius: 50%;
         border: 1px solid $orbit-color;
         height: 110px;
         width: 110px;
       }
+
+      .button-orbit{
+        margin-top: 25px;
+      }
+    }
+
+    .builder-informations{
+
+
+      font-size: 0.72em;
+      line-height: 1.1em;
+
+
+      .item-orbit{
+
+        color: $orbit-color;
+
+        font-size: 1em;
+
+        padding-left: 35px;
+
+        .icon{
+          width: 18px;
+          height: 18px;
+          margin: 3px 25px 0 0px;
+        }
+      }
+
     }
   }
 }
@@ -703,6 +770,7 @@ $imgWidth : 1205;
       line-height: 34px;
       .times{
         color: white;
+        font-size: 0.7em;
       }
       .button{
         margin: 0;

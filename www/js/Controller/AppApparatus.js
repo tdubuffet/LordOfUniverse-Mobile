@@ -1,12 +1,18 @@
 angular.module('starter.controllers')
     .controller('AppApparatus', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope) {
 
+        $scope.doRefresh = function() {
+            $scope.loadApparatus(false).finally(function() {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        };
+
         $scope.loadApparatus = function(loading) {
 
             if (loading) {
                 $ionicLoading.show();
             }
-            Build.apparatus().then(function (data) {
+            return Build.apparatus().then(function (data) {
                 $scope.apparatus = data.apparatus;
                 $scope.buildInProgress = data.buildInProgress;
                 $rootScope.$broadcast('refresh:user');
@@ -14,32 +20,12 @@ angular.module('starter.controllers')
                 if (loading) {
                     $ionicLoading.hide();
                 }
-
-                if ($location.path() == '/app/apparatus') {
-
-                    setTimeout(function () {
-                        $scope.loadApparatus(false);
-                    }, 30000);
-                }
             });
         };
 
 
         $scope.loadApparatus(true);
 
-        var reloadScope = function () {
-
-            $scope.$applyAsync();
-            console.info('Apparatus Reload Scope');
-            setTimeout(function() {
-                if ($location.path() == '/app/apparatus') {
-                    reloadScope();
-                }
-            }, 1000);
-        };
-        setTimeout(function() {
-            reloadScope();
-        }, 1000);
 
         /**
          * Method : Add batiment

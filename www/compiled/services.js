@@ -393,6 +393,22 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Build.population = function() {
+
+        var q = $q.defer();
+
+        $http.get(
+            Config.path_api + '/build/population').then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
     Build.technology = function() {
 
         var q = $q.defer();
@@ -455,6 +471,36 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Build.addPopulation = function(id, quantity) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id,
+            quantity: quantity
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/population',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
     Build.addTechnology = function(id) {
 
         var q = $q.defer();
@@ -491,6 +537,36 @@ angular.module('starter.services')
 
         var post = {
             id: id
+        };
+
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/build/building',
+            queryString.stringify(post),
+            options
+        ).then(function(response) {
+
+            q.resolve(response.data);
+        }, function() {
+
+            q.reject('error');
+        });
+
+        return q.promise;
+    };
+
+    Build.addEmp = function(id, emp) {
+
+        var q = $q.defer();
+
+
+        var post = {
+            id: id,
+            emp: emp
         };
 
 

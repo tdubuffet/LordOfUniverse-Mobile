@@ -1,0 +1,50 @@
+.history{
+
+  ion-content{
+    background: url(../img/history/history-step-1.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-size: cover; /* version standardisée */
+
+    .text{
+      position: absolute;
+      background: rgba($orbit-color-bar, 0.5);
+      width: 100%;
+      height: 30%;
+      bottom: 0%;
+
+      font-size: 1.25em;
+
+      .button{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+
+        transition: all 0.5s linear;
+        &.active{
+          opacity: 1;
+        }
+      }
+    }
+
+
+    &.page-2{
+      background: url(../img/history/history-step-2.jpg) no-repeat center fixed;
+      -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+      background-size: cover; /* version standardisée */
+    }
+
+    &.page-3{
+      background: url(../img/history/history-step-3.jpg) no-repeat top right;
+      -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+      background-size: cover; /* version standardisée */
+    }
+
+    &.page-4{
+      background: url(../img/history/history-step-4.jpg) no-repeat top right;
+      -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+      background-size: cover; /* version standardisée */
+    }
+  }
+
+}

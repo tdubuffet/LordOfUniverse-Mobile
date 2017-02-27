@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading, $ionicPush) {
+.controller('AppMenu', function($scope, $ionicSideMenuDelegate, Account, OAuth, OAuthToken, CacheFactory, $location, $rootScope, $ionicNavBarDelegate, $ionicLoading, $ionicModal, $ionicPush) {
 
 
     $scope.changePlanetSelected = function(planetSelected) {
@@ -8,7 +8,6 @@ angular.module('starter.controllers')
             $rootScope.user = user;
             $scope.buildingsInProgress      = user.getBuilding();
             $scope.technologiesInProgress   = user.getTechnology();
-            console.log(user);
             $ionicLoading.hide();
         }, function() {
 
@@ -16,9 +15,6 @@ angular.module('starter.controllers')
         });
     };
 
-    setTimeout(function() {
-        $scope.$applyAsync();
-    }, 1000);
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -27,7 +23,7 @@ angular.module('starter.controllers')
         $ionicSideMenuDelegate.toggleRight();
     };
 
-    var loadUser = function(ionicLoad, ionicPush) {
+    var loadUser = function(ionicLoad, ionicPush, history) {
 
         if (ionicLoad) {
             $ionicLoading.show();
@@ -61,7 +57,17 @@ angular.module('starter.controllers')
         });
     };
 
-    loadUser(true, true);
+    loadUser(true, true, true);
+
+    $rootScope.refreshUser = function() {
+
+        loadUser(false, false, false);
+
+        setTimeout(function() {
+            $rootScope.refreshUser();
+        }, 25000)
+    };
+    $rootScope.refreshUser();
 
 
     $rootScope.$on('refresh:user', function () {
@@ -115,13 +121,15 @@ angular.module('starter.controllers')
         return percent.toFixed(2);
     };
 
-    $rootScope.currentTimeoutReload = function() {
-        $rootScope.currentTimeout = new Date().getTime();
-        setTimeout(function() {
-            $rootScope.currentTimeoutReload();
-        }, 1000)
+    $rootScope.timeValue = function(value) {
+        if (typeof value == 'undefined') {
+            return false;
+        }
+        var startTimeStamp = new Date(value.start).getTime();
+        var endTimeStamp = new Date(value.end).getTime();
+        var current = new Date().getTime();
 
-        return $rootScope.currentTimeout;
+        return (endTimeStamp - current) / 1000;
     };
 
     $rootScope.timerAff = function(value) {
@@ -130,9 +138,13 @@ angular.module('starter.controllers')
         }
         var startTimeStamp = new Date(value.start).getTime();
         var endTimeStamp = new Date(value.end).getTime();
-        var current = $rootScope.currentTimeoutReload();
+        var current = new Date().getTime();
 
         var time = (endTimeStamp - current) / 1000;
+
+        if (time <= 0) {
+            return "Terminé";
+        }
 
         var texte = "";
         var day = Math.floor(time / 86400);

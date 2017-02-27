@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="username text-center">
-                    {{ user.username }} <span class="alliance" ng-if="user.ally">[{{ user.ally.tag }}]</span>
+                    {{ user.username }} <span class="alliance" ng-show="user.ally">[{{ user.ally.tag }}]</span>
                 </div>
 
             </div>
@@ -53,29 +53,32 @@
 
             </div>
 
-
             <ion-list>
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.map">
                     <i class="fa fa-chevron-right"></i> Capteur
                 </ion-item>
 
                 <ion-item class="item-orbit " menu-toggle="left" ui-sref="app.building">
-                    <i class="fa fa-caret-right"></i> Bâtiments
-                    <span class="badge-buble" ng-if="user.count_build_in_progress.building">{{ user.count_build_in_progress.building }}</span>
+                    <i class="fa fa-chevron-right"></i> Bâtiments
+                    <span class="badge-buble" ng-show="user.count_build_in_progress.building">{{ user.count_build_in_progress.building }}</span>
                 </ion-item>
+
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.technology">
-                    <i class="fa fa-caret-right"></i> Technologies
-                    <span class="badge-buble" ng-if="user.count_build_in_progress.technology">{{ user.count_build_in_progress.technology }}</span>
+                    <i class="fa fa-chevron-right"></i> Technologies
+                    <span class="badge-buble" ng-show="user.count_build_in_progress.technology">{{ user.count_build_in_progress.technology }}</span>
                 </ion-item>
+
+                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.population">
+                    <i class="fa fa-chevron-right"></i> Population
+                </ion-item>
+
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.building">
-                    <i class="fa fa-caret-right"></i> Population
+                    <i class="fa fa-chevron-right"></i> Vaisseaux
                 </ion-item>
-                <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.building">
-                    <i class="fa fa-caret-right"></i> Vaisseaux
-                </ion-item>
+
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.apparatus">
-                    <i class="fa fa-caret-right"></i> Appareil
-                    <span class="badge-buble" ng-if="user.count_build_in_progress.apparatus">{{ user.count_build_in_progress.apparatus }}</span>
+                    <i class="fa fa-chevron-right"></i> Appareil
+                    <span class="badge-buble" ng-show="user.count_build_in_progress.apparatus">{{ user.count_build_in_progress.apparatus }}</span>
                 </ion-item>
 
                 <ion-item class="item-orbit" menu-toggle="left" ui-sref="app.empire">
@@ -83,7 +86,6 @@
                 </ion-item>
 
             </ion-list>
-
 
         </ion-content>
 
@@ -163,7 +165,7 @@
                         <img ng-src="{{ bip.build_planet.build.image }}">
                         <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
                         <p>
-                            Se termine dans <b>{{ timerAff(bip) }}</b>
+                            <timer end-time="bip.end" interval="10000" language="short_fr" >{{yearUnit}}</timer>
                         </p>
                     </div>
 
@@ -178,7 +180,7 @@
                         <img ng-src="{{ bip.build_planet.build.image }}">
                         <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
                         <p>
-                            Se termine dans <b>{{ timerAff(bip) }}</b>
+                            <timer end-time="bip.end" interval="10000" language="short_fr" >{{yearUnit}}</timer>
                         </p>
                     </div>
 

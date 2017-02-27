@@ -4,10 +4,6 @@ angular.module('starter.controllers')
 
     $scope.login = {};
 
-    if (OAuth.isAuthenticated()) {
-        $location.path('/app/home');
-    }
-
     $scope.doLogin = function(form) {
         if (form.$invalid) {
             return;

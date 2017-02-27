@@ -5,9 +5,14 @@
 
     <ion-tabs class="tabs-royal tabs-icon-top  tabs-top">
 
-        <ion-tab title="Joueurs" icon-on="ion-ios-email" icon-off="ion-ios-email-outline" on-select="loadMessagePlayers()">
+        <ion-tab title="Joueurs" icon-on="ion-ios-email" icon-off="ion-ios-email-outline" on-select="loadMessagePlayers(true)">
             <ion-nav-view>
                 <ion-content class="has-header">
+
+                    <ion-refresher
+                            pulling-text="Pull to refresh..."
+                            on-refresh="doRefresh('players')">
+                    </ion-refresher>
 
                     <div class="list">
 
@@ -34,9 +39,14 @@
         </ion-tab>
 
 
-        <ion-tab title="Espionnages" icon-on="ion-ios-eye" icon-off="ion-ios-eye-outline" on-select="loadMessageSpy()">
+        <ion-tab title="Espionnages" icon-on="ion-ios-eye" icon-off="ion-ios-eye-outline" on-select="loadMessageSpy(true)">
             <ion-nav-view>
                 <ion-content class="has-header">
+
+                    <ion-refresher
+                            pulling-text="Pull to refresh..."
+                            on-refresh="doRefresh('spies')">
+                    </ion-refresher>
 
                     <div class="list">
 
@@ -62,9 +72,16 @@
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="Attaques" icon-on="ion-ios-plus" icon-off="ion-ios-plus-outline" on-select="loadMessageReport()">
+        <ion-tab title="Attaques" icon-on="ion-ios-plus" icon-off="ion-ios-plus-outline" on-select="loadMessageReport(true)">
             <ion-nav-view>
                 <ion-content class="has-header">
+
+
+                    <ion-refresher
+                            pulling-text="Pull to refresh..."
+                            on-refresh="doRefresh('reports')">
+                    </ion-refresher>
+
                     <div class="list">
 
                         <a class="item item-avatar item-orbited item-icon-left" ng-repeat="(key, thread) in reports" ui-sref="app.message-thread({ threadId: thread.id })">
@@ -88,9 +105,16 @@
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="Systême" icon-on="ion-ios-world" icon-off="ion-ios-world-outline" on-select="loadMessageSystem()">
+        <ion-tab title="Systême" icon-on="ion-ios-world" icon-off="ion-ios-world-outline" on-select="loadMessageSystem(true)">
             <ion-nav-view>
                 <ion-content class="has-header">
+
+
+                    <ion-refresher
+                            pulling-text="Pull to refresh..."
+                            on-refresh="doRefresh('systems')">
+                    </ion-refresher>
+
                     <div class="list">
 
                         <a class="item item-avatar item-orbited item-icon-left" ng-repeat="(key, thread) in systems" ui-sref="app.message-thread({ threadId: thread.id })">

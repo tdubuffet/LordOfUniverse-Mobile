@@ -1,12 +1,19 @@
 angular.module('starter.controllers')
 .controller('AppTechnology', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope) {
 
+
+    $scope.doRefresh = function() {
+        $scope.loadTechnology(false).finally(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+
     $scope.loadTechnology = function(loading) {
 
         if (loading) {
             $ionicLoading.show();
         }
-        Build.technology().then(function (data) {
+        return Build.technology().then(function (data) {
             $scope.technologies = data.technologies;
             $scope.buildInProgress = data.buildInProgress;
             $rootScope.$broadcast('refresh:user');
@@ -14,32 +21,11 @@ angular.module('starter.controllers')
             if (loading) {
                 $ionicLoading.hide();
             }
-
-            if ($location.path() == '/app/technology') {
-
-                setTimeout(function () {
-                    $scope.loadTechnology(false);
-                }, 30000);
-            }
         });
     };
 
 
     $scope.loadTechnology(true);
-
-    var reloadScope = function () {
-
-        $scope.$applyAsync();
-        console.info('Technology Reload Scope');
-        setTimeout(function() {
-            if ($location.path() == '/app/technology') {
-                reloadScope();
-            }
-        }, 1000);
-    };
-    setTimeout(function() {
-        reloadScope();
-    }, 1000);
 
     /**
      * Method : Add batiment

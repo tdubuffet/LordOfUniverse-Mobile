@@ -1,18 +1,75 @@
 <ion-modal-view class="modal-build modal-build-other modal-builder">
-    <ion-header-bar class="bar-orbit">
-        <h1 class="title">Liste des batiments</h1>
-        <div class="button button-clear  button-assertive" ng-click="modalBuilder.hide()"><i class="fa fa-times"></i> Fermer</div>
-    </ion-header-bar>
     <ion-content class="content-orbit" ng-class="build.required == true ? 'has-footer': 'assertive'">
+
+        <div class="button button-clear button-close  button-assertive" ng-click="modalBuilder.hide()"><i class="fa fa-times"></i> Fermer</div>
+
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
 
             <ion-slide ng-repeat="builder in builders">
+                <h3>{{ builder.build.name }}</h3>
                 <div class="row">
-                    <div class="col col-33">
-                        <img ng-src="{{ builder.build.image }}">
-                        <h3>{{ builder.build.name }} - Niveau {{ builder.level }}</h3>
+                    <div class="col col-25 builder-primary">
+                        <img ng-src="{{ builder.build.image }}" class="builder-image">
+
+                        <button class="button button-orbit button-block button-small" ng-click="launchBatimentWithEmp(builder.build.id)">Construire</button>
                     </div>
-                    <div class="col col-67">
+                    <div class="col col-75 builder-informations">
+
+
+                        <p>
+                            {{ builder.build.description }}
+                        </p>
+
+
+                        <div class="row">
+                            <div class="col">
+
+                                <h3>Ressources</h3>
+                                <div class="list">
+
+                                    <div class="item item-icon-left item-orbit" ng-if="builder.data.ressources.metal !== undefined && builder.data.ressources.metal != 0">
+                                        <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
+                                        {{ numberFormated(builder.data.ressources.metal) }}
+                                    </div>
+
+                                    <div class="item item-icon-left item-orbit" ng-if="builder.data.ressources.crystal !== undefined && builder.data.ressources.crystal != 0">
+                                        <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
+                                        {{ numberFormated(builder.data.ressources.crystal) }}
+                                    </div>
+
+                                    <div class="item item-icon-left item-orbit" ng-if="builder.data.ressources.lithium !== undefined  && builder.data.ressources.lithium != 0">
+                                        <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
+                                        {{ numberFormated(builder.data.ressources.lithium) }}
+                                    </div>
+
+                                    <div class="item item-icon-left item-orbit" ng-if="builder.data.ressources.energy !== undefined  && builder.data.ressources.energy != 0">
+                                        <img class="icon" src="img/icon-energy.png" />
+                                        {{ numberFormated(builder.data.ressources.energy) }}
+                                    </div>
+
+                                    <div class="item item-icon-left item-orbit" ng-if="builder.data.ressources.time !== undefined">
+                                        <img class="icon" src="img/icon-timer.png" />
+                                        {{ builder.data.ressources.timeAff }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <h3>Requis</h3>
+                                <div class="list">
+
+                                    <div class="item item-icon-left item-icon-right item-orbit" ng-repeat="(key, required) in builder.build.requireds">
+                                        <img class="icon icon-build" ng-src="{{ required.build.image }}" />
+                                        {{ required.build.name }}, niveau {{ required.level }} <br />
+                                        <span ng-class="required.required == true ? 'balanced': 'assertive'">Actuellement au niveau {{ required.current_level }}</span>
+                                        <i class="ion-checkmark balanced status-requis" ng-show="required.required == true"></i>
+                                        <i class="ion-close assertive status-requis" ng-show="required.required == false"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>

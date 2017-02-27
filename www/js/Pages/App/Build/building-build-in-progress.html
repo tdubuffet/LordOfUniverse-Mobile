@@ -12,10 +12,9 @@
                 <img ng-src="{{ bip.build_planet.build.image }}">
                 <h2>{{ bip.build_planet.build.name }} - Niveau {{ bip.level }}</h2>
                 <p>
-                    Se termine dans <b>{{ timerAff(bip) }}</b> - Se termine le <b>{{ bip.end| date: 'dd/MM HH:mm:ss' }}</b>
+                    Se termine dans <b><timer end-time="bip.end" interval="10000" language="short_fr" >{{yearUnit}}</timer></b> - Se termine le <b>{{ bip.end| date: 'dd/MM HH:mm:ss' }}</b>
                 </p>
             </div>
-
         </div>
 
 

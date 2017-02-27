@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast', 'timer', 'angular-typed', 'ui.utils.masks'])
+
 
     .run(function ($ionicPlatform, OAuth, $location) {
         $ionicPlatform.ready(function () {
@@ -15,13 +16,11 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-
             }
 
             if(window.StatusBar) {
                 StatusBar.show();
-                StatusBar.styleBlackTranslucent();
-                ionic.Platform.fullScreen(true, true);
+                StatusBar.backgroundColorByHexString("#0b0f11");
             }
 
             OAuth.configure({
@@ -35,6 +34,11 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 revokePath: '/oauth/v2/revoke'
             });
 
+            if (OAuth.isAuthenticated()) {
+                $location.url('/app/home');
+                $location.replace();
+            }
+
             if (navigator.splashscreen) {
                 setTimeout(function() {
                     navigator.splashscreen.hide();
@@ -43,6 +47,10 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
 
 
         });
+    })
+
+    .config(function($rootScopeProvider) {
+        $rootScopeProvider.digestTtl(5);
     })
 
     .config(function($ionicCloudProvider) {
@@ -67,7 +75,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
     })
 
 
-    .config(function ($stateProvider, $urlRouterProvider, CacheFactoryProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, CacheFactoryProvider, $injector) {
 
 
         angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
@@ -81,23 +89,27 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
             .state('homepage', {
                 url: '/homepage',
                 templateUrl: 'js/Pages/homepage/home.html',
-                controller: 'HomePage'
+                controller: 'HomePage',
+                authenticate: false
             })
             .state('register', {
                 url: '/register',
                 templateUrl: 'js/Pages/homepage/register.html',
-                controller: 'Register'
+                controller: 'Register',
+                authenticate: false
             })
             .state('password', {
                 url: '/password',
                 templateUrl: 'js/Pages/homepage/password.html',
-                controller: 'Password'
+                controller: 'Password',
+                authenticate: false
             })
             .state('app', {
                 url: '/app',
                 templateUrl: 'js/Pages/App/Menu/menu.html',
                 abstract: true,
-                controller: 'AppMenu'
+                controller: 'AppMenu',
+                authenticate: true
             })
             .state('app.home', {
                 url: '/home',
@@ -106,7 +118,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Home/home.html",
                         controller: 'AppHome'
                     }
-                }
+                },
+                authenticate: true
             })
             .state('app.map', {
                 url: '/map',
@@ -115,7 +128,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Map/index.html",
                         controller: 'AppMap'
                     }
-                }
+                },
+                authenticate: true
             })
             .state('app.building', {
                 url: '/building',
@@ -124,7 +138,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Build/building.html",
                         controller: 'AppBuilding'
                     }
-                }
+                },
+                authenticate: true
             })
             .state('app.technology', {
                 url: '/technology',
@@ -133,7 +148,18 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Build/technology.html",
                         controller: 'AppTechnology'
                     }
-                }
+                },
+                authenticate: true
+            })
+            .state('app.population', {
+                url: '/population',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Build/population.html",
+                        controller: 'AppPopulation'
+                    }
+                },
+                authenticate: true
             })
             .state('app.apparatus', {
                 url: '/apparatus',
@@ -142,7 +168,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Build/apparatus.html",
                         controller: 'AppApparatus'
                     }
-                }
+                },
+                authenticate: true
             })
             .state('app.account', {
                 url: '/account',
@@ -151,7 +178,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Account/index.html",
                         controller: 'AppAccount'
                     }
-                }
+                },
+                authenticate: true
             })
             .state('app.tchat', {
                 url: '/tchat',
@@ -160,7 +188,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Tchat/index.html",
                         controller: 'AppTchat'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.ally', {
@@ -170,7 +199,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Ally/index.html",
                         controller: 'AppAlly'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.ally-visitor', {
@@ -180,7 +210,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Ally/ally_visitor.html",
                         controller: 'AppAllyVisitor'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.empire', {
@@ -190,7 +221,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Empire/index.html",
                         controller: 'AppEmpire'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.profil', {
@@ -200,7 +232,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Account/profil.html",
                         controller: 'AppProfil'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.message', {
@@ -210,7 +243,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Message/index.html",
                         controller: 'AppMessage'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.message-thread', {
@@ -220,7 +254,8 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Message/thread.html",
                         controller: 'AppThread'
                     }
-                }
+                },
+                authenticate: true
             })
 
             .state('app.message-send', {
@@ -230,20 +265,46 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                         templateUrl: "js/Pages/App/Message/send.html",
                         controller: 'AppSend'
                     }
-                }
+                },
+                authenticate: true
+            })
+            .state('history', {
+                url: '/history',
+                templateUrl: "js/Pages/App/Menu/history.html",
+                controller: 'AppHistory',
+                authenticate: true
+            })
+            .state('history-2', {
+                url: '/history-2',
+                templateUrl: "js/Pages/App/Menu/history-2.html",
+                controller: 'AppHistory',
+                authenticate: true
+            })
+            .state('history-3', {
+                url: '/history-3',
+                templateUrl: "js/Pages/App/Menu/history-3.html",
+                controller: 'AppHistory',
+                authenticate: true
+            })
+            .state('history-4', {
+                url: '/history-4',
+                templateUrl: "js/Pages/App/Menu/history-4.html",
+                controller: 'AppHistory',
+                authenticate: true
             })
 
             .state('error', {
                 url: '/error',
                 templateUrl: "js/Pages/Error/index.html",
-                controller: 'Error'
+                controller: 'Error',
+                authenticate: false
             })
         ;
 
         $urlRouterProvider.otherwise('/homepage');
     })
     .config(['$httpProvider', function($httpProvider) {
-        $httpProvider.defaults.timeout = 1000;
+        $httpProvider.defaults.timeout = 20000;
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.headers.common = 'Content-Type: application/json';
         delete $httpProvider.defaults.headers.common['X-Requested-With'];

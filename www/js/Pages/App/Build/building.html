@@ -51,7 +51,9 @@
                         <div class="wrapper-loader" ng-if="value.build_in_progress[0] !== undefined">
                             <div class="loader" style="width: {{ timer(value.build_in_progress[0]) }}%;"></div>
                         </div>
-                        <p class="times" ng-if="value.build_in_progress[0] !== undefined">{{ timerAff(value.build_in_progress[0]) }}</p>
+                        <p class="times" ng-if="value.build_in_progress[0] !== undefined">
+                            <timer end-time="value.build_in_progress[0].end" interval="10000" language="short_fr" finish-callback="isFinished()">{{yearUnit}}</timer>
+                        </p>
 
                         <div class="control" ng-show="popInBat === value.build.id">
 
@@ -73,7 +75,7 @@
                 </div>
 
                 <div ng-show="emplacement">
-                    <div class="building building-{{ emp }}" ng-click="builder()" ng-repeat="(key, emp) in emps">
+                    <div class="building building-{{ emp }}" ng-click="builder(emp)" ng-repeat="(key, emp) in emps">
                         <img ng-src="js/Pages/App/Build/img/building/build-add.png" />
                     </div>
                 </div>

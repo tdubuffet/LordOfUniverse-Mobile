@@ -8,10 +8,10 @@
 
             <div class="control">
                 <div class="btn btn-close" ng-click="close()"><i class="fa fa-chevron-left"></i> Retour</div>
-                <div class="btn btn-left" ng-click="change('left')"><i class="fa fa-chevron-left"></i></div>
+                <div class="btn btn-left" ng-show="position.x != 1" ng-click="change('left')"><i class="fa fa-chevron-left"></i></div>
                 <div class="btn btn-right"  ng-click="change('right')"><i class="fa fa-chevron-right"></i></div>
                 <div class="btn btn-bottom" ng-click="change('bottom')"><i class="fa fa-chevron-down"></i></div>
-                <div class="btn btn-top"  ng-click="change('top')"><i class="fa fa-chevron-up"></i></div>
+                <div class="btn btn-top"  ng-show="position.y != 1" ng-click="change('top')"><i class="fa fa-chevron-up"></i></div>
                 <div class="btn btn-data" ng-click="close()"><i class="fa fa-globe" aria-hidden="true"></i> X: {{ position.x }} - Y: {{ position.y }}</div>
             </div>
 
@@ -19,7 +19,11 @@
                 <div class="sun"></div>
 
                 <div ng-repeat="(key, value) in data" class="orbit orbit-{{ value.z}}">
-                    <div class="planet {{ value.code }}"></div>
+                    <div class="planet {{ value.code }}">
+                        <div class="description" ng-if="value.planet != null">
+                            {{ value.planet.user.username }} <span class="ally" ng-if="value.planet.user.ally">[{{ value.planet.user.ally.tag }}]</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -12312,8 +12312,8 @@ ion-footer-bar .title {
       .menu .user-profil .avatar img {
         border-radius: 50%;
         border: 1px solid #2bede6;
-        height: 100px;
-        width: 100px; }
+        height: 80px;
+        width: 80px; }
     .menu .user-profil .username .alliance {
       color: #ef473a; }
     .menu .user-profil .grade {
@@ -12445,6 +12445,14 @@ ion-footer-bar .title {
       position: absolute;
       bottom: 12px;
       right: 18px; }
+
+.modal .bar-orbit.bar.bar-header {
+  background: red;
+  background: #192f33;
+  font-weight: 200;
+  font-size: 14px;
+  color: #2bede6;
+  border-bottom: 1px solid #213f44; }
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -15167,6 +15175,21 @@ ion-footer-bar .title {
           z-index: 22;
           position: relative;
           will-change: transform; }
+          .page-map .map .system .orbit .planet .description {
+            height: 22px;
+            line-height: 22px;
+            left: 50%;
+            margin-left: -45px;
+            bottom: -26px;
+            position: absolute;
+            width: 90px;
+            text-align: center;
+            background: rgba(16, 61, 61, 0.6);
+            border: 1px solid rgba(43, 237, 230, 0.1);
+            border-radius: 5px;
+            color: white; }
+            .page-map .map .system .orbit .planet .description .ally {
+              color: #F19D20; }
           .page-map .map .system .orbit .planet.planet_1 {
             background-image: url(../js/Pages/App/Map/img/texture/planet_1.jpg); }
           .page-map .map .system .orbit .planet.planet_2 {
@@ -15301,6 +15324,12 @@ ion-footer-bar .title {
           .page-map .map .system .orbit.orbit-6 .sonar {
             top: 4%;
             left: 70%; }
+
+.popup-details div .icon {
+  height: 12px; }
+
+.popup-details div:last-child {
+  margin-bottom: 8px; }
 
 .icon-metal {
   width: 36px;
@@ -15561,7 +15590,9 @@ ion-footer-bar .title {
       left: calc(100%*410/ 1205);
       top: calc(100%*270/ 850); }
       .page-build .map-building .building.building-emp-1 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-1 .control {
         top: 130%; }
     .page-build .map-building .building.building-emp-2 {
@@ -15581,16 +15612,20 @@ ion-footer-bar .title {
       left: calc(100%*690/ 1205);
       top: calc(100%*580/ 850); }
       .page-build .map-building .building.building-emp-3 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-3 .control {
         top: 130%; }
     .page-build .map-building .building.building-emp-4 {
       width: calc(100%*170/ 1205);
       height: calc(100%*160/ 850);
-      left: calc(100%*920/ 1205);
-      top: calc(100%*180/ 850); }
+      left: calc(100%*820/ 1205);
+      top: calc(100%*120/ 850); }
       .page-build .map-building .building.building-emp-4 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-4 .control {
         top: 130%; }
     .page-build .map-building .building.building-emp-5 {
@@ -15599,7 +15634,9 @@ ion-footer-bar .title {
       left: calc(100%*920/ 1205);
       top: calc(100%*340/ 850); }
       .page-build .map-building .building.building-emp-5 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-5 .control {
         top: 130%; }
     .page-build .map-building .building.building-emp-6 {
@@ -15608,7 +15645,9 @@ ion-footer-bar .title {
       left: calc(100%*920/ 1205);
       top: calc(100%*500/ 850); }
       .page-build .map-building .building.building-emp-6 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-6 .control {
         top: 130%; }
     .page-build .map-building .building.building-emp-7 {
@@ -15617,28 +15656,55 @@ ion-footer-bar .title {
       left: calc(100%*700/ 1205);
       top: calc(100%*300/ 850); }
       .page-build .map-building .building.building-emp-7 img {
-        display: block; }
+        display: block;
+        width: 80%;
+        margin: 0 10%; }
       .page-build .map-building .building.building-emp-7 .control {
         top: 130%; }
+
+.modal-builder .button-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 50; }
 
 .modal-builder .slider {
   height: 100%; }
 
 .modal-builder .slider-slide {
   padding: 15px; }
-  .modal-builder .slider-slide .builder-image {
-    position: relative;
-    height: 100%;
-    width: 40%;
-    top: 0px;
-    left: 0px;
-    background: red;
+  .modal-builder .slider-slide h3 {
+    color: #F19D20;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 0px 3px black;
+    border-bottom: 1px dashed #103d3d;
+    margin: 0 25px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-size: 0.5em;
+    padding-bottom: 4px;
+    letter-spacing: 2px; }
+  .modal-builder .slider-slide .builder-primary {
     text-align: center; }
-    .modal-builder .slider-slide .builder-image img {
+    .modal-builder .slider-slide .builder-primary img.builder-image {
       border-radius: 50%;
       border: 1px solid #2bede6;
       height: 110px;
       width: 110px; }
+    .modal-builder .slider-slide .builder-primary .button-orbit {
+      margin-top: 25px; }
+  .modal-builder .slider-slide .builder-informations {
+    font-size: 0.72em;
+    line-height: 1.1em; }
+    .modal-builder .slider-slide .builder-informations .item-orbit {
+      color: #2bede6;
+      font-size: 1em;
+      padding-left: 35px; }
+      .modal-builder .slider-slide .builder-informations .item-orbit .icon {
+        width: 18px;
+        height: 18px;
+        margin: 3px 25px 0 0px; }
 
 .modal-build-required {
   opacity: 0.95; }
@@ -15790,7 +15856,8 @@ ion-footer-bar .title {
     line-height: 34px;
     padding: 0; }
     .page-list .build .item-button .times {
-      color: white; }
+      color: white;
+      font-size: 0.7em; }
     .page-list .build .item-button .button {
       margin: 0;
       text-transform: uppercase;
@@ -15941,3 +16008,43 @@ ion-footer-bar .title {
   color: #2bede6; }
   .page-empire .item-planet .ressources .icon {
     height: 16px; }
+
+.history ion-content {
+  background: url(../img/history/history-step-1.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  /* pour anciens Chrome et Safari */
+  background-size: cover;
+  /* version standardisée */ }
+  .history ion-content .text {
+    position: absolute;
+    background: rgba(11, 15, 17, 0.5);
+    width: 100%;
+    height: 30%;
+    bottom: 0%;
+    font-size: 1.25em; }
+    .history ion-content .text .button {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: all 0.5s linear; }
+      .history ion-content .text .button.active {
+        opacity: 1; }
+  .history ion-content.page-2 {
+    background: url(../img/history/history-step-2.jpg) no-repeat center fixed;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
+    /* version standardisée */ }
+  .history ion-content.page-3 {
+    background: url(../img/history/history-step-3.jpg) no-repeat top right;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
+    /* version standardisée */ }
+  .history ion-content.page-4 {
+    background: url(../img/history/history-step-4.jpg) no-repeat top right;
+    -webkit-background-size: cover;
+    /* pour anciens Chrome et Safari */
+    background-size: cover;
+    /* version standardisée */ }

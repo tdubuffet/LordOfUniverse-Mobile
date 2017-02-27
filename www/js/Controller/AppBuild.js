@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppBuilding', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope, $window, $ionicSlideBoxDelegate, $timeout) {
+.controller('AppBuilding', function($scope, $ionicPlatform, Build, $ionicLoading, $ionicModal, $ionicScrollDelegate, $ionicPopup, $location, $rootScope, $window, $ionicSideMenuDelegate) {
 
     $scope.buildInProgress = {};
     $scope.defaultBuild = [1, 3, 4, 6, 11, 12, 13];
@@ -10,7 +10,7 @@ angular.module('starter.controllers')
             return true;
         }
         return false;
-    }
+    };
 
     $scope.emplacement = false;
     $scope.showEmplacement = function() {
@@ -25,27 +25,16 @@ angular.module('starter.controllers')
 
     };
 
+    $scope.isFinished = function() {
+        reloadBuilding(false);
+    };
+
     $ionicPlatform.ready(function() {
         if (typeof screen.unlockOrientation === "function") {
             screen.unlockOrientation();
             screen.lockOrientation('landscape');
         }
     });
-
-    var reloadScope = function () {
-
-        $scope.$applyAsync();
-        console.info('Building Reload Scope');
-        setTimeout(function() {
-            if ($location.path() == '/app/building') {
-                reloadScope();
-            }
-        }, 1000);
-    };
-    setTimeout(function() {
-        reloadScope();
-    }, 1000);
-
 
     var reloadBuilding = function(loading) {
 
@@ -65,12 +54,6 @@ angular.module('starter.controllers')
 
             $rootScope.$broadcast('refresh:user');
         });
-
-        setTimeout(function () {
-            if ($location.path() == '/app/building') {
-                reloadBuilding(false);
-            }
-        }, 30000);
     };
     reloadBuilding(true);
 
@@ -108,16 +91,48 @@ angular.module('starter.controllers')
         });
     };
 
+    $scope.launchBatimentWithEmp = function(id) {
+        Build.addEmp(id, $scope.selectedEmp).then(function(data) {
+
+            $scope.selectedEmp = null;
+
+            $scope.modalBuilder.hide().then(function() {
+                $ionicLoading.hide().then(function() {
+                    if (data.status == 'nok') {
+
+                        $ionicPopup.alert({
+                            title: 'Construction impossible',
+                            template: data.message
+                        });
+                    } else {
+
+                        $scope.building         = data.data.buildings;
+                        $scope.buildInProgress  = data.data.buildInProgress;
+                        $scope.builders         = data.data.builders;
+                        $scope.emps             = data.data.emps;
+
+                        $rootScope.$broadcast('refresh:user');
+                    }
+                });
+            })
+        }, function() {
+
+        });
+    };
+
     $ionicModal.fromTemplateUrl('js/Pages/App/Build/building-builder.html', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function(modal) {
         $scope.modalBuilder = modal;
     });
-    $scope.builder = function() {
+    $scope.builder = function(emp) {
+        console.log(emp);
+        $scope.selectedEmp = emp;
         $scope.modalBuilder.show();
     };
     $scope.closeModal = function() {
+        $scope.selectedEmp = null;
         $scope.modalBuilder.hide();
     };
 

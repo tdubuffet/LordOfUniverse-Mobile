@@ -1,0 +1,82 @@
+<ion-modal-view class="modal-build modal-build-other">
+    <ion-header-bar class="bar-orbit">
+        <h1 class="title">{{ help.build.name }}</h1>
+        <div class="button button-clear  button-assertive" ng-click="modal.hide()"><i class="fa fa-times"></i> Fermer</div>
+    </ion-header-bar>
+    <ion-content class="content-orbit"  ng-class="help.build.required == true ? 'has-footer': 'assertive'">
+        <div class="description">
+            {{ help.build.description }}
+        </div>
+
+        <div class="information">
+            <div class="picture">
+                <img ng-src="{{ help.build.image }}" />
+            </div>
+
+            <p>
+                {{ help.build.name }} - <span class="assertive">Quantité: {{ help.level }}</span>
+            </p>
+
+
+            <div class="block-next-level remove-padding">
+
+                <div class="requis" ng-show="help.build.required == false">
+
+                    <h3>Requis pour former cette unité</h3>
+                    <p>Vous n'avez pas les pré-requis pour construire cet appareil, vous devez avoir les infrastructures et technologies suivantes:</p>
+
+                    <div class="list">
+
+                        <div class="item item-icon-left item-icon-right item-orbited" ng-repeat="(key, required) in help.build.requireds">
+                            <img class="icon icon-build" ng-src="{{ required.build.image }}" />
+                            {{ required.build.name }}, niveau {{ required.level }} <br />
+                            <span ng-class="required.required == true ? 'balanced': 'assertive'">Actuellement au niveau {{ required.current_level }}</span>
+                            <i class="ion-checkmark balanced status-requis" ng-show="required.required == true"></i>
+                            <i class="ion-close assertive status-requis" ng-show="required.required == false"></i>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <h3>Former ce {{ help.build.name }}</h3>
+
+
+                <div class="list">
+
+                    <div class="item item-icon-left item-orbited" ng-if="help.data.ressources.metal !== undefined && help.data.ressources.metal != 0">
+                        <img class="icon" src="js/Pages/App/Build/img/icon-metal.png" />
+                        {{ numberFormated(help.data.ressources.metal) }}
+                    </div>
+
+                    <div class="item item-icon-left item-orbited" ng-if="help.data.ressources.crystal !== undefined && help.data.ressources.crystal != 0">
+                        <img class="icon" src="js/Pages/App/Build/img/icon-cristal.png" />
+                        {{ numberFormated(help.data.ressources.crystal) }}
+                    </div>
+
+                    <div class="item item-icon-left item-orbited" ng-if="help.data.ressources.lithium !== undefined  && help.data.ressources.lithium != 0">
+                        <img class="icon" src="js/Pages/App/Build/img/icon-lir.png" />
+                        {{ numberFormated(help.data.ressources.lithium) }}
+                    </div>
+
+                    <div class="item item-icon-left item-orbited" ng-if="help.data.ressources.energy !== undefined  && help.data.ressources.energy != 0">
+                        <img class="icon" src="img/icon-energy.png" />
+                        {{ numberFormated(help.data.ressources.energy) }}
+                    </div>
+
+                    <div class="item item-icon-left item-orbited" ng-if="help.data.ressources.time !== undefined">
+                        <img class="icon" src="img/icon-timer.png" />
+                        {{ help.data.ressources.timeAff }}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-orbit" ng-if="help.build.required == true">
+        <button class="button button-clear button-block button-orbit-clear" ng-click="launchPopulation(help.build.id)">
+            Former
+        </button>
+    </ion-footer-bar>
+</ion-modal-view>
