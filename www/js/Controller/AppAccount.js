@@ -32,6 +32,48 @@ angular.module('starter.controllers')
 
 })
 
+.controller('AppAccountEdit', function($scope, $rootScope, $ionicLoading, Account) {
+
+    $scope.formUser = {
+        username: $rootScope.user.username,
+        email: $rootScope.user.email,
+        description: $rootScope.user.description,
+        notification: $rootScope.user.notification,
+        emailing: $rootScope.user.emailing,
+        newsletter: $rootScope.user.newsletter
+    };
+
+    $scope.save = function(form) {
+
+        if (form.$invalid) {
+            return;
+        }
+
+        $ionicLoading.show();
+
+        if ($scope.formUser.notification == false) {
+            delete $scope.formUser.notification;
+        }
+
+        if ($scope.formUser.emailing == false) {
+            delete $scope.formUser.emailing;
+        }
+
+        if ($scope.formUser.newsletter == false) {
+            delete $scope.formUser.newsletter;
+        }
+
+        Account.edit($scope.formUser).then(function(data) {
+            $ionicLoading.hide();
+        }, function() {
+
+            $ionicLoading.hide();
+        });
+
+    };
+
+})
+
 .controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally, $ionicModal) {
 
 

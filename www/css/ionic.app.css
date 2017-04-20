@@ -12143,6 +12143,12 @@ a.button {
   font-size: 16px;
   color: #2bede6; }
 
+.scroll-refresher .ionic-refresher-content {
+  color: #2bede6; }
+  .scroll-refresher .ionic-refresher-content .spinner {
+    stroke: #2bede6;
+    fill: #2bede6; }
+
 .form-login .item.item-dark {
   border: none;
   border-radius: 2px; }

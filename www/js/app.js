@@ -34,11 +34,6 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 revokePath: '/oauth/v2/revoke'
             });
 
-            if (OAuth.isAuthenticated()) {
-                $location.url('/app/home');
-                $location.replace();
-            }
-
             if (navigator.splashscreen) {
                 setTimeout(function() {
                     navigator.splashscreen.hide();
@@ -181,6 +176,18 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 },
                 authenticate: true
             })
+
+            .state('app.account-edit', {
+                url: '/account',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Account/edit.html",
+                        controller: 'AppAccountEdit'
+                    }
+                },
+                authenticate: true
+            })
+
             .state('app.tchat', {
                 url: '/tchat',
                 views: {

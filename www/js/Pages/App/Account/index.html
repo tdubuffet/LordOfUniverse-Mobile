@@ -3,7 +3,7 @@
         Compte
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear button-assertive"><i class="fa fa-pencil"></i> Edit</button>
+        <button class="button button-clear button-assertive" ui-sref="app.account-edit"><i class="fa fa-pencil"></i> Edit</button>
     </ion-nav-buttons>
 
     <ion-tabs class="tabs-royal tabs-icon-top tabs-top">
@@ -38,7 +38,7 @@
                             Aucune description.
                         </p>
                         <p ng-if="user.description != null">
-                            {{ profil.description }}
+                            {{ user.description }}
                         </p>
                     </div>
                 </ion-content>

@@ -5,6 +5,14 @@
   color: $orbit-color;
 }
 
+.scroll-refresher .ionic-refresher-content {
+  color: $orbit-color;
+  .spinner {
+    stroke: #2bede6;
+    fill: #2bede6;
+  }
+}
+
 .form-login{
   .item.item-dark{
     border: none;

@@ -2,6 +2,11 @@ angular.module('starter.controllers')
 .controller('HomePage', function($scope, $ionicPlatform, Api, Account, OAuth, $location) {
 
 
+    if (OAuth.isAuthenticated()) {
+        $location.path('/app/account');
+    }
+
+
     $scope.login = {};
 
     $scope.doLogin = function(form) {
@@ -39,7 +44,7 @@ angular.module('starter.controllers')
     };
 
 })
-.controller('Register', function($scope, $ionicPlatform) {
+.controller('Register', function($scope, $ionicPlatform, Account, $ionicLoading) {
 
 
     $scope.registration = {};
@@ -49,6 +54,19 @@ angular.module('starter.controllers')
         if (form.$invalid) {
             return;
         }
+
+        $ionicLoading.show();
+
+
+        Account.create($scope.registration).then(function(data) {
+
+
+
+        }, function(data) {
+            console.log(data);
+        }).finally(function() {
+            $ionicLoading.hide();
+        });
 
     };
 

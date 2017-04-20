@@ -186,6 +186,76 @@ angular.module('starter.services')
         return q.promise;
     };
 
+    Account.edit = function(post) {
+
+        var q = $q.defer();
+
+        var options = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+
+        $http.post(
+            Config.path_api + '/user/edit',
+            queryString.stringify(post),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+            .success(function(data){
+
+                q.resolve(data);
+
+            })
+
+            .error(function(data){
+                q.reject('nok');
+            });
+
+        return q.promise;
+    };
+
+    Account.create = function(data) {
+
+
+        var q = $q.defer();
+
+        Api.accessTokenCredentials().then(function(token) {
+
+            var post = {
+                access_token: token,
+                username: data.username,
+                email: data.email,
+                password: data.password
+            };
+
+            var options = {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            };
+
+            $http.post(
+                Config.path_api + '/user/',
+                queryString.stringify(post),
+                {
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            )
+                .success(function (data) {
+
+                    q.resolve(data);
+
+                })
+
+                .error(function (data) {
+                    q.reject('nok');
+                });
+
+        }, function() {
+            q.reject('nok');
+        });
+
+
+        return q.promise;
+    };
 
     Account.addDeviceId = function(device) {
 

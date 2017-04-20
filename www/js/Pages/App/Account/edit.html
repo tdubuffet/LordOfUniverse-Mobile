@@ -1,0 +1,117 @@
+<ion-view class="page-account" cache-view="false">
+    <ion-nav-title>
+        Edition compte
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear button-orbit-clear" ng-click="goBack()">
+            <i class="fa fa-arrow-left"></i> Retour
+        </button>
+    </ion-nav-buttons>
+
+    <ion-tabs class="tabs-royal tabs-icon-top tabs-top">
+        <ion-tab title="Mon compte" icon-on="ion-ios-information" icon-off="ion-ios-information">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+
+                    <form novalidate ng-submit="save(userForm)" name="userForm">
+                        <div class="list">
+                            <label class="item item-input item-floating-label item-orbited">
+                                <span class="input-label">Nom d'utilisateur</span>
+                                <input type="text" name="username" placeholder="Nom d'utilisateur" ng-model="formUser.username" ng-minlength="5" ng-maxlength="20" ng-required=true>
+
+                                <!-- Error INPUT -->
+                                <p ng-show="userForm.username.$error.minlength && (!userForm.username.$pristine || submitted)" class="help-block help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    Le nom d'utilisateur est trop court.
+                                </p>
+                                <p ng-show="userForm.username.$error.maxlength && (!userForm.username.$pristine || submitted)" class="help-block help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    Le nom d'utilisateur est trop long.
+                                </p>
+
+                                <p ng-show="userForm.username.$error.required && submitted" class="help-block  help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    Ce champ est obligatoire.
+                                </p>
+                            </label>
+
+                            <label class="item item-input item-floating-label item-orbited">
+                                <span class="input-label">Adresse email</span>
+                                <input type="email" name="email" placeholder="Adresse email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-model="formUser.email" ng-required=true>
+
+                                <p ng-show="userForm.email.$error.required && submitted" class="help-block  help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    Ce champ est obligatoire.
+                                </p>
+
+                                <p ng-show="userForm.email.$error.email && (userForm.email.$pristine || submitted)" class="help-block  help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    L'adresse email n'est pas valide.
+                                </p>
+                            </label>
+
+                            <label class="item item-input item-floating-label item-orbited">
+                                <span class="input-label">Description</span>
+                                <textarea name="description" placeholder="Votre description" msd-elastic  ng-model="formUser.description" ng-minlength="20"></textarea>
+
+                                <!-- Error INPUT -->
+                                <p ng-show="userForm.description.$error.minlength && (!userForm.description.$pristine || submitted)" class="help-block help-block-error">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    La description est trop court.
+                                </p>
+                            </label>
+
+                            <div class="item item-toggle item-orbited">
+                                Notifications ?
+                                <label class="toggle toggle-positive">
+                                    <input type="checkbox" name="notification" ng-model="formUser.notification" ng-checked="formUser.notification">
+                                    <div class="track">
+                                        <div class="handle"></div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item item-toggle item-orbited">
+                                Notifications par mail ?
+                                <label class="toggle toggle-positive">
+                                    <input type="checkbox" name="notificationEmail"  ng-model="formUser.emailing" ng-checked="formUser.emailing">
+                                    <div class="track">
+                                        <div class="handle"></div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item item-toggle item-orbited">
+                                Newsletter ?
+                                <label class="toggle toggle-positive">
+                                    <input type="checkbox" name="newsletter" ng-model="formUser.newsletter" ng-checked="formUser.newsletter">
+                                    <div class="track">
+                                        <div class="handle"></div>
+                                    </div>
+                                </label>
+                            </div>
+
+
+
+                            <div class="item item-orbited item-orbited-button">
+                                <button type="submit" class="button button-block button-orbit" ng-click="submitted=true">
+                                    Enregistrer
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Mot de passe" icon="ion-key">
+            <ion-nav-view>
+                <ion-content class="has-header" overflow-scroll="false">
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

@@ -61,7 +61,9 @@ angular.module('starter.controllers')
 
     $rootScope.refreshUser = function() {
 
-        loadUser(false, false, false);
+        if (OAuth.isAuthenticated()) {
+            loadUser(false, false, false);
+        }
 
         setTimeout(function() {
             $rootScope.refreshUser();

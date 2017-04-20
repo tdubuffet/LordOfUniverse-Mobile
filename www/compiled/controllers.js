@@ -32,6 +32,48 @@ angular.module('starter.controllers')
 
 })
 
+.controller('AppAccountEdit', function($scope, $rootScope, $ionicLoading, Account) {
+
+    $scope.formUser = {
+        username: $rootScope.user.username,
+        email: $rootScope.user.email,
+        description: $rootScope.user.description,
+        notification: $rootScope.user.notification,
+        emailing: $rootScope.user.emailing,
+        newsletter: $rootScope.user.newsletter
+    };
+
+    $scope.save = function(form) {
+
+        if (form.$invalid) {
+            return;
+        }
+
+        $ionicLoading.show();
+
+        if ($scope.formUser.notification == false) {
+            delete $scope.formUser.notification;
+        }
+
+        if ($scope.formUser.emailing == false) {
+            delete $scope.formUser.emailing;
+        }
+
+        if ($scope.formUser.newsletter == false) {
+            delete $scope.formUser.newsletter;
+        }
+
+        Account.edit($scope.formUser).then(function(data) {
+            $ionicLoading.hide();
+        }, function() {
+
+            $ionicLoading.hide();
+        });
+
+    };
+
+})
+
 .controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally, $ionicModal) {
 
 
@@ -136,6 +178,7 @@ angular.module('starter.controllers')
 
     $ionicLoading.show();
     $scope.ally = null;
+
     Ally.me().then(function(data) {
         $scope.ally = data;
 
@@ -847,7 +890,9 @@ angular.module('starter.controllers')
 
     $rootScope.refreshUser = function() {
 
-        loadUser(false, false, false);
+        if (OAuth.isAuthenticated()) {
+            loadUser(false, false, false);
+        }
 
         setTimeout(function() {
             $rootScope.refreshUser();
@@ -1456,6 +1501,11 @@ angular.module('starter.controllers')
 .controller('HomePage', function($scope, $ionicPlatform, Api, Account, OAuth, $location) {
 
 
+    if (OAuth.isAuthenticated()) {
+        $location.path('/app/account');
+    }
+
+
     $scope.login = {};
 
     $scope.doLogin = function(form) {
@@ -1493,7 +1543,7 @@ angular.module('starter.controllers')
     };
 
 })
-.controller('Register', function($scope, $ionicPlatform) {
+.controller('Register', function($scope, $ionicPlatform, Account, $ionicLoading) {
 
 
     $scope.registration = {};
@@ -1503,6 +1553,19 @@ angular.module('starter.controllers')
         if (form.$invalid) {
             return;
         }
+
+        $ionicLoading.show();
+
+
+        Account.create($scope.registration).then(function(data) {
+
+
+
+        }, function(data) {
+            console.log(data);
+        }).finally(function() {
+            $ionicLoading.hide();
+        });
 
     };
 

@@ -3,6 +3,7 @@ angular.module('starter.controllers')
 
     $ionicLoading.show();
     $scope.ally = null;
+
     Ally.me().then(function(data) {
         $scope.ally = data;
 
