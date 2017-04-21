@@ -310,17 +310,26 @@ ion-footer-bar{
     border-bottom: 1px solid $orbit-color-dark;
   }
 
+  &.tabs-standard .tab-item.tab-item-active,
   &.tabs-striped .tab-item.tab-item-active{
     color: $orbit-color;
     border-color: $orbit-color;
+    border-bottom: 2px solid;
   }
 
+  &.tabs-standard .tab-item,
   &.tabs-striped .tab-item {
     color: rgba($orbit-color,.4);
     opacity: 1;
   }
 
-  .tabs-top.tabs-striped .tab-item.activated, .tabs-top.tabs-striped .tab-item.active, .tabs-top.tabs-striped .tab-item.tab-item-active {
+
+  .tabs-top.tabs-standard .tab-item.activated,
+  .tabs-top.tabs-standard .tab-item.active,
+  .tabs-top.tabs-standard .tab-item.tab-item-active,
+  .tabs-top.tabs-striped .tab-item.activated,
+  .tabs-top.tabs-striped .tab-item.active,
+  .tabs-top.tabs-striped .tab-item.tab-item-active {
     margin-top: 1px;
     border-width: 0 0 2px!important;
     border-style: solid;
