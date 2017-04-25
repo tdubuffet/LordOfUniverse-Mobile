@@ -436,6 +436,12 @@ angular.module('starter.services')
         return deferred.promise;
     };
 
+    oAuth.info = function() {
+        return $http.get(
+            Config.path_api + '/'
+        );
+    };
+
 
     return oAuth;
 

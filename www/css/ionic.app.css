@@ -14841,7 +14841,7 @@ ion-footer-bar .title {
   background-size: cover;
   /* version standardisée */ }
   .homepage ion-content {
-    background: rgba(11, 15, 17, 0.88); }
+    background: rgba(11, 15, 17, 0.72); }
   .homepage h1 {
     color: #2bede6;
     text-transform: uppercase;
@@ -14857,9 +14857,9 @@ ion-footer-bar .title {
     letter-spacing: 2px; }
   .homepage .logo {
     text-align: center;
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
-    padding: 35px 0; }
+    padding: 55px 0 20px 0; }
     .homepage .logo img {
       width: 100%; }
   .homepage .button-facebook {

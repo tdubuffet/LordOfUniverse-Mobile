@@ -1,0 +1,28 @@
+<ion-view view-title="Mise à jour" class="homepage">
+    <ion-content class="padding">
+
+        <h1>Mise à jour</h1>
+
+        <p>
+            La version de votre jeu n'est pas à jour, vous devez mettre à jour l'application Lord Of Universe afin de jouer sur nos serveurs.
+        </p>
+        <p>
+            Merci de votre compréhension.
+        </p>
+        <p>
+            Version actuelle de l'application: <b>{{ config.version }}</b>
+        </p>
+        <p>
+            Version actuelle de la plateforme: <b>{{ maintenance.version }}</b>
+        </p>
+
+
+
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="bar-orbit">
+        <button class="button button-clear button-block button-orbit-clear" ng-click="load()">
+            Mettre à jour
+        </button>
+    </ion-footer-bar>
+</ion-view>

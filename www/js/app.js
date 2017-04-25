@@ -8,7 +8,7 @@
 angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast', 'timer', 'angular-typed', 'ui.utils.masks'])
 
 
-    .run(function ($ionicPlatform, OAuth, $location) {
+    .run(function ($ionicPlatform, OAuth, $location, Api) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -36,7 +36,36 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
 
             if (navigator.splashscreen) {
                 setTimeout(function() {
-                    navigator.splashscreen.hide();
+                    Api.info().then(function(response) {
+
+                        console.log(response.data);
+
+                        if (response.data.maintenance_game == true) {
+
+                            console.log('Maintenance en cours');
+                            $location.path('/maintenance');
+                            navigator.splashscreen.hide();
+
+                        }
+                        else if (response.data.version != Config.version) {
+                            $location.path('/maj');
+                            navigator.splashscreen.hide();
+                        }
+                        else {
+
+                            console.log('Aucune Maintenance');
+
+                            if (OAuth.isAuthenticated()) {
+                                $location.path('/app/account');
+                                navigator.splashscreen.hide();
+                            } else {
+                                $location.path('/homepage');
+                                navigator.splashscreen.hide();
+                            }
+                        }
+                    }, function() {
+
+                    });
                 }, 1000);
             }
 
@@ -306,9 +335,22 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 controller: 'Error',
                 authenticate: false
             })
+
+            .state('maintenance', {
+                url: '/maintenance',
+                templateUrl: "js/Pages/Error/maintenance.html",
+                controller: 'Maintenance',
+                authenticate: false
+            })
+
+            .state('maj', {
+                url: '/maj',
+                templateUrl: "js/Pages/Error/maj.html",
+                controller: 'Maj',
+                authenticate: false
+            })
         ;
 
-        $urlRouterProvider.otherwise('/homepage');
     })
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.timeout = 20000;
