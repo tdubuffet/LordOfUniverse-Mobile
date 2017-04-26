@@ -68,6 +68,7 @@ angular.module('starter.controllers')
                             //don't allow the user to close unless he enters wifi password
                             e.preventDefault();
                         } else {
+                            $ionicLoading.show();
                             Build.addPopulation(id, $scope.data.quantity).then(function(data) {
                                 $scope.modal.hide().then(function() {
                                     if (data.status == 'nok') {
@@ -76,12 +77,14 @@ angular.module('starter.controllers')
                                             title: 'Enrolement impossible',
                                             template: data.message
                                         });
+                                        $ionicLoading.hide();
                                     } else {
 
                                         $scope.populations = data.data.populations;
                                         $scope.buildInProgress = data.data.buildInProgress;
 
                                         $rootScope.$broadcast('refresh:user');
+                                        $ionicLoading.hide();
                                     }
                                 })
                             }, function() {

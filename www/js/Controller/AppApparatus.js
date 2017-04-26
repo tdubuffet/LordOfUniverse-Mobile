@@ -53,6 +53,7 @@ angular.module('starter.controllers')
                                 //don't allow the user to close unless he enters wifi password
                                 e.preventDefault();
                             } else {
+                                $ionicLoading.show();
                                 Build.addApparatus(id, $scope.data.quantity).then(function(data) {
                                     $scope.modal.hide().then(function() {
                                         if (data.status == 'nok') {
@@ -61,12 +62,14 @@ angular.module('starter.controllers')
                                                 title: 'Construction impossible',
                                                 template: data.message
                                             });
+                                            $ionicLoading.hide();
                                         } else {
 
                                             $scope.apparatus = data.data.apparatus;
                                             $scope.buildInProgress = data.data.buildInProgress;
 
                                             $rootScope.$broadcast('refresh:user');
+                                            $ionicLoading.hide();
                                         }
                                     })
                                 }, function() {

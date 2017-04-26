@@ -404,6 +404,7 @@ angular.module('starter.controllers')
                                 //don't allow the user to close unless he enters wifi password
                                 e.preventDefault();
                             } else {
+                                $ionicLoading.show();
                                 Build.addApparatus(id, $scope.data.quantity).then(function(data) {
                                     $scope.modal.hide().then(function() {
                                         if (data.status == 'nok') {
@@ -412,12 +413,14 @@ angular.module('starter.controllers')
                                                 title: 'Construction impossible',
                                                 template: data.message
                                             });
+                                            $ionicLoading.hide();
                                         } else {
 
                                             $scope.apparatus = data.data.apparatus;
                                             $scope.buildInProgress = data.data.buildInProgress;
 
                                             $rootScope.$broadcast('refresh:user');
+                                            $ionicLoading.hide();
                                         }
                                     })
                                 }, function() {
@@ -530,6 +533,7 @@ angular.module('starter.controllers')
      * Method : Add batiment
      */
     $scope.launchBatiment = function(id) {
+        $ionicLoading.show();
         Build.add(id).then(function(data) {
             $scope.modalBuild.hide().then(function() {
                 $ionicLoading.hide().then(function() {
@@ -539,6 +543,7 @@ angular.module('starter.controllers')
                             title: 'Construction impossible',
                             template: data.message
                         });
+                        $ionicLoading.hide();
                     } else {
 
                         $scope.building         = data.data.buildings;
@@ -547,6 +552,7 @@ angular.module('starter.controllers')
                         $scope.emps             = data.data.emps;
 
                         $rootScope.$broadcast('refresh:user');
+                        $ionicLoading.hide();
                     }
                 });
             })
@@ -1264,6 +1270,7 @@ angular.module('starter.controllers')
                             //don't allow the user to close unless he enters wifi password
                             e.preventDefault();
                         } else {
+                            $ionicLoading.show();
                             Build.addPopulation(id, $scope.data.quantity).then(function(data) {
                                 $scope.modal.hide().then(function() {
                                     if (data.status == 'nok') {
@@ -1272,12 +1279,14 @@ angular.module('starter.controllers')
                                             title: 'Enrolement impossible',
                                             template: data.message
                                         });
+                                        $ionicLoading.hide();
                                     } else {
 
                                         $scope.populations = data.data.populations;
                                         $scope.buildInProgress = data.data.buildInProgress;
 
                                         $rootScope.$broadcast('refresh:user');
+                                        $ionicLoading.hide();
                                     }
                                 })
                             }, function() {
@@ -1436,10 +1445,12 @@ angular.module('starter.controllers')
      * Method : Add batiment
      */
     $scope.launchTechnology = function(id) {
+        $ionicLoading.show();
         Build.addTechnology(id).then(function(data) {
             $scope.modal.hide().then(function() {
                 if (data.status == 'nok') {
 
+                    $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: 'Recherche impossible',
                         template: data.message
@@ -1449,11 +1460,14 @@ angular.module('starter.controllers')
                     $scope.technologies = data.data.technologies;
                     $scope.buildInProgress = data.data.buildInProgress;
 
+
+                    $ionicLoading.hide();
                     $rootScope.$broadcast('refresh:user');
                 }
             })
         }, function() {
 
+            $ionicLoading.hide();
         });
     };
 

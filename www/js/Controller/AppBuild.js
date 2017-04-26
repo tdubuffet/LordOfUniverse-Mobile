@@ -66,6 +66,7 @@ angular.module('starter.controllers')
      * Method : Add batiment
      */
     $scope.launchBatiment = function(id) {
+        $ionicLoading.show();
         Build.add(id).then(function(data) {
             $scope.modalBuild.hide().then(function() {
                 $ionicLoading.hide().then(function() {
@@ -75,6 +76,7 @@ angular.module('starter.controllers')
                             title: 'Construction impossible',
                             template: data.message
                         });
+                        $ionicLoading.hide();
                     } else {
 
                         $scope.building         = data.data.buildings;
@@ -83,6 +85,7 @@ angular.module('starter.controllers')
                         $scope.emps             = data.data.emps;
 
                         $rootScope.$broadcast('refresh:user');
+                        $ionicLoading.hide();
                     }
                 });
             })

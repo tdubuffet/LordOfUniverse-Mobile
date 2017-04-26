@@ -31,10 +31,12 @@ angular.module('starter.controllers')
      * Method : Add batiment
      */
     $scope.launchTechnology = function(id) {
+        $ionicLoading.show();
         Build.addTechnology(id).then(function(data) {
             $scope.modal.hide().then(function() {
                 if (data.status == 'nok') {
 
+                    $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: 'Recherche impossible',
                         template: data.message
@@ -44,11 +46,14 @@ angular.module('starter.controllers')
                     $scope.technologies = data.data.technologies;
                     $scope.buildInProgress = data.data.buildInProgress;
 
+
+                    $ionicLoading.hide();
                     $rootScope.$broadcast('refresh:user');
                 }
             })
         }, function() {
 
+            $ionicLoading.hide();
         });
     };
 
