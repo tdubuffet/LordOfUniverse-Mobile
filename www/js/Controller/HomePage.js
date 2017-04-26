@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('HomePage', function($scope, $ionicPlatform, Api, Account, OAuth, $location) {
+.controller('HomePage', function($scope, $ionicPlatform, Api, Account, OAuth, $location, $ionicLoading, $ionicPopup) {
 
 
     if (OAuth.isAuthenticated()) {
@@ -14,9 +14,18 @@ angular.module('starter.controllers')
             return;
         }
 
+        $ionicLoading.show();
+
         OAuth.getAccessToken($scope.login).then(function(success) {
-            $location.path('/app/home');
+            $location.path('/app/account');
+            $ionicLoading.hide();
         }, function(error) {
+            $ionicLoading.hide().then(function() {
+                $ionicPopup.alert({
+                    title: 'Connexion impossible',
+                    template: 'Le nom d\'utilisateur et/ou le mot de passe ne sont pas valides.'
+                });
+            });
         });
     };
 
