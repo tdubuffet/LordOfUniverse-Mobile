@@ -10,7 +10,7 @@
             <ion-nav-view>
                 <ion-content class="has-header">
 
-                    <div class="background" style="background-image: url('{{ ally.background }}')">
+                    <div class="background" ng-style="{'background-image': 'url({{ cdn }}{{ ally.background }})'}" ng-if="ally.background">
 
                         <div class="title">
                             <div>{{ ally.name }}</div>
@@ -21,9 +21,8 @@
                         </div>
 
                         <div class="icon">
-                            <img ng-src="{{ ally.icon }}">
+                            <img ng-src="{{ cdn }}{{ ally.icon }}" ng-if="ally.icon">
                         </div>
-
                     </div>
 
                     <div class="description line-break">

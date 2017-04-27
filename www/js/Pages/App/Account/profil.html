@@ -45,7 +45,7 @@
                         </p>
                     </div>
 
-                    <div class="row row-no-padding row-item-group">
+                    <div class="row row-no-padding row-item-group" ng-if="profil.id != user.id">
                         <div class="col" ui-sref="app.message-send({id: profil.id})">
                             <div>
                                 <i class="ion-icon ion-email"></i>
@@ -107,7 +107,7 @@
             <ion-nav-view>
                 <ion-content class="page-ally has-header" ng-show="ally">
 
-                    <div class="background" style="background-image: url('{{ ally.background }}')">
+                    <div class="background" ng-style="{'background-image': 'url({{ cdn }}{{ ally.background }})'}" ng-if="ally.background">
 
                         <div class="title">
                             <div>{{ ally.name }}</div>
@@ -126,14 +126,15 @@
                             </div>
                         </div>
 
+
                         <div class="icon">
-                            <img ng-src="{{ ally.icon }}">
+                            <img ng-src="{{ cdn }}{{ ally.icon }}" ng-if="ally.icon">
                         </div>
 
                     </div>
 
                     <div class="description">
-                        <button class="button button-block button-orbit" ng-if="ally.recruitment == true && ally.is_recruitment == false" ng-click="recruitment()">Envoyer une demande</button>
+                        <button class="button button-block button-orbit" ng-if="ally.recruitment == true && ally.is_recruitment == false && user.ally.id != ally.id" ng-click="recruitment()">Envoyer une demande</button>
                         <div ng-if="ally.is_recruitment == true" class="assertive text-center">Une demande de recrutement est en attente de validation par l'alliance.<br /><br /></div>
                         <div class="line-break">{{ ally.description }}</div>
                     </div>

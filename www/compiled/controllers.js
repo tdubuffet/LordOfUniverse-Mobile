@@ -77,6 +77,8 @@ angular.module('starter.controllers')
 .controller('AppProfil', function($scope, $ionicPlatform, Account, $ionicLoading, $rootScope, $stateParams, ionicToast, Ally, $ionicModal) {
 
 
+    $scope.cdn = Config.cdn;
+
     $ionicLoading.show();
     $scope.profil = false;
     Account.profil($stateParams.id).then(function(user) {
@@ -420,6 +422,7 @@ angular.module('starter.controllers')
 })
 .controller('AppAllyVisitor', function($scope, $ionicPlatform, Ally, $ionicLoading, $ionicScrollDelegate,  $rootScope, $q, $location, $state) {
 
+    $scope.cdn = Config.cdn;
 
 
 })
