@@ -15,6 +15,7 @@
     "angular-timer": "^1.3.4",
     "angular-typed": "https://github.com/codekraft-studio/angular-typed.git",
     "angular-fcsa-number": "^1.5.3",
-    "angular-input-masks": "^2.5.0"
+    "angular-input-masks": "^2.5.0",
+    "ngCordova": "^0.1.27-alpha"
   }
 }

@@ -17,12 +17,36 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    {
+      "id": "cordova-plugin-facebook4",
+      "locator": "cordova-plugin-facebook4",
+      "variables": {
+        "APP_ID": "1250527061704681",
+        "APP_NAME": "LordOfUniverse"
+      }
+    },
+    "cordova-plugin-screen-orientation",
+    "phonegap-plugin-push",
+    "cordova-plugin-device",
     "cordova-plugin-whitelist",
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
-    "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-camera",
+    "cordova-plugin-compat",
+    "cordova-plugin-file"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
+    {
+      "platform": "browser",
+      "version": "",
+      "locator": "browser"
+    }
+  ]
 }

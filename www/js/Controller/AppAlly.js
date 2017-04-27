@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup) {
+.controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup, $cordovaCamera, Picture) {
 
     $ionicLoading.show();
     $scope.ally = null;
+    $scope.cdn = Config.cdn;
 
     Ally.me().then(function(data) {
         $scope.ally = data;
@@ -118,6 +119,60 @@ angular.module('starter.controllers')
 
         })
 
+    };
+
+    $scope.loadImage = function() {
+        var options = {
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY, // Camera.PictureSourceType.PHOTOLIBRARY
+            allowEdit : false,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            quality: 65,
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+
+            $ionicLoading.show();
+            Picture.sendAlly(imageData).then(function() {
+
+                $state.reload();
+
+            }, function() {
+
+            }).finally(function() {
+                $ionicLoading.hide();
+            });
+
+        });
+    };
+
+    $scope.loadImageIcon = function() {
+        var options = {
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY, // Camera.PictureSourceType.PHOTOLIBRARY
+            allowEdit : false,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 300,
+            targetHeight: 300,
+            quality: 65,
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+
+            $ionicLoading.show();
+            Picture.sendAllyIcon(imageData).then(function() {
+
+                $state.reload();
+
+            }, function() {
+
+            }).finally(function() {
+                $ionicLoading.hide();
+            });
+
+        });
     };
 
 
