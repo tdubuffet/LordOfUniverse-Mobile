@@ -176,4 +176,54 @@ angular.module('starter.controllers')
 
 
 
+})
+
+.controller('AppAllyCreate', function($scope, $ionicPlatform, Ally, $ionicLoading, $ionicScrollDelegate, $ionicPopup,  $rootScope, $q, $location, $state) {
+
+    $scope.formAlly = {
+        name: '',
+        tag: '',
+        description: '',
+        recruitment: ''
+    };
+
+    $scope.saveAlly = function(form) {
+
+        if (form.$invalid) {
+            return;
+        }
+
+        $ionicLoading.show();
+
+        if ($scope.formAlly.recruitment == false) {
+            delete $scope.formAlly.recruitment;
+        }
+
+        Ally.create($scope.formAlly).then(function(data) {
+            $ionicLoading.hide();
+            $state.go('app.ally');
+        }, function(response) {
+
+
+            var errorMessage = '';
+            angular.forEach(response.data.messages, function(value, key) {
+                errorMessage += value + '<br />';
+            });
+
+            if (errorMessage == '') {
+                errorMessage = 'Une erreur s\'est produite, merci de contacter le staff si l\'erreur persiste';
+            }
+
+            $ionicPopup.alert({
+                title: 'Erreur',
+                template: errorMessage
+            });
+
+
+            $ionicLoading.hide();
+        });
+
+    };
+
+
 });

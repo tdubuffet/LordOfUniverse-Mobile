@@ -4,7 +4,7 @@
     </ion-nav-title>
     <ion-nav-buttons side="right" >
         <button ng-if="ally != false" class="button button-clear button-assertive" ng-click="exit()"><i class="fa fa-sign-out" aria-hidden="true"></i> Quitter</button>
-        <button ng-if="ally == false" class="button button-clear button-balanced" ng-click="exit()"><i class="ion-ios-color-filter" aria-hidden="true"></i> Créer</button>
+        <button ng-if="ally == false" class="button button-clear button-balanced" ui-sref="app.ally-create"><i class="ion-ios-color-filter" aria-hidden="true"></i> Créer</button>
     </ion-nav-buttons>
 
     <ion-content class="has-header padding" ng-if="ally == false">
@@ -162,7 +162,7 @@
                             </label>
                             <label class="item item-input item-floating-label item-orbited">
                                 <span class="input-label">Tag</span>
-                                <input type="text" name="tag" placeholder="Tag de l'alliance" ng-model="formAlly.tag" ng-minlength="3" ng-maxlength="6" ng-pattern="/^[a-zA-Z0-9]*$/" ng-trim="false" ng-required=true>
+                                <input type="text" name="tag" placeholder="Tag de l'alliance" ng-model="formAlly.tag" ng-minlength="3" ng-maxlength="5" ng-pattern="/^[a-zA-Z0-9]*$/" ng-trim="false" ng-required=true>
 
                                 <!-- Error INPUT -->
                                 <p ng-show="allyForm.tag.$error.minlength && (!allyForm.tag.$pristine || submitted)" class="help-block help-block-error">

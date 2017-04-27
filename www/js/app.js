@@ -267,6 +267,17 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 authenticate: true
             })
 
+            .state('app.ally-create', {
+                url: '/ally/create',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Ally/create.html",
+                        controller: 'AppAllyCreate'
+                    }
+                },
+                authenticate: true
+            })
+
             .state('app.ally-visitor', {
                 url: '/ally/visitor',
                 views: {

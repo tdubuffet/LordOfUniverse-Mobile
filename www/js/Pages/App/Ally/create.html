@@ -1,0 +1,82 @@
+<ion-view class="page-ally" cache-view="false">
+    <ion-nav-title>
+        Créer une alliance
+    </ion-nav-title>
+    <ion-nav-buttons side="right" >
+
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+        <form novalidate ng-submit="saveAlly(allyForm)" name="allyForm">
+            <div class="list">
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Nom</span>
+                    <input type="text" name="name" placeholder="Nom de votre alliance" ng-model="formAlly.name" ng-minlength="8" ng-maxlength="25" ng-required=true>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="allyForm.name.$error.minlength && (!allyForm.name.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le nom de l'alliance est trop court.
+                    </p>
+                    <p ng-show="allyForm.name.$error.maxlength && (!allyForm.name.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le nom de l'alliance est trop long.
+                    </p>
+
+                    <p ng-show="allyForm.name.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Tag</span>
+                    <input type="text" name="tag" placeholder="Tag de l'alliance" ng-model="formAlly.tag" ng-minlength="3" ng-maxlength="5" ng-pattern="/^[a-zA-Z0-9]*$/" ng-trim="false" ng-required=true>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="allyForm.tag.$error.minlength && (!allyForm.tag.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le tag de l'alliance est trop court.
+                    </p>
+                    <p ng-show="allyForm.tag.$error.maxlength && (!allyForm.tag.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Le tag de l'alliance est trop long.
+                    </p>
+
+                    <p ng-show="allyForm.tag.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <label class="item item-input item-floating-label item-orbited">
+                    <span class="input-label">Description</span>
+                    <textarea name="description" placeholder="Description de l'alliance" msd-elastic  ng-model="formAlly.description" ng-minlength="20" ng-required=true></textarea>
+
+                    <!-- Error INPUT -->
+                    <p ng-show="allyForm.description.$error.minlength && (!allyForm.description.$pristine || submitted)" class="help-block help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        La description de l'alliance est trop court.
+                    </p>
+
+                    <p ng-show="allyForm.description.$error.required && submitted" class="help-block  help-block-error">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Ce champ est obligatoire.
+                    </p>
+                </label>
+                <div class="item item-toggle item-orbited">
+                    Activer le recrutement ?
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="formAlly.recruitment" ng-checked="formAlly.recruitment">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+                <div class="item item-orbited item-orbited-button">
+                    <button type="submit" class="button button-block button-orbit" ng-click="submitted=true">
+                        Enregistrer
+                    </button>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

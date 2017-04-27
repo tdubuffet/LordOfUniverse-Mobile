@@ -317,6 +317,17 @@ angular.module('starter.services')
 
     };
 
+    Ally.create =  function(form) {
+
+        return $http.post(
+            Config.path_api + '/ally/create',
+            queryString.stringify(form),
+            {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        );
+    };
+
     Ally.editGeneral =  function(form) {
 
         return $http.post(
