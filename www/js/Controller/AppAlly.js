@@ -136,7 +136,23 @@ angular.module('starter.controllers')
         Ally.editGeneral($scope.formAlly).then(function(data) {
             $ionicLoading.hide();
             $state.reload();
-        }, function() {
+        }, function(response) {
+
+
+            var errorMessage = '';
+            angular.forEach(response.data.messages, function(value, key) {
+                errorMessage += value + '<br />';
+            });
+
+            if (errorMessage == '') {
+                errorMessage = 'Une erreur s\'est produite, merci de contacter le staff si l\'erreur persiste';
+            }
+
+            $ionicPopup.alert({
+                title: 'Erreur',
+                template: errorMessage
+            });
+
 
             $ionicLoading.hide();
         });
