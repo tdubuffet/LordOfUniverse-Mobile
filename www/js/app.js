@@ -38,8 +38,6 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 setTimeout(function() {
                     Api.info().then(function(response) {
 
-                        console.log(response.data);
-
                         if (response.data.maintenance_game == true) {
 
                             console.log('Maintenance en cours');
@@ -56,7 +54,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                             console.log('Aucune Maintenance');
 
                             if (OAuth.isAuthenticated()) {
-                                $location.path('/app/account');
+                                $location.path('/app/help');
                                 navigator.splashscreen.hide();
                             } else {
                                 $location.path('/homepage');
@@ -151,6 +149,36 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                     'content': {
                         templateUrl: "js/Pages/App/Map/index.html",
                         controller: 'AppMap'
+                    }
+                },
+                authenticate: true
+            })
+            .state('app.help', {
+                url: '/help',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Help/index.html",
+                        controller: 'AppHelp'
+                    }
+                },
+                authenticate: true
+            })
+            .state('app.contact', {
+                url: '/contact',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Help/contact.html",
+                        controller: 'AppContact'
+                    }
+                },
+                authenticate: true
+            })
+            .state('app.legal', {
+                url: '/legal',
+                views: {
+                    'content': {
+                        templateUrl: "js/Pages/App/Help/legal.html",
+                        controller: 'AppLegal'
                     }
                 },
                 authenticate: true

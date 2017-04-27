@@ -12468,6 +12468,11 @@ ion-footer-bar .title {
   color: #2bede6;
   border-bottom: 1px solid #213f44; }
 
+.page-contact h4,
+.page-contact h5 {
+  color: white;
+  margin-top: 25px; }
+
 /*!
  * animate.css -http://daneden.me/animate
  * Version - 3.5.1

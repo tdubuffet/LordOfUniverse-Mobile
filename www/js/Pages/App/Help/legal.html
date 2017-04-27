@@ -1,0 +1,30 @@
+<ion-view class="page-contact" cache-view="false">
+    <ion-nav-title>
+        Informations légales
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear button-positive" ng-click="goBack()">
+            <i class="ion-arrow-left-c"></i> Retour
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header padding">
+
+        <h4>{{ config.name }}</h4>
+        <p>{{ config.description }}</p>
+
+        <h5>Adresse de l'entreprise</h5>
+        {{ config.contact_address }}
+
+        <h5>Numéro de téléphone</h5>
+        {{ config.contact_phone }}
+
+        <h5>Adresse email</h5>
+        {{ config.contact_email }}
+
+        <h5>Version du jeu</h5>
+        {{ config.version }}
+
+    </ion-content>
+</ion-view>

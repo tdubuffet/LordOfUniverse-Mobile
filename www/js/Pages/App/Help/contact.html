@@ -1,0 +1,60 @@
+<ion-view class="page-help" cache-view="false">
+    <ion-nav-title>
+        Nous contacter
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear button-positive" ng-click="goBack()">
+            <i class="ion-arrow-left-c"></i> Retour
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+
+        <form novalidate ng-submit="saveAlly(contactForm)" name="contactForm">
+            
+        <div class="list">
+            <label class="item item-input item-floating-label item-orbited">
+                <span class="input-label">Sujet</span>
+                <input type="text" name="subject" placeholder="Sujet" ng-model="formContact.subject" ng-minlength="8" ng-maxlength="25" ng-required=true>
+
+                <!-- Error INPUT -->
+                <p ng-show="contactForm.subject.$error.minlength && (!contactForm.subject.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le sujet est trop court.
+                </p>
+                <p ng-show="contactForm.subject.$error.maxlength && (!contactForm.subject.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Le sujet est trop long.
+                </p>
+
+                <p ng-show="contactForm.subject.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+            </label>
+
+            <label class="item item-input item-floating-label item-orbited">
+                <span class="input-label">Message</span>
+                <textarea name="message" placeholder="Votre message" msd-elastic  ng-model="formContact.message" ng-minlength="20" ng-required=true></textarea>
+
+                <!-- Error INPUT -->
+                <p ng-show="contactForm.message.$error.minlength && (!contactForm.message.$pristine || submitted)" class="help-block help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Votre message est trop court.
+                </p>
+
+                <p ng-show="contactForm.message.$error.required && submitted" class="help-block  help-block-error">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Ce champ est obligatoire.
+                </p>
+            </label>
+
+            <div class="item item-orbited item-orbited-button">
+                <button type="submit" class="button button-block button-orbit" ng-click="submitted=true">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
