@@ -156,10 +156,13 @@ angular.module('starter.controllers')
 
         popup.then(function(res) {
             if(res) {
+                $ionicLoading.show();
                 Ally.exit().then(function() {
                     $state.go($state.current, {}, {reload: true});
                 }, function() {
 
+                }).finally(function() {
+                    $ionicLoading.hide();
                 });
             }
         });
