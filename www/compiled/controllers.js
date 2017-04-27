@@ -178,24 +178,40 @@ angular.module('starter.controllers')
 angular.module('starter.controllers')
 .controller('AppAlly', function($scope, $ionicPlatform, Ally, $ionicLoading, Tchat, $ionicScrollDelegate, Account,  $rootScope, $q, $location, $state, $ionicPopup, $cordovaCamera, Picture) {
 
-    $ionicLoading.show();
     $scope.ally = null;
     $scope.cdn = Config.cdn;
 
-    Ally.me().then(function(data) {
-        $scope.ally = data;
+    $scope.doRefresh = function(ionicLoading) {
 
-        $scope.formAlly = {
-            name: $scope.ally.name,
-            tag: $scope.ally.tag,
-            description: $scope.ally.description,
-            recruitment: $scope.ally.recruitment
-        };
+        if (typeof ionicLoading == 'undefined') {
+            ionicLoading = true;
+        }
 
-        $ionicLoading.hide();
-    }, function() {
-        $ionicLoading.hide();
-    });
+        if (ionicLoading) {
+            $ionicLoading.show();
+        }
+
+        Ally.me().then(function(data) {
+            $scope.ally = data;
+
+            $scope.formAlly = {
+                name: $scope.ally.name,
+                tag: $scope.ally.tag,
+                description: $scope.ally.description,
+                recruitment: $scope.ally.recruitment
+            };
+
+        }, function() {
+        }).finally(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+            if (ionicLoading) {
+                $ionicLoading.hide();
+            }
+        });
+
+    };
+
+    $scope.doRefresh();
 
     var reloadMessageTchat = false;
 

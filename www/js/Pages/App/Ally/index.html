@@ -21,6 +21,11 @@
             <ion-nav-view>
                 <ion-content class="has-header">
 
+                    <ion-refresher
+                            pulling-text="Actualiser" spinner="lines"
+                            on-refresh="doRefresh(false)">
+                    </ion-refresher>
+
                     <div class="background" ng-style="{'background-image': 'url({{ cdn }}{{ ally.background }})'}" ng-if="ally.background">
 
                         <div class="title">
@@ -49,6 +54,11 @@
         <ion-tab title="Membres" icon-on="ion-ios-people" icon-off="ion-ios-people-outline">
             <ion-nav-view>
                 <ion-content class="has-header">
+
+                    <ion-refresher
+                            pulling-text="Actualiser" spinner="lines"
+                            on-refresh="doRefresh(false)">
+                    </ion-refresher>
 
                     <div class="list">
 
