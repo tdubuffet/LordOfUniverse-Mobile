@@ -47,6 +47,11 @@
       "platform": "browser",
       "version": "",
       "locator": "browser"
+    },
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
     }
   ]
 }

@@ -7668,7 +7668,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   width: 100%;
   background-color: #fff; }
 
-@media (min-width: 680px) {
+@media (min-width: 750px) {
   .modal {
     top: 20%;
     right: 20%;
@@ -15456,7 +15456,7 @@ ion-footer-bar .title {
 .page-build .btn-fit {
   width: 60px;
   height: 60px;
-  background: url("../js/Pages/App/Build/img/button.png") no-repeat center center fixed;
+  background: url("../js/Pages/App/Build/img/button.png") no-repeat center center;
   position: fixed;
   z-index: 200;
   line-height: 60px;
@@ -15554,7 +15554,7 @@ ion-footer-bar .title {
       border: 1px solid rgba(43, 237, 230, 0.3);
       border-radius: 3px;
       font-weight: 300;
-      font-size: 0.2em;
+      font-size: 8px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: white;
@@ -15571,7 +15571,7 @@ ion-footer-bar .title {
       .page-build .map-building .building .control .btn-fit {
         width: 40px;
         height: 40px;
-        background: url("../js/Pages/App/Build/img/button-small.png") no-repeat center center fixed;
+        background: url("../js/Pages/App/Build/img/button-small.png") no-repeat center center;
         line-height: 40px;
         text-align: center;
         color: white;

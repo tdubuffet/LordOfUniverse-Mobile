@@ -19,6 +19,8 @@ $orbit-color-bar:                 #0b0f11;
 
 $royal:                           rgba($orbit-color-bar, 0.92) !default;
 
+$modal-inset-mode-break-point: 750px;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700');

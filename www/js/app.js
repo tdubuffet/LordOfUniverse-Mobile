@@ -18,8 +18,9 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
                 cordova.plugins.Keyboard.disableScroll(true);
             }
 
+            ionic.Platform.fullScreen();
             if(window.StatusBar) {
-                StatusBar.show();
+                StatusBar.hide();
                 StatusBar.backgroundColorByHexString("#0b0f11");
             }
 
@@ -81,6 +82,10 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
 
 
         });
+    })
+
+    .config(function($ionicConfigProvider) {
+        $ionicConfigProvider.views.swipeBackEnabled(false);
     })
 
     .config(function($rootScopeProvider) {

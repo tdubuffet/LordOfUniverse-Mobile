@@ -91,7 +91,7 @@ $imgWidth : 1205;
   .btn-fit{
     width: 60px;
     height: 60px;
-    background: url('../js/Pages/App/Build/img/button.png')  no-repeat center center fixed;
+    background: url('../js/Pages/App/Build/img/button.png')  no-repeat center center;
     position: fixed;
     z-index: 200;
     line-height: 60px;
@@ -217,7 +217,7 @@ $imgWidth : 1205;
         border-radius: 3px;
 
         font-weight: 300;
-        font-size: 0.2em;
+        font-size: 8px;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         color: white;
@@ -238,7 +238,7 @@ $imgWidth : 1205;
         .btn-fit{
           width: 40px;
           height: 40px;
-          background: url('../js/Pages/App/Build/img/button-small.png')  no-repeat center center fixed;
+          background: url('../js/Pages/App/Build/img/button-small.png')  no-repeat center center;
           line-height: 40px;
           text-align: center;
           color: white;
