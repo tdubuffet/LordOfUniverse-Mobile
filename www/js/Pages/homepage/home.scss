@@ -3,14 +3,12 @@
   ion-content{
     background: rgba($royal, 0.72);
 
-
   }
 
 
   background: url(../img/wallpaper_1.jpg) no-repeat center fixed;
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */
   background-size: cover; /* version standardisée */
-
   h1{
     color: $orbit-color;
     text-transform: uppercase;
@@ -27,9 +25,10 @@
   }
   .logo{
     text-align: center;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding: 55px 0 20px 0;
+
 
     img{
       width: 100%;

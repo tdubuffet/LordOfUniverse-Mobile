@@ -484,3 +484,71 @@ ion-footer-bar{
     margin-top: 25px;
   }
 }
+
+.homepage{
+  background-position-x: 0%;
+  background-position-y: 0%;
+  -webkit-animation: homePageAnimationBackground 80s linear;
+  -webkit-animation-iteration-count:infinite;
+
+  &.video{
+    background: none;
+    ion-content{
+      background: rgba($royal, 0.65);
+
+    }
+  }
+
+  &.video{
+    #bgvid {
+
+      position: fixed;
+
+      top: 50%;
+
+      left: 50%;
+
+      min-width: 100%;
+
+      min-height: 100%;
+
+      width: auto;
+
+      height: auto;
+
+      z-index: -100;
+
+      -webkit-transform: translateX(-50%) translateY(-50%) scale(1.5);
+      -moz-transform: translateX(-50%) translateY(-50%) scale(1.5);
+      -ms-transform: translateX(-50%) translateY(-50%) scale(1.5);
+      -o-transform: translateX(-50%) translateY(-50%) scale(1.5);
+
+      transform: translateX(-50%) translateY(-50%) scale(1.5);
+
+      background: url(http://video.webmfiles.org/big-buck-bunny_trailer.webm) no-repeat;
+
+      background-size: cover;
+
+    }
+  }
+}
+
+@-webkit-keyframes homePageAnimationBackground{
+
+  0% {
+    background-position-x: 0%;
+    background-position-y: 0%;
+  }
+
+  50% {
+
+    background-position-x: 100%;
+    background-position-y: 100%;
+  }
+
+  100% {
+
+    background-position-x: 0%;
+    background-position-y: 0%;
+  }
+}

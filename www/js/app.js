@@ -35,36 +35,48 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
             });
 
             if (navigator.splashscreen) {
-                setTimeout(function() {
                     Api.info().then(function(response) {
 
                         if (response.data.maintenance_game == true) {
 
-                            console.log('Maintenance en cours');
+                            console.info('Maintenance en cours');
                             $location.path('/maintenance');
-                            navigator.splashscreen.hide();
+                            setTimeout(function() {
+                                navigator.splashscreen.hide();
+                            }, 2000);
 
                         }
                         else if (response.data.version != Config.version) {
                             $location.path('/maj');
-                            navigator.splashscreen.hide();
+
+
+                            console.info('MAJ à faire');
+
+                            setTimeout(function() {
+                                navigator.splashscreen.hide();
+                            }, 2000);
                         }
                         else {
 
-                            console.log('Aucune Maintenance');
+                            console.info('Aucune Maintenance');
 
                             if (OAuth.isAuthenticated()) {
                                 $location.path('/app/help');
-                                navigator.splashscreen.hide();
+
+                                setTimeout(function() {
+                                    navigator.splashscreen.hide();
+                                }, 2000);
                             } else {
                                 $location.path('/homepage');
-                                navigator.splashscreen.hide();
+
+                                setTimeout(function() {
+                                    navigator.splashscreen.hide();
+                                }, 2000);
                             }
                         }
                     }, function() {
 
                     });
-                }, 1000);
             }
 
 
