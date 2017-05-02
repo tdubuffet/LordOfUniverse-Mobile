@@ -733,9 +733,7 @@ $imgWidth : 1205;
       }
 
       .mask{
-        background: url('../img/mask.png')  no-repeat center fixed;
-        -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-        background-size: cover; /* version standardisée */
+        background: url('../img/mask.png') repeat;
         width: 100%;
         height: 100%;
         position: absolute;
