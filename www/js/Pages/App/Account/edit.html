@@ -113,5 +113,24 @@
                 </ion-content>
             </ion-nav-view>
         </ion-tab>
+
+        <ion-tab title="Avatar" icon="ion-image">
+            <ion-nav-view>
+                <ion-content class="has-header padding" overflow-scroll="false">
+
+
+                    <div class="avatar-edit">
+                        <img ng-src="{{ user.avatar }}" />
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="button button-small button-orbit">
+                            Modifier
+                        </button>
+                    </div>
+
+                </ion-content>
+            </ion-nav-view>
+        </ion-tab>
     </ion-tabs>
 </ion-view>

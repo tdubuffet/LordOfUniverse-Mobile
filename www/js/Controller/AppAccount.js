@@ -6,6 +6,20 @@ angular.module('starter.controllers')
     Account.me().then(function(user) {
         $rootScope.user = user;
         $ionicLoading.hide();
+
+        $scope.labels =["Bâtiments", "Technologies", "Population", "Vaisseaux", "Appareil"];
+
+        $scope.data = [
+            [
+                (user.points_building * 100) / user.points,
+                (user.points_technology * 100) / user.points,
+                (user.points_population * 100) / user.points,
+                0,
+                (user.points_apparatus * 100) / user.points,
+            ]
+        ];
+
+
     });
 
     $scope.loadTabRank = function() {
@@ -32,7 +46,7 @@ angular.module('starter.controllers')
 
 })
 
-.controller('AppAccountEdit', function($scope, $rootScope, $ionicLoading, Account) {
+.controller('AppAccountEdit', function($scope, $rootScope, $ionicLoading, Account, $cordovaCamera, Picture) {
 
     $scope.formUser = {
         username: $rootScope.user.username,
@@ -41,6 +55,32 @@ angular.module('starter.controllers')
         notification: $rootScope.user.notification,
         emailing: $rootScope.user.emailing,
         newsletter: $rootScope.user.newsletter
+    };
+
+    $scope.avatar = function() {
+        var options = {
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit : false,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            quality: 65,
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+
+            $ionicLoading.show();
+            Picture.sendAlly(imageData).then(function() {
+
+                $state.reload();
+
+            }, function() {
+
+            }).finally(function() {
+                $ionicLoading.hide();
+            });
+
+        });
     };
 
     $scope.save = function(form) {

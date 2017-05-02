@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast', 'timer', 'angular-typed', 'ui.utils.masks', 'ngCordova'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'starter.services', 'angular-oauth2', 'angular-cache', 'monospaced.elastic', 'ionic-toast', 'timer', 'angular-typed', 'ui.utils.masks', 'ngCordova', 'chart.js'])
 
 
     .run(function ($ionicPlatform, OAuth, $location, Api) {

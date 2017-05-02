@@ -111,6 +111,15 @@
         </ion-tab>
 
         <ion-tab title="Mes stats" icon-on="ion-ios-pulse-strong" icon-off="ion-ios-pulse">
+            <ion-nav-view>
+                <ion-content class="has-header padding">
+
+                    <canvas id="radar" class="chart chart-radar"
+                            chart-data="data" chart-options="options" chart-labels="labels">
+                    </canvas>
+
+                </ion-content>
+            </ion-nav-view>
         </ion-tab>
     </ion-tabs>
 </ion-view>

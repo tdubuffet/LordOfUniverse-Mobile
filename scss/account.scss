@@ -68,6 +68,20 @@
 
   }
 
+  .avatar-edit{
+    text-align: center;
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+    img{
+      border-radius: 50%;
+      border: 1px solid $orbit-color;
+      height: 140px;
+      width: 140px;
+    }
+  }
+
   .description{
     background: rgba($orbit-color-dark, 0.4);
     border-top: 1px solid rgba($orbit-color, 0.2);

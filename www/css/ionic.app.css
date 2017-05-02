@@ -14979,6 +14979,16 @@ ion-footer-bar .title {
     height: 90px;
     width: 90px; }
 
+.page-account .avatar-edit {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px; }
+  .page-account .avatar-edit img {
+    border-radius: 50%;
+    border: 1px solid #2bede6;
+    height: 140px;
+    width: 140px; }
+
 .page-account .description {
   background: rgba(16, 61, 61, 0.4);
   border-top: 1px solid rgba(43, 237, 230, 0.2);
